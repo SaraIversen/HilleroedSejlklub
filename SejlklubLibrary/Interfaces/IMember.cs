@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HilleroedSejlklub.Interfaces
+namespace SejlklubLibrary.Interfaces
 {
     public interface IMember
     {
