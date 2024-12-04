@@ -12,6 +12,9 @@ namespace SejlklubLibrary.Services
     public class EventRepository : IEventRepository
     {
         private List<Event> _eventList;
+
+        public int Count { get { return _eventList.Count; } }
+
         public List<Event> GetAll()
         {
             return _eventList;

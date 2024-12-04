@@ -9,6 +9,7 @@ namespace SejlklubLibrary.Interfaces
 {
     public  interface IEventRepository
     {
+        int Count { get; }
         List<Event> GetAll();
         void AddEvent(Event events);
         void PrintAllEvents();
