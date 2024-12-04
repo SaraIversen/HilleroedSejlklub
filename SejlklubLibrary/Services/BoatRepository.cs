@@ -1,4 +1,5 @@
-﻿using SejlklubLibrary.Interfaces;
+﻿using SejlklubLibrary.Data;
+using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -14,39 +15,55 @@ namespace SejlklubLibrary.Services
         
         public BoatRepository() 
         {
-        
+            _boatList = MockData.BoatData;
         }
 
-        public int Count { get; set; }
+        public int Count { get{ return _boatList.Count; } }
 
         public void AddBoat(Boat boat)
         {
-            throw new NotImplementedException();
+            _boatList.Add(boat);
         }
 
         public List<Boat> GetAll()
         {
-            throw new NotImplementedException();
+            return _boatList;
         }
 
         public Boat GetBoatById(int id)
         {
-            throw new NotImplementedException();
+            foreach (Boat boat in _boatList)
+            {
+                if (boat.Id == id)
+                {
+                    return boat;
+                }
+            }
+            return null;
         }
 
         public void PrintAllBoats()
         {
-            throw new NotImplementedException();
+            foreach (Boat boat in _boatList)
+            {
+                Console.WriteLine(boat);
+            }
         }
 
         public void RemoveBoat(int id)
         {
-            throw new NotImplementedException();
+            Boat foundBoat = GetBoatById(id);
+            if (foundBoat != null)
+            {
+                _boatList.Remove(foundBoat);
+            }
         }
 
         public void UpdateBoat(Boat newBoat, int oldBoatId)
         {
-            throw new NotImplementedException();
+            Boat oldBoat = GetBoatById(oldBoatId);
+            oldBoat.Engine = newBoat.Engine;
+            oldBoat.Name = newBoat.Name;
         }
     }
 }
