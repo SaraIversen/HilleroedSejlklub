@@ -9,7 +9,7 @@ namespace SejlklubLibrary.Interfaces
 {
     public interface IBoatRepository
     {
-        int Count { get; set; }
+        int Count { get; }
 
         List<Boat> GetAll();
         Boat GetBoatById(int id);
