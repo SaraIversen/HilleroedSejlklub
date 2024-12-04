@@ -25,6 +25,8 @@
                 <td>@events.Name <br />@events.Date</td>
                 <td>@events.Location</td>
                 <td>@events.Description</td>
+@*              <td><a asp-page="EditCustomer" asp-route-id="@events.Id">Tilmeld</a></td> *@
+                <td><a asp-page="EditEvents" asp-route-id="@events.Id">Rediger</a>   <a asp-page="DeleteEvents" asp-route-deleteMobile="@events.Id">Slet</a></td>
             </tr>
         }
     </tbody>

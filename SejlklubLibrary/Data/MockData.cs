@@ -36,14 +36,14 @@ namespace SejlklubLibrary.Data
         private static List<Event> _eventData =
             new List<Event>()
             {
-                new Event("Klatreklub", "12/6", "Klattre her i klubben."),
-                new Event("Ny båd", "11/25", "Ny båd klar til booking."),
-                new Event("Fugl spottet", "2/12","Fantastisk fugl spottet over havet."),
-                new Event("Pizza Aften", "4/19", "Kom til pizza aften med fælleskabet."),
-                new Event("Stuntbane installeret", "1/4", "Ny stuntrampe installeret til speedbåde."),
-                new Event("Trænerkursus", "9/14", "Kursus til at blive træner."),
-                new Event("Knoglestrækning", "2/17", "Kiropraktor hyret til klubben."),
-                new Event("Ny hjemmeside", "1/5", "Ny hjemmeside er snart oppe."),
+                new Event("Klatreklub", "12/6", "Klattre her i klubben.","Mødes ved Klubuset"),
+                new Event("Ny båd", "11/25", "Ny båd klar til booking.","Klubhuset"),
+                new Event("Fugl spottet", "2/12","Fantastisk fugl spottet over havet.","Klubhuset"),
+                new Event("Pizza Aften", "4/19", "Kom til pizza aften med fælleskabet.","Klubhuset"),
+                new Event("Stuntbane installeret", "1/4", "Ny stuntrampe installeret til speedbåde.","Klubhuset"),
+                new Event("Trænerkursus", "9/14", "Kursus til at blive træner.","Klubhuset"),
+                new Event("Knoglestrækning", "2/17", "Kiropraktor hyret til klubben.","Klubhuset"),
+                new Event("Ny hjemmeside", "1/5", "Ny hjemmeside er snart oppe.","På nettet"),
             };
         #endregion
 

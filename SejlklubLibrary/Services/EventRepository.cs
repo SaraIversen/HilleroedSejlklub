@@ -1,4 +1,5 @@
-﻿using SejlklubLibrary.Interfaces;
+﻿using SejlklubLibrary.Data;
+using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace SejlklubLibrary.Services
         public EventRepository() 
         {
             _eventList = new List<Event>();
+            _eventList = MockData.EventData;
         }
 
         public void AddEvent(Event events)
@@ -49,7 +51,11 @@ namespace SejlklubLibrary.Services
 
         public void RemoveEvent(int id)
         {
-            throw new NotImplementedException();
+            Event foundEvent = GetEventByID(id);
+            if (foundEvent!=null) 
+            {
+                _eventList.Remove(foundEvent);
+            }
         }
 
         public void UpdateEvent(Event newEvent, int oldEventId)
