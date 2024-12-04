@@ -12,13 +12,13 @@ namespace SejlklubLibrary.Models
         private static int _counter = 0;
         private int _id;
 
-        public Member(string name, string email,string addresss, string phone, string memberStatus) 
+        public Member(string name, string email,string address, string phone, string memberStatus) 
         {
             _counter++;
             _id = _counter;
             Name = name;
             Email = email;
-            Address = addresss;
+            Address = address;
             Phone = phone;
             MemberStatus = memberStatus;
         }
