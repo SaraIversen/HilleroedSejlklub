@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HilleroedSejlklub", "HilleroedSejlklub\HilleroedSejlklub.csproj", "{244A3568-1D05-4803-BE1B-47853770156F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SejlklubLibrary", "SejlklubLibrary\SejlklubLibrary.csproj", "{2302CC4A-FACC-4E69-8AB7-8E51B5B168B9}"
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SejlklubLibrary", "SejlklubLibrary\SejlklubLibrary.csproj", "{C7A1F205-8A9A-41CB-8B51-293EE9723F79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,10 +17,10 @@ Global
 		{244A3568-1D05-4803-BE1B-47853770156F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{244A3568-1D05-4803-BE1B-47853770156F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{244A3568-1D05-4803-BE1B-47853770156F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7A1F205-8A9A-41CB-8B51-293EE9723F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7A1F205-8A9A-41CB-8B51-293EE9723F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7A1F205-8A9A-41CB-8B51-293EE9723F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7A1F205-8A9A-41CB-8B51-293EE9723F79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2302CC4A-FACC-4E69-8AB7-8E51B5B168B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2302CC4A-FACC-4E69-8AB7-8E51B5B168B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2302CC4A-FACC-4E69-8AB7-8E51B5B168B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2302CC4A-FACC-4E69-8AB7-8E51B5B168B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
