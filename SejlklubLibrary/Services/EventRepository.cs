@@ -49,7 +49,11 @@ namespace SejlklubLibrary.Services
 
         public void RemoveEvent(int id)
         {
-            throw new NotImplementedException();
+            Event foundEvent = GetEventByID(id);
+            if (foundEvent!=null) 
+            {
+                _eventList.Remove(foundEvent);
+            }
         }
 
         public void UpdateEvent(Event newEvent, int oldEventId)
