@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.SejlklubLibrary.Interfaces;
 
 namespace SejlklubLibrary.Models
 {
@@ -18,6 +17,7 @@ namespace SejlklubLibrary.Models
             _counter++;
             _id = _counter;
         }
+
         public string MemberStatus { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
