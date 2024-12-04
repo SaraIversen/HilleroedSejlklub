@@ -13,6 +13,7 @@ namespace SejlklubLibrary.Interfaces
         string Email { get; set; }
         int Id {  get; }
         string Address { get; set; }
+        string Name { get; set; }
 
         string ToString();
     }
