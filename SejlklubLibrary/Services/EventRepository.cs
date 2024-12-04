@@ -49,7 +49,10 @@ namespace SejlklubLibrary.Services
 
         public void PrintAllEvents()
         {
-            throw new NotImplementedException();
+            foreach (Event events in _eventList) 
+            {
+                Console.WriteLine(events.ToString());
+            }
         }
 
         public void RemoveEvent(int id)

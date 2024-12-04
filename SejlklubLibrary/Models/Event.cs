@@ -19,6 +19,10 @@ namespace SejlklubLibrary.Models
         public string Location { get; set; }
 
         public int Id { get { return _id; } }
+        public Event()
+        {
+            
+        }
 
         public Event(string name, string date, string description,string location)
         {
