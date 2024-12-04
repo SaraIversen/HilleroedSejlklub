@@ -9,6 +9,7 @@ namespace Razor.Pages.Events
     {
         public IEventRepository _eventRepository;
 
+        [BindProperty]
         public Event Event { get; set; }
 
         public DeleteEventsModel(IEventRepository eventRepository)

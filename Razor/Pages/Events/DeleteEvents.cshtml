@@ -10,21 +10,37 @@
     <div class="col-md-4">
         <form methos="post">
             <div claass="form-group">
-                <label asp-for="@Model" class="Control-laabel"></label>
-                <input asp-for="@Model" class="form-conrol"/>
+                <label asp-for="@Model.Event.Id" class="Control-laabel"></label> <br />
+                <input asp-for="@Model.Event.Id" class="form-conrol" />
             </div>
+            <br />
             <div claass="form-group">
-                <label asp-for="@Model" class="Control-laabel"></label>
-                <input asp-for="@Model" class="form-conrol" />
+                <label asp-for="@Model.Event.Name" class="Control-laabel"></label> <br />
+                <input asp-for="@Model.Event.Name" class="form-conrol" />
             </div>
+            <br />
             <div claass="form-group">
-                <label asp-for="@Model" class="Control-laabel"></label>
-                <input asp-for="@Model" class="form-conrol" />
+                <label asp-for="@Model.Event.Date" class="Control-laabel"></label> <br />
+                <input asp-for="@Model.Event.Date" class="form-conrol" />
             </div>
+            <br />
             <div claass="form-group">
-                <label asp-for="@Model" class="Control-laabel"></label>
-                <input asp-for="@Model" class="form-conrol" />
+                <label asp-for="@Model.Event.Location" class="Control-laabel"></label> <br />
+                <input asp-for="@Model.Event.Location" class="form-conrol" />
+            </div>
+            <br />
+            <div claass="form-group">
+                <label asp-for="@Model.Event.Description" class="Control-laabel"></label> <br />
+                <input asp-for="@Model.Event.Description" class="form-conrol" />
+            </div>
+            <br />
+            <div>
+                <input type="submit" value="Delete" class="btn btn-primary" />
             </div>
         </form>
     </div>
+
+    <form method="Post">
+        <a asp-page="/Events/ShowEvents">Gå tilbage til begivenheder</a>
+    </form>
 </div>
