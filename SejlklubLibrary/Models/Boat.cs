@@ -31,7 +31,7 @@ namespace SejlklubLibrary.Models
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"Name:{Name}\nEngine:{Engine}\nMeasurement:{Measurement}\nBuildYear: {BuildYear}";
         }
     }
 }
