@@ -20,7 +20,7 @@ namespace SejlklubLibrary.Models
 
         public int Id { get { return _id; } }
 
-        public Event(string name,string date, string description)
+        public Event(string name, string date, string description,string location)
         {
             _id = _counter;
             _counter++;
@@ -28,6 +28,14 @@ namespace SejlklubLibrary.Models
             Name = name;
             Date = date;
             Description = description;
+            Location = location;
+
+        }
+        public override string ToString()
+        {
+            return $"{Name},{Date}\n" +
+                $"Sted: {Location}\n" +
+                $"Beskrivelse: {Description}";
         }
     }
 }
