@@ -12,10 +12,15 @@ namespace SejlklubLibrary.Models
         private static int _counter = 0;
         private int _id;
 
-        public Member() 
+        public Member(string name, string email,string addresss, string phone, string memberStatus) 
         {
             _counter++;
             _id = _counter;
+            Name = name;
+            Email = email;
+            Address = addresss;
+            Phone = phone;
+            MemberStatus = memberStatus;
         }
 
         public string MemberStatus { get; set; }
@@ -23,5 +28,6 @@ namespace SejlklubLibrary.Models
         public string Email { get; set; }
         public int Id { get { return _id; } }
         public string Address { get; set; }
+        public string Name { get; set; }
     }
 }
