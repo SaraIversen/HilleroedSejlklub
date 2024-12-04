@@ -13,8 +13,4 @@
     <None Remove="Interface\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

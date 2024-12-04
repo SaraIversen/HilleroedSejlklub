@@ -13,37 +13,37 @@ namespace SejlklubLibrary.Data
         private static Dictionary<string, Member> _memberData =
             new Dictionary<string, Member>()
             {
-            { "12121212", new Member("Mikkel", "12121212", "Street 123") },
-            { "13131313", new Member("Charlotte", "13131313", "Avenue 321") },
-            { "14141414", new Member("Carina", "14141414", "High Street 234") },
-            { "15151515", new Member("Muhammed", "15151515", "North Street 345") }
+            { "12121212", new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior) },
+            { "13131313", new Member("Charlotte", "charlotte@mail.dk", "Avenue 321", "13131313", MemberType.Junior) },
+            { "14141414", new Member("Carina", "carina@mail.dk", "14141414", "High Street 234", MemberType.Junior) },
+            { "15151515", new Member("Muhammed", "muhammed@mail.dk", "15151515", "North Street 345", MemberType.Passiv) }
             };
 
         private static List<Boat> _boatData =
             new List<Boat>()
             {
-            new Boat("Margherita", 85, "Tomat, ost", BoatType.PIZZECLASSSICHE),
-            new Boat("Vesuvio", 95, "Tomat, ost & skinke", BoatType.PIZZECLASSSICHE),
-            new Boat("Capricciosa", 98, "Tomat, ost, skinke & champignon", BoatType.PIZZECLASSSICHE),
-            new Boat("Calzone", 98, "Indbagt pizza med tomat, ost, skinke & champignon", BoatType.PIZZECLASSSICHE),
-            new Boat("Quattro Stagioni", 98, "Tomat, ost, skinke, champignon, rejer & paprika", BoatType.PIZZECLASSSICHE),
-            new Boat("Marinara", 97, "Tomat, ost, rejer, muslinger & hvidløg", BoatType.PIZZECLASSSICHE),
-            new Boat("Vegetariana", 98, "Tomat, ost & grønsager", BoatType.PIZZECLASSSICHE),
-            new Boat("Italiana", 97, "Tomat, ost, løg & kødsauce", BoatType.PIZZECLASSSICHE)
+            new Boat("1 meter", "Tøftøf", "v2", 1999, BoatType.Laserjolle),
+            new Boat("2 meter", "Båd", "v3", 2003, BoatType.lynæs),
+            new Boat("3 meter", "Skiw", "v4", 1999, BoatType.Optimistjolle),
+            new Boat("4 meter", "Mary", "v5", 1996, BoatType.Europajolle),
+            new Boat("5 meter", "Pineapple", "v6", 2007, BoatType.TERA),
+            new Boat("6 meter", "Synke", "v7", 1991, BoatType.FEVA),
+            new Boat("7 meter", "Koreander", "v8", 2014, BoatType.Wayfarer),
+            new Boat("20 centimeter", "Avisbåd", "Vind", 2024, BoatType.Snipejolle)
 
             };
 
         private static List<Event> _eventData =
             new List<Event>()
             {
-                new Event("Pepperoni", 10),
-                new Event("Ananas", 10),
-                new Event("Løg", 5),
-                new Event("Jalapenos", 10),
-                new Event("Gorgonzola", 15),
-                new Event("Skinke", 10),
-                new Event("Hvidløg", 10),
-                new Event("Champignon", 15),
+                new Event("Klatreklub", "12/6", "Klattre her i klubben."),
+                new Event("Ny båd", "11/25", "Ny båd klar til booking."),
+                new Event("Fugl spottet", "2/12","Fantastisk fugl spottet over havet."),
+                new Event("Pizza Aften", "4/19", "Kom til pizza aften med fælleskabet."),
+                new Event("Stuntbane installeret", "1/4", "Ny stuntrampe installeret til speedbåde."),
+                new Event("Trænerkursus", "9/14", "Kursus til at blive træner."),
+                new Event("Knoglestrækning", "2/17", "Kiropraktor hyret til klubben."),
+                new Event("Ny hjemmeside", "1/5", "Ny hjemmeside er snart oppe."),
             };
         #endregion
 

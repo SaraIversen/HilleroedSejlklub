@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SejlklubLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace SejlklubLibrary.Interfaces
 {
     public interface IMember
     {
-        string MemberStatus { get; set; }
+        MemberType MemberStatus { get; set; }
         string Phone { get; set;}
         string Email { get; set; }
         int Id {  get; }
