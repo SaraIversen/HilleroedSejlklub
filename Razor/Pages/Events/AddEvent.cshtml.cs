@@ -11,6 +11,15 @@ namespace Razor.Pages.Events
 
         [BindProperty]
         public Event Event { get; set; }
+        [BindProperty]
+        public string Name {get;set;}
+        [BindProperty]
+        public string Date { get; set; }
+        [BindProperty]
+        public string Location { get; set; }
+        [BindProperty]
+        public string Description { get; set; }
+
 
         public AddEventModel(IEventRepository eventRepository)
         {
@@ -22,7 +31,8 @@ namespace Razor.Pages.Events
 
         public IActionResult OnPost() 
         {
-            _eventRepository.AddEvent(Event);
+            Event events = new Event(Name, Date, Description, Location);
+            _eventRepository.AddEvent(events);
             return RedirectToPage("ShowEvents");
         }
     }
