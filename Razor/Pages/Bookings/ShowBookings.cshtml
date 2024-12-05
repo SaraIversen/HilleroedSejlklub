@@ -6,8 +6,8 @@
 }
 <h1>Begivenheder:</h1>
 <hr />
-<p>Antal oprettede begivenheder: @Model.B.Count</p>
-<table style="width:85%" class="table">
+<p>Antal oprettede begivenheder: @Model.Bookings.Count</p>
+@* <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
             <td>ID</td>
@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Event events in Model.Events)
+        @foreach (Event events in Model.Bookings)
         {
             <tr>
                 <td>@events.Id</td>
@@ -30,4 +30,4 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
