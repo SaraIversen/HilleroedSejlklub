@@ -64,9 +64,18 @@ namespace SejlklubLibrary.Services
             }
         }
 
-        public void UpdateEvent(Event newEvent, int oldEventId)
+        public void UpdateEvent(Event oldevent)
         {
-            throw new NotImplementedException();
+            foreach (Event events in _eventList) 
+            {
+                if (events.Id == oldevent.Id) 
+                {
+                    events.Name = oldevent.Name;
+                    events.Date = oldevent.Date;
+                    events.Location = oldevent.Location;
+                    events.Description = oldevent.Description;
+                }
+            }
         }
     }
 }
