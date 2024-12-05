@@ -28,9 +28,9 @@ namespace SejlklubLibrary.Services
 
         public void AddEvent(Event events)
         {
-            if (!_eventList.Contains(events)) 
+            if (!_eventList.Contains(events))
             {
-                AddEvent(events);
+                _eventList.Add(events);
             }
         }
 

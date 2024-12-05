@@ -39,7 +39,7 @@ namespace SejlklubLibrary.Models
         {
             return $"{Name},{Date}\n" +
                 $"Sted: {Location}\n" +
-                $"Beskrivelse: {Description}";
+                $"Beskrivelse: {Description}\n";
         }
     }
 }

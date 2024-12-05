@@ -13,8 +13,6 @@ Console.Write("_____________________________________________________________\n")
 
 
 
-
-
 //Test af event class
 //_____Opretelse af objekt
 Event e1 = new Event("Sommertur","20/06/2025", "Hygge sejltur","Klubhuset");
@@ -30,7 +28,7 @@ Event ev1 = er.GetEventByID(1);
 Console.WriteLine(ev1.ToString());
 Console.Write("_____________________________________________________________\n");
 //_____Remove  objekt
-er.RemoveEvent(1);
+er.RemoveEvent(ev1.Id);
 foreach (Event item in test) 
 { Console.WriteLine(item.ToString()); }
 
