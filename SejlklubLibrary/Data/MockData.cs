@@ -15,8 +15,8 @@ namespace SejlklubLibrary.Data
             {
             { "12121212", new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior) },
             { "13131313", new Member("Charlotte", "charlotte@mail.dk", "Avenue 321", "13131313", MemberType.Junior) },
-            { "14141414", new Member("Carina", "carina@mail.dk", "14141414", "High Street 234", MemberType.Junior) },
-            { "15151515", new Member("Muhammed", "muhammed@mail.dk", "15151515", "North Street 345", MemberType.Passiv) }
+            { "14141414", new Member("Carina", "carina@mail.dk", "High Street 234", "14141414", MemberType.Junior) },
+            { "15151515", new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv) }
             };
 
         private static List<Boat> _boatData =

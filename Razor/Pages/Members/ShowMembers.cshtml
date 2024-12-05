@@ -8,7 +8,7 @@
 <h1>Antal Medlemmer @Model.Members.Count </h1>
 
 <p>
-	<a asp-page="AddMembers">Add Member</a>
+	<a asp-page="AddMembers">Tilføj medlem</a>
 </p>
 
 <table class="table">
@@ -16,6 +16,7 @@
 		<tr>
 			<th>ID</th>
 			<th>Navn</th>
+			<th>Addresse</th>
 			<th>Email</th>
 			<th>Telefon</th>
 			<th>Medlems Status</th>
@@ -27,6 +28,7 @@
 			<tr>
 				<td>@item.Id</td>
 				<td>@item.Name</td>
+				<td>@item.Address</td>
 				<td>@item.Email</td>
 				<td>@item.Phone</td>
 				<td>@item.MemberStatus</td>
