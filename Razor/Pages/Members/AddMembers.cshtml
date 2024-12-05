@@ -1,0 +1,33 @@
+﻿@page
+@model Razor.Pages.Members.AddMembersModel
+@{
+	ViewData["Title"] = "Add Members";
+}
+
+<form method="post" enctype="multipart/form-data">
+	<div class="form-group">
+		<div asp-validation-summary="All" class="text-danger"></div>
+		<label asp-for="@Model.Member.Name" class="control-label"></label>
+		<input asp-for="@Model.Member.Name" class="form-control" />
+		<span asp-validation-for="Member.Name" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Member.Email" class="control-label"></label>
+		<input asp-for="@Model.Member.Email" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Member.Address" class="control-label"></label>
+		<input asp-for="@Model.Member.Address" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Member.Phone" class="control-label"></label>
+		<input asp-for="@Model.Member.Phone" class="form-control" />
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Member.MemberStatus" class="control-label"></label>
+		<input asp-for="@Model.Member.MemberStatus" class="control-label" />
+	</div>
+	<div class="form-group">
+		<input type="submit" value="Create Member" class="btn btn-primary" />
+	</div>
+</form>

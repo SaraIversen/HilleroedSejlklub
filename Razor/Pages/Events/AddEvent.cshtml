@@ -1,4 +1,41 @@
 ﻿@page
 @model Razor.Pages.Events.AddEventModel
 @{
+    ViewData["AddEvent"] = "TilføjEvent";
 }
+
+<h1>Opret Event</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="@Model.Event.Name" class="Control-label"></label> <br />
+                <input asp-for="@Model.Event.Name" class="form-contol" />
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="@Model.Event.Date" class="Control-abel"></label> <br />
+                <input asp-for="@Model.Event.Date" class="form-cotrol" />
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="@Model.Event.Location" class="Control-label"></label> <br />
+                <input asp-for="@Model.Event.Location" class="form-cotrol" />
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="@Model.Event.Description" class="Control-label"></label> <br />
+                <input asp-for="@Model.Event.Description" class="form-control" />
+            </div>
+            <br />
+            <div>
+                <input type="submit" value="Opret" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <form method="Post">
+        <a asp-page="/Events/ShowEvents">Gå tilbage til begivenheder</a>
+    </form>
+</div>

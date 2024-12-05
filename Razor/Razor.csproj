@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Members\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SejlklubLibrary\SejlklubLibrary.csproj" />
   </ItemGroup>
 

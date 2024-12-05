@@ -1,0 +1,54 @@
+﻿@page
+@using SejlklubLibrary.Models
+@model Razor.Pages.Bookings.ShowBookingsModel
+@{
+    ViewData["Title"] = "ShowBookings";
+}
+<h1>Bookingside</h1>
+
+@* <p>Antal oprettede bookinger: @Model.Bookings.Count</p> *@
+<table style="width:85%" class="table">
+    <thead style="background-color:lightskyblue;border-radius:60px">
+        <tr>
+            <td>ID</td>
+            <td>Starttidspunkt</td>
+            <td>Sluttidspunkt</td>
+            <td>Sted</td>
+            <td>Båd</td>
+            <td>Status</td>
+            <td>Booket af</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Booking booking in Model.Bookings)
+        {
+            <tr>
+                <td>@booking.Id</td>
+                <td>Test</td>
+                <td>Test</td>
+                <td>@booking.Place</td>
+                <td>@booking.Boat.Name</td>
+                <td>@if (@booking.IsAvailable)
+                    {
+                        <p>Ledig</p>
+                    }
+                    else
+                    {
+                        <p>Booket</p>
+                    }
+                </td>
+                <td>
+                    @if (booking.IsAvailable)
+                    {
+                        <a asp-page="BookBoat" asp-route-No="@booking.Id">Book</a>
+                    }
+                    else
+                    {
+                        @booking.Member
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
