@@ -1,4 +1,5 @@
-﻿using SejlklubLibrary.Interfaces;
+﻿using SejlklubLibrary.Data;
+using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,12 @@ namespace SejlklubLibrary.Services
 		private Dictionary<string, Member> _members;
 		public int Count { get { return _members.Count; } }
 
-		public List<Member> GetAll()
+        public MemberRepository()
+        {
+			_members = MockData.MemberData;
+        }
+
+        public List<Member> GetAll()
 		{
 			return _members.Values.ToList();
 		}
@@ -48,8 +54,11 @@ namespace SejlklubLibrary.Services
 
 		public void UpdateMembers(Member newMember, string oldMemberPhone)
 		{
-			_members.Remove(oldMemberPhone);
-			AddMember(newMember);
+			if (_members.ContainsKey(oldMemberPhone))
+			{
+				_members.Remove(oldMemberPhone);
+				AddMember(newMember);
+			}
 		}		
 	}
 }
