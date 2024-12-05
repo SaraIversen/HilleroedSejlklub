@@ -4,30 +4,51 @@
 @{
     ViewData["Title"] = "ShowBookings";
 }
-<h1>Begivenheder:</h1>
-<hr />
-<p>Antal oprettede begivenheder: @Model.Bookings.Count</p>
-@* <table style="width:85%" class="table">
+<h1>Bookingside</h1>
+
+@* <p>Antal oprettede bookinger: @Model.Bookings.Count</p> *@
+<table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
             <td>ID</td>
-            <td>Navn og Dato</td>
+            <td>Starttidspunkt</td>
+            <td>Sluttidspunkt</td>
             <td>Sted</td>
-            <td>Beskrivelse</td>
+            <td>Båd</td>
+            <td>Status</td>
+            <td>Booket af</td>
 
         </tr>
     </thead>
     <tbody>
-        @foreach (Event events in Model.Bookings)
+        @foreach (Booking booking in Model.Bookings)
         {
             <tr>
-                <td>@events.Id</td>
-                <td><b>@events.Name</b> <br />Dato: <em>@events.Date </em></td>
-                <td>@events.Location</td>
-                <td>@events.Description</td>
-                <td><a asp-page="UpdateEvents" asp-route-No="@events.Id">Rediger</a></td>
-                <td><a asp-page="DeleteEvents" asp-route-deleteId="@events.Id">Slet</a></td>
+                <td>@booking.Id</td>
+                <td>Test</td>
+                <td>Test</td>
+                <td>@booking.Place</td>
+                <td>@booking.Boat.Name</td>
+                <td>@if (@booking.IsAvailable)
+                    {
+                        <p>Ledig</p>
+                    }
+                    else
+                    {
+                        <p>Booket</p>
+                    }
+                </td>
+                <td>
+                    @if (booking.IsAvailable)
+                    {
+                        <a asp-page="BookBoat" asp-route-No="@booking.Id">Book</a>
+                    }
+                    else
+                    {
+                        @booking.Member
+                    }
+                </td>
             </tr>
         }
     </tbody>
-</table> *@
+</table>
