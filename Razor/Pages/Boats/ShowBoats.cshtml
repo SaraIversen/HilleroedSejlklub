@@ -1,4 +1,40 @@
 ﻿@page
+@using SejlklubLibrary.Models
 @model Razor.Pages.Boats.ShowBoatsModel
 @{
+    ViewData["Title"] = "ShowBoats";
 }
+<h1>Både:</h1>
+<a asp-page="/Boats/AddBoat">Opret Båd</a>
+
+<hr />
+<p>Antal oprettede både: @Model.Boats.Count</p>
+<table style="width:85%" class="table">
+    <thead style="background-color:lightskyblue;border-radius:60px">
+        <tr>
+            <td>ID</td>
+            <td>Navn</td>
+            <td>Båd Type</td>
+            <td>Mål</td>
+            <td>Motor</td>
+            <td>Bygningsår</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Boat boats in Model.Boats)
+        {
+            <tr>
+                <td style="background-color:lightgray;text-align:center">@boats.Id</td>
+                <td>@boats.Name</td>
+                <td>@boats.BoatType</td>
+                <td>@boats.Measurement</td>
+                <td>@boats.Engine</td>
+                <td>@boats.BuildYear</td>
+                <td><a asp-page="UpdateBoat" asp-route-No="@boats.Id">Rediger</a></td>
+                <td><a asp-page="DeleteBoat" asp-route-deleteId="@boats.Id">Slet</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
