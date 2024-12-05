@@ -21,7 +21,7 @@ namespace SejlklubLibrary.Models
             BoatType = boatType;
         }
 
-        public BoatType BoatType { get; }
+        public BoatType BoatType { get; set; }
         public string Measurement {  get; }
         public bool IsBooked { get; set; }
         public int Id { get; set; }

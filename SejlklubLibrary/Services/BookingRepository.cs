@@ -17,7 +17,7 @@ namespace SejlklubLibrary.Services
 
         public BookingRepository()
         {
-            //_boatList = MockData.BoatData;
+            _bookingsList = MockData.BookingData;
         }
 
         public List<Booking> GetAll()

@@ -70,6 +70,11 @@ namespace SejlklubLibrary.Data
         {
             get { return _eventData; }
         }
+
+        public static List<Booking> BookingData
+        {
+            get { return _bookingData; }
+        }
         #endregion
     }
 }
