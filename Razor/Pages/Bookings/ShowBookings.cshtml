@@ -1,0 +1,33 @@
+﻿@page
+@using SejlklubLibrary.Models
+@model Razor.Pages.Bookings.ShowBookingsModel
+@{
+    ViewData["Title"] = "ShowBookings";
+}
+<h1>Begivenheder:</h1>
+<hr />
+<p>Antal oprettede begivenheder: @Model.Bookings.Count</p>
+@* <table style="width:85%" class="table">
+    <thead style="background-color:lightskyblue;border-radius:60px">
+        <tr>
+            <td>ID</td>
+            <td>Navn og Dato</td>
+            <td>Sted</td>
+            <td>Beskrivelse</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Event events in Model.Bookings)
+        {
+            <tr>
+                <td>@events.Id</td>
+                <td><b>@events.Name</b> <br />Dato: <em>@events.Date </em></td>
+                <td>@events.Location</td>
+                <td>@events.Description</td>
+                <td><a asp-page="UpdateEvents" asp-route-No="@events.Id">Rediger</a></td>
+                <td><a asp-page="DeleteEvents" asp-route-deleteId="@events.Id">Slet</a></td>
+            </tr>
+        }
+    </tbody>
+</table> *@
