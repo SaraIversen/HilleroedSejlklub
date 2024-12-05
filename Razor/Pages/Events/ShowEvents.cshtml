@@ -5,6 +5,8 @@
     ViewData["Title"] = "ShowEvents";
 }
 <h1>Begivenheder:</h1>
+<a asp-page="/Events/AddEvent">Opret begivenhed</a>
+
 <hr />
 <p>Antal oprettede begivenheder: @Model.Events.Count</p>
 <table style="width:85%" class="table">
@@ -14,6 +16,8 @@
             <td>Navn og Dato</td>
             <td>Sted</td>
             <td>Beskrivelse</td>
+            <td></td>
+            <td></td>
 
         </tr>
     </thead>
@@ -21,7 +25,7 @@
         @foreach (Event events in Model.Events)
         {
             <tr>
-                <td>@events.Id</td>
+                <td style="background-color:lightgray;text-align:center">@events.Id</td>
                 <td><b>@events.Name</b> <br />Dato: <em>@events.Date </em></td>
                 <td>@events.Location</td>
                 <td>@events.Description</td>
