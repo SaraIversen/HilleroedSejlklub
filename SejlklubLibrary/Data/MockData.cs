@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,14 +37,14 @@ namespace SejlklubLibrary.Data
         private static List<Event> _eventData =
             new List<Event>()
             {
-                new Event("Klatreklub", "12/6", "Klattre her i klubben.","Mødes ved Klubuset"),
-                new Event("Ny båd", "11/25", "Ny båd klar til booking.","Klubhuset"),
-                new Event("Fugl spottet", "2/12","Fantastisk fugl spottet over havet.","Klubhuset"),
-                new Event("Pizza Aften", "4/19", "Kom til pizza aften med fælleskabet.","Klubhuset"),
-                new Event("Stuntbane installeret", "1/4", "Ny stuntrampe installeret til speedbåde.","Klubhuset"),
-                new Event("Trænerkursus", "9/14", "Kursus til at blive træner.","Klubhuset"),
-                new Event("Knoglestrækning", "2/17", "Kiropraktor hyret til klubben.","Klubhuset"),
-                new Event("Ny hjemmeside", "1/5", "Ny hjemmeside er snart oppe.","På nettet"),
+                new Event("Klatreklub", new DateTime(2024, 12, 5, 12, 00, 0), "Klattre her i klubben.","Mødes ved Klubuset"),
+                new Event("Ny båd", new DateTime(2025, 11, 25, 15 ,00, 0), "Ny båd klar til booking.","Klubhuset"),
+                new Event("Fugl spottet", new DateTime(2025, 2, 12, 8, 15, 0),"Fantastisk fugl spottet over havet.","Klubhuset"),
+                new Event("Pizza Aften", new DateTime(2025,4,19,18,30,00), "Kom til pizza aften med fælleskabet.","Klubhuset"),
+                new Event("Stuntbane installeret", new DateTime(2025,1,4,13,00,0), "Ny stuntrampe installeret til speedbåde.","Klubhuset"),
+                new Event("Trænerkursus", new DateTime(2025,9,14,10,45,0), "Kursus til at blive træner.","Klubhuset"),
+                new Event("Knoglestrækning", new DateTime(2025,2,17,9,00,0), "Kiropraktor hyret til klubben.","Klubhuset"),
+                new Event("Ny hjemmeside", new DateTime(2025,1,5), "Ny hjemmeside er snart oppe.","På nettet"),
             };
 
         private static List<Booking> _bookingData =

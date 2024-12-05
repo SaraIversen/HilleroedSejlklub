@@ -14,7 +14,7 @@ namespace Razor.Pages.Events
         [BindProperty]
         public string Name {get;set;}
         [BindProperty]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         [BindProperty]
         public string Location { get; set; }
         [BindProperty]

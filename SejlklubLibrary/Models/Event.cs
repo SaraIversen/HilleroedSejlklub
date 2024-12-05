@@ -14,7 +14,7 @@ namespace SejlklubLibrary.Models
 
 
         public string Name { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
 
@@ -24,7 +24,7 @@ namespace SejlklubLibrary.Models
             
         }
 
-        public Event(string name, string date, string description,string location)
+        public Event(string name, DateTime date, string description,string location)
         {
             _id = _counter;
             _counter++;

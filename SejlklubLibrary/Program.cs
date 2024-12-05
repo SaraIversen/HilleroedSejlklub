@@ -15,7 +15,7 @@ Console.Write("_____________________________________________________________\n")
 
 //Test af event class
 //_____Opretelse af objekt
-Event e1 = new Event("Sommertur","20/06/2025", "Hygge sejltur","Klubhuset");
+Event e1 = new Event("Sommertur", new DateTime(2025/20/06), "Hygge sejltur","Klubhuset");
 
 Console.WriteLine(e1.ToString());
 
