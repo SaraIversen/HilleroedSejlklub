@@ -15,7 +15,6 @@ namespace Razor.Pages.Events
         {
             _eventRepository = eventRepository;   
         }
-
         public void OnGet()
         {
             Events = _eventRepository.GetAll();      
