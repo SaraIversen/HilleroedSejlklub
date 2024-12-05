@@ -18,9 +18,9 @@ namespace Razor.Pages.Events
             _eventRepository = eventRepository;
             
         }
-        public void OnGet(int Id)
+        public void OnGet(int EditId)
         {
-            _eventRepository.GetEventByID(Id);
+            _eventRepository.GetEventByID(EditId);
         }
 
         public IActionResult OnPost() 
