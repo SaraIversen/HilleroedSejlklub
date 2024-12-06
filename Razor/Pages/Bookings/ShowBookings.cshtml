@@ -5,49 +5,72 @@
     ViewData["Title"] = "ShowBookings";
 }
 <h1>Bookingside</h1>
-
 @* <p>Antal oprettede bookinger: @Model.Bookings.Count</p> *@
+
+<h1> Select Member </h1>
+<form method="post" asp-page-handler="Member">
+    <p>
+        Mobile: <input type="text" asp-for="SearchMemberPhone" />
+        <input type="submit" value="Search member" />
+    </p>
+</form>
+@{
+    if (@Model.Member != null)
+    {
+        <h3> @Model.Member.Name </h3>
+        <h3> @Model.Member.Address </h3>
+        <h3> @Model.Member.Phone </h3>
+    }
+}
+
+<h1> Booking: </h1>
+<form method="post" asp-page-handler="AcceptBooking">
+    <label>Vælg dato:</label>
+    <input type="date" name="startdate"><br><br>
+
+    <label>Vælg båd</label>
+    <select id="ChosenBoat" name="ChosenBoat"
+            asp-for="@Model.ChosenBoat"
+            asp-items="@Model.BoatSelectList">
+    </select><br><br>
+
+    <label>Hvor ønsker du at sejle?</label>
+    <input type="text" asp-for="ChosenPlace" /><br><br>
+
+    <label>Hvornår ønsker du at sejle?</label>
+    <select id="ChosenTime" name="ChosenTime"
+            asp-for="@Model.ChosenTime"
+            asp-items="@Model.TimeSelectList">
+    </select><br><br>
+
+    <input type="submit" value="AcceptBooking" /><br><br>
+</form>
+
 <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
             <td>ID</td>
+            <td>Dato</td>
+            <td>Båd</td>
             <td>Starttidspunkt</td>
             <td>Sluttidspunkt</td>
             <td>Sted</td>
-            <td>Båd</td>
-            <td>Status</td>
             <td>Booket af</td>
-
+            <td></td>
         </tr>
     </thead>
     <tbody>
         @foreach (Booking booking in Model.Bookings)
         {
             <tr>
-                <td>@booking.Id</td>
-                <td>Test</td>
-                <td>Test</td>
-                <td>@booking.Place</td>
+                <td style="background-color:lightgray;text-align:center">@booking.Id</td>
+                <td>@booking.Date</td>
                 <td>@booking.Boat.Name</td>
-                <td>@if (@booking.IsAvailable)
-                    {
-                        <p>Ledig</p>
-                    }
-                    else
-                    {
-                        <p>Booket</p>
-                    }
-                </td>
-                <td>
-                    @if (booking.IsAvailable)
-                    {
-                        <a asp-page="BookBoat" asp-route-No="@booking.Id">Book</a>
-                    }
-                    else
-                    {
-                        @booking.Member
-                    }
-                </td>
+                <td>@booking.StartTime</td>
+                <td>@booking.EndTime</td>
+                <td>@booking.Place</td>
+                <td>@booking.Member</td>
+                <td><a asp-page="RemoveBooking" asp-route-No="@booking.Id">Fjern booking</a></td>
             </tr>
         }
     </tbody>
