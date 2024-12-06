@@ -32,7 +32,7 @@
                 <td>@boats.Measurement</td>
                 <td>@boats.Engine</td>
                 <td>@boats.BuildYear</td>
-                <td><a asp-page="UpdateBoat" asp-route-No="@boats.Id">Rediger</a></td>
+                <td><a asp-page="EditBoat" asp-route-Id="@boats.Id">Rediger</a></td>
                 <td><a asp-page="DeleteBoat" asp-route-deleteId="@boats.Id">Slet</a></td>
             </tr>
         }
