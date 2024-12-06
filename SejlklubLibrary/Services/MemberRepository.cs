@@ -35,12 +35,18 @@ namespace SejlklubLibrary.Services
 		{
 			if (_members.ContainsKey(phone))
 			{
-				foreach (Member member in _members.Values)
+				return _members[phone];
+			}
+			return null;
+		}
+
+		public Member GetMemberById(int id)
+		{
+			foreach (Member member in _members.Values)
+			{
+				if (member.Id == id)
 				{
-					if (member.Phone == phone)
-					{
-						return member;
-					}
+					return member;
 				}
 			}
 			return null;
@@ -62,12 +68,11 @@ namespace SejlklubLibrary.Services
 			}
 		}
 
-		public void UpdateMembers(Member newMember, string oldMemberPhone)
+		public void UpdateMember(Member member)
 		{
-			if (_members.ContainsKey(oldMemberPhone))
+			if (_members.ContainsKey(member.Phone))
 			{
-				_members.Remove(oldMemberPhone);
-				AddMember(newMember);
+				_members[member.Phone] = member;
 			}
 		}		
 	}
