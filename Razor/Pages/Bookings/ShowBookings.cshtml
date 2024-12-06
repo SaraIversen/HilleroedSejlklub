@@ -26,7 +26,7 @@
 <h1> Booking: </h1>
 <form method="post" asp-page-handler="AcceptBooking">
     <label>Vælg dato:</label>
-    <input type="date" name="startdate"><br><br>
+    <input type="date" name="ChosenDate" asp-for="ChosenDate"><br><br>
 
     <label>Vælg båd</label>
     <select id="ChosenBoat" name="ChosenBoat"
@@ -69,7 +69,7 @@
                 <td>@booking.StartTime</td>
                 <td>@booking.EndTime</td>
                 <td>@booking.Place</td>
-                <td>@booking.Member</td>
+                <td>@if(@booking.Member != null ) { @booking.Member.Name }</td>
                 <td><a asp-page="RemoveBooking" asp-route-No="@booking.Id">Fjern booking</a></td>
             </tr>
         }

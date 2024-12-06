@@ -13,11 +13,21 @@ namespace SejlklubLibrary.Services
     {
         private List<Booking> _bookingsList;
 
+        public List<BookingTime> BookingTimes { get; set; }
+
         public int Count { get { return _bookingsList.Count; } }
 
         public BookingRepository()
         {
             _bookingsList = MockData.BookingData;
+
+            BookingTimes = new List<BookingTime>(); // SKAL NOK VÆRE ET ANDET STED?
+            BookingTimes.Add(new BookingTime("11:00", "11:55"));
+            BookingTimes.Add(new BookingTime("12:00", "12:55"));
+            BookingTimes.Add(new BookingTime("13:00", "13:55"));
+            BookingTimes.Add(new BookingTime("14:00", "14:55"));
+            BookingTimes.Add(new BookingTime("15:00", "15:55"));
+            BookingTimes.Add(new BookingTime("16:00", "16:55"));
         }
 
         public List<Booking> GetAll()
@@ -37,9 +47,9 @@ namespace SejlklubLibrary.Services
             return null;
         }
 
-        public void NewBooking(string date, string startTime, string endTime, string place, Boat boat)
+        public void NewBooking(string date, string startTime, string endTime, string place, Boat boat, Member member)
         {
-            Booking newBooking = new Booking(DateTime.Parse(date), DateTime.Parse(startTime), DateTime.Parse(endTime), place, boat);
+            Booking newBooking = new Booking(date, startTime, endTime, place, boat, member);
             _bookingsList.Add(newBooking);
         }
 
