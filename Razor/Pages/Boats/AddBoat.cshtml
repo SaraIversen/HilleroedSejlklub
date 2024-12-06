@@ -11,13 +11,9 @@
     </div>
     <div class="form-group">
         <label>Vælg Båd Type</label>
-        <select id="ChosenBoatType" name="ChosenBoatType" asp-for="@Model.ChosenBoatType" asp-asp-items="@Model.BoatTypeSelectList">
+        <select id="ChosenBoatType" name="ChosenBoatType" asp-for="@Model.ChosenBoatType" asp-items="@Model.BoatTypeSelectList">
 
         </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.Boat.BoatType" class="control-label"></label>
-        <input asp-for="@Model.Boat.BoatType" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="@Model.Boat.Measurement" class="control-label"></label>
