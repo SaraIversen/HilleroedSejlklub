@@ -9,11 +9,12 @@ namespace SejlklubLibrary.Interfaces
 {
     public interface IBookingRepository
     {
+        List<BookingTime> BookingTimes { get; set; }
         int Count { get; }
 
         List<Booking> GetAll();
         Booking GetBookingById(int id);
-        void NewBooking(string date, string startTime, string endTime, string place, Boat boat);
+        void NewBooking(string date, string startTime, string endTime, string place, Boat boat, Member member);
         void RemoveBooking(int id);
         //void UpdateBooking(Booking booking);
         //void BookBoat(Booking booking, Member member);
