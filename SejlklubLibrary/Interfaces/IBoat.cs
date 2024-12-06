@@ -12,7 +12,7 @@ namespace SejlklubLibrary.Interfaces
         BoatType BoatType { get; }
         string Measurement { get; }
         bool IsBooked { get; set; }
-        int Id { get; set; }
+        int Id { get; }
         string Name { get; set; }
         string Engine { get; set; }
         int BuildYear { get; }

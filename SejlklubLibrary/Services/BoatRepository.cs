@@ -22,6 +22,14 @@ namespace SejlklubLibrary.Services
 
         public void AddBoat(Boat boat)
         {
+            foreach(Boat b in _boatList)
+            {
+                if(b == boat)
+                {
+                    return;
+                }
+            }
+            boat.Counting();
             _boatList.Add(boat);
         }
 
