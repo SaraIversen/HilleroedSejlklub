@@ -28,12 +28,12 @@ namespace SejlklubLibrary.Models
         }
 
         public BoatType BoatType { get; set; }
-        public string Measurement {  get; }
+        public string Measurement { get; set; }
         public bool IsBooked { get; set; }
         public int Id { get { return _id; } }
         public string Name { get; set; }
         public string Engine { get; set; }
-        public int BuildYear { get; }
+        public int BuildYear { get; set; }
 
         public void Counting()
         {
