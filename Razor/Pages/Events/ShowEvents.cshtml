@@ -13,9 +13,10 @@
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
             <td>ID</td>
-            <td>Navn og Dato</td>
+            <td>Navn, Dato og tid</td>
             <td>Sted</td>
             <td>Beskrivelse</td>
+            <td>Antal deltagerer</td>
             <td></td>
             <td></td>
 
@@ -29,7 +30,8 @@
                 <td><b>@events.Name</b> <br />Dato: <em>@events.Date </em></td>
                 <td>@events.Location</td>
                 <td>@events.Description</td>
-                <td><a asp-page="UpdateEvents" asp-route-No="@events.Id">Rediger</a></td>
+                <td></td>
+                <td><a asp-page="UpdateEvents" asp-route-EditId="@events.Id">Rediger</a></td>
                 <td><a asp-page="DeleteEvents" asp-route-deleteId="@events.Id">Slet</a></td>
             </tr>
         }

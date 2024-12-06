@@ -11,7 +11,7 @@ namespace SejlklubLibrary.Interfaces
     {
         int Id { get; }
         string Name { get; set; }
-        string Date { get; set; }
+        DateTime Date { get; set; }
         string Description { get; set; }
         string Location { get; set; }
         string ToString();

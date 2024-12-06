@@ -13,10 +13,10 @@ namespace SejlklubLibrary.Interfaces
 
         List<Booking> GetAll();
         Booking GetBookingById(int id);
-        void NewBooking(Booking booking);
+        void NewBooking(string date, string startTime, string endTime, string place, Boat boat);
         void RemoveBooking(int id);
-        void UpdateBooking(Booking booking);
-        void BookBoat(Booking booking, Member member);
+        //void UpdateBooking(Booking booking);
+        //void BookBoat(Booking booking, Member member);
         void PrintAllBookings();
         string ToString();
     }

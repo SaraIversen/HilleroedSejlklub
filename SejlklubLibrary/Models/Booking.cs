@@ -12,6 +12,7 @@ namespace SejlklubLibrary.Models
         private static int _counter = 0;
 
         public int Id { get; }
+        public DateTime Date { get; }
         public DateTime StartTime { get; }
         public DateTime EndTime { get;}
         public string Place { get; }
@@ -19,11 +20,12 @@ namespace SejlklubLibrary.Models
         public bool IsAvailable { get; set; } // SKAL MULIGVIS FJERNES ???
         public Member Member { get; set; }
 
-        public Booking(DateTime startTime, DateTime endTime, string place, Boat boat)
+        public Booking(DateTime date, DateTime startTime, DateTime endTime, string place, Boat boat)
         {
             Id = _counter;
             _counter+=1;
 
+            Date = date;
             StartTime = startTime;
             EndTime = endTime;
             Place = place;

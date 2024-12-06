@@ -37,9 +37,10 @@ namespace SejlklubLibrary.Services
             return null;
         }
 
-        public void NewBooking(Booking booking)
+        public void NewBooking(string date, string startTime, string endTime, string place, Boat boat)
         {
-            _bookingsList.Add(booking);
+            Booking newBooking = new Booking(DateTime.Parse(date), DateTime.Parse(startTime), DateTime.Parse(endTime), place, boat);
+            _bookingsList.Add(newBooking);
         }
 
         public void RemoveBooking(int id)
@@ -51,7 +52,7 @@ namespace SejlklubLibrary.Services
             }
         }
 
-        public void UpdateBooking(Booking booking)
+/*        public void UpdateBooking(Booking booking)
         {
             throw new NotImplementedException();
         }
@@ -60,12 +61,7 @@ namespace SejlklubLibrary.Services
         {
             booking.Member = member;
             booking.IsAvailable = false;
-        }
-
-        public void RemoveBooking(Booking booking)
-        {
-            throw new NotImplementedException();
-        }
+        }*/
 
         public void PrintAllBookings()
         {

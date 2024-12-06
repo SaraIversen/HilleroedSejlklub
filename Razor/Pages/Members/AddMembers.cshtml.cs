@@ -10,7 +10,19 @@ namespace Razor.Pages.Members
         private IMemberRepository _repo;
 
         [BindProperty]
-        public Member Member { get; set; }
+        public string Name { get; set; }
+
+        [BindProperty]
+        public string Email { get; set; }
+
+        [BindProperty]
+        public string Address { get; set; }
+
+        [BindProperty]
+        public string Phone { get; set; }
+
+        [BindProperty]
+        public MemberType MemberStatus { get; set; }
 
         public AddMembersModel(IMemberRepository memberRepository)
         {
@@ -23,7 +35,8 @@ namespace Razor.Pages.Members
 
         public IActionResult OnPost()
         {
-            _repo.AddMember(Member);
+            Member member = new Member(Name, Email, Address, Phone, MemberStatus);
+            _repo.AddMember(member);
             return RedirectToPage("ShowMembers");
         }
     }

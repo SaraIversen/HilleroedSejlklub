@@ -5,10 +5,10 @@
 	ViewData["Title"] = "Show Members";
 }
 
-<h1>Antal Medlemmer @Model.Members.Count </h1>
+<h1>Antal Medlemmer: @Model.Members.Count </h1>
 
 <p>
-	<a asp-page="AddMembers">Add Member</a>
+	<a asp-page="AddMembers">Opret Medlem</a>
 </p>
 
 <table class="table">
@@ -16,6 +16,7 @@
 		<tr>
 			<th>ID</th>
 			<th>Navn</th>
+			<th>Addresse</th>
 			<th>Email</th>
 			<th>Telefon</th>
 			<th>Medlems Status</th>
@@ -27,11 +28,12 @@
 			<tr>
 				<td>@item.Id</td>
 				<td>@item.Name</td>
+				<td>@item.Address</td>
 				<td>@item.Email</td>
 				<td>@item.Phone</td>
 				<td>@item.MemberStatus</td>
 				<td><a asp-page="EditMembers" asp-route-id="@item.Id">Edit</a></td>
-				<td><a asp-page="DeleteMemebers" asp-route-deletePhone="@item.Phone">Delete</a></td>
+				<td><a asp-page="DeleteMemebers" asp-route-deletePhone="@item.Phone">Slet</a></td>
 			</tr>
 		}
 	</tbody>
