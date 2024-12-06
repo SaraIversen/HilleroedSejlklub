@@ -16,9 +16,9 @@ namespace Razor.Pages.Members
         {
             _repo = memberRepoistory;
         }
-        public void OnGet()
+        public void OnGet(string deletePhone)
         {
-
+            Member = _repo.GetMemberByPhone(deletePhone);
         }
 
         public IActionResult OnPost()

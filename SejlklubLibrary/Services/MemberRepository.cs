@@ -33,7 +33,17 @@ namespace SejlklubLibrary.Services
 
 		public Member GetMemberByPhone(string phone)
 		{
-			return _members[phone];
+			if (_members.ContainsKey(phone))
+			{
+				foreach (Member member in _members.Values)
+				{
+					if (member.Phone == phone)
+					{
+						return member;
+					}
+				}
+			}
+			return null;
 		}
 
 		public void PrintAllMembers()
