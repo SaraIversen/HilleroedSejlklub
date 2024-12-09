@@ -119,7 +119,12 @@ namespace Razor.Pages.Bookings
                 // Show some errors ????
                 return Page();
             }
-            _bookingRepository.NewBooking(ChosenDate.ToString("d"), BookingTimes[ChosenTime].StartTime, BookingTimes[ChosenTime].EndTime, ChosenLocation, chosenBoat, Member);
+            if (!_bookingRepository.NewBooking(ChosenDate.ToString("d"), BookingTimes[ChosenTime].StartTime, BookingTimes[ChosenTime].EndTime, ChosenLocation, chosenBoat, Member))
+            {
+                // The date and time for the boat was probably already booked.
+                // Show some errors ????
+                return Page();
+            }
             return RedirectToPage("ShowBookings");
         }
     }

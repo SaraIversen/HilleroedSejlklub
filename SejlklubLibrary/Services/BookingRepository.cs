@@ -61,18 +61,20 @@ namespace SejlklubLibrary.Services
 
         public bool NewBooking(string date, string startTime, string endTime, string place, Boat boat, Member member)
         {
-            if (!ValidateBooking(date, startTime)) return false;
+            if (!ValidateBooking(date, startTime, boat)) return false;
 
             Booking newBooking = new Booking(date, startTime, endTime, place, boat, member);
             _bookingsList.Add(newBooking);
             return true;
         }
 
-        private bool ValidateBooking(string date, string startTime)
+        private bool ValidateBooking(string date, string startTime, Boat boat)
         {
             foreach (Booking booking in _bookingsList)
             {
-                if (booking.Date == date && booking.StartTime == startTime)
+                if (booking.Boat.BoatType == boat.BoatType 
+                    && booking.Date == date 
+                    && booking.StartTime == startTime)
                 {
                     return false;
                 }
