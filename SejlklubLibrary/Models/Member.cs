@@ -1,6 +1,7 @@
 ﻿using SejlklubLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +15,15 @@ namespace SejlklubLibrary.Models
 
         public Member()
         {
+            MemberImage = "default.jpeg";
 			_counter++;
 			_id = _counter;
 		}
 
         public Member(string name, string email,string address, string phone, MemberType memberStatus) 
         {
-            _counter++;
+			MemberImage = "default.jpeg";
+			_counter++;
             _id = _counter;
             Name = name;
             Email = email;
@@ -28,7 +31,7 @@ namespace SejlklubLibrary.Models
             Phone = phone;
             MemberStatus = memberStatus;
         }
-
+        public string MemberImage { get; set; }
         public MemberType MemberStatus { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
@@ -39,5 +42,10 @@ namespace SejlklubLibrary.Models
         }
         public string Address { get; set; }
         public string Name { get; set; }
-    }
+
+		public override string ToString()
+		{
+			return $"ID: {_id}\nName: {Name}\nPhone: {Phone}\nEmail: {Email}\nAddress: {Address}\nMember Status: {MemberStatus}";
+		}
+	}
 }
