@@ -15,7 +15,6 @@ namespace SejlklubLibrary.Interfaces
         string EndTime { get; }
         string Place { get; }
         Boat Boat { get; }
-        //bool IsAvailable { get; } // SKAL MULIGVIS FJERNES ???
         Member Member { get; }
 
         string ToString();

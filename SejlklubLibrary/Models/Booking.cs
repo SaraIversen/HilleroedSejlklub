@@ -17,7 +17,6 @@ namespace SejlklubLibrary.Models
         public string EndTime { get;}
         public string Place { get; }
         public Boat Boat { get; }
-        //public bool IsAvailable { get; set; } // SKAL MULIGVIS FJERNES ???
         public Member Member { get; }
 
         public Booking(string date, string startTime, string endTime, string place, Boat boat, Member member)
@@ -30,7 +29,6 @@ namespace SejlklubLibrary.Models
             EndTime = endTime;
             Place = place;
             Boat = boat;
-            //IsAvailable = true;
             Member = member;
         }
     }

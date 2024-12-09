@@ -4,54 +4,12 @@
 @{
     ViewData["Title"] = "ShowBookings";
 }
+
 <h1>Bookingside</h1>
-@* <p>Antal oprettede bookinger: @Model.Bookings.Count</p> *@
+<a asp-page="/Bookings/AddBooking">Ny booking</a>
 
-<br>
-
-<h3> Select Member </h3>
-<form method="post" asp-page-handler="Member">
-    <p>
-        Mobile: <input type="text" asp-for="SearchMemberPhone" />
-        <input type="submit" value="Search member" />
-    </p>
-</form>
-@{
-    if (@Model.Member != null)
-    {
-        <h5> @Model.Member.Name </h5>
-        <h5> @Model.Member.Address </h5>
-        <h5> @Model.Member.Phone </h5>
-    }
-}
-
-<br>
-
-<h3> Booking: </h3>
-<form method="post" asp-page-handler="AcceptBooking">
-    <label>Vælg dato:</label>
-    <input type="date" name="ChosenDate" asp-for="ChosenDate"><br><br>
-
-    <label>Vælg båd</label>
-    <select id="ChosenBoat" name="ChosenBoat"
-            asp-for="@Model.ChosenBoat"
-            asp-items="@Model.BoatSelectList">
-    </select><br><br>
-
-    <label>Hvor ønsker du at sejle?</label>
-    <input type="text" asp-for="ChosenPlace" /><br><br>
-
-    <label>Hvornår ønsker du at sejle?</label>
-    <select id="ChosenTime" name="ChosenTime"
-            asp-for="@Model.ChosenTime"
-            asp-items="@Model.TimeSelectList">
-    </select><br><br>
-
-    <input type="submit" value="Accepter booking" /><br><br>
-</form>
-
-<br>
-
+<hr />
+<p>Antal oprettede begivenheder: @Model.Bookings.Count</p>
 <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
@@ -80,7 +38,7 @@
                     <td>@booking.EndTime</td>
                     <td>@booking.Place</td>
                     <td>@if(@booking.Member != null ) { @booking.Member.Name }</td>
-                    <td><a asp-page="RemoveBooking" asp-route-No="@booking.Id">Anuller booking</a></td>
+                    <td><a asp-page="DeleteBooking" asp-route-id="@booking.Id">Anuller booking</a></td>
                 </tr>
             }
         }

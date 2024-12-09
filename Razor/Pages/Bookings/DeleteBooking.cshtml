@@ -1,0 +1,56 @@
+﻿@page
+@model Razor.Pages.Bookings.DeleteBookingModel
+@{
+    ViewData["Title"] = "DeleteBooking";
+}
+
+<a asp-page="/Bookings/ShowBookings">Tilbage til bookingoversigt</a>
+<br><br>
+<h1> Min booking </h1>
+
+<hr />
+<h3> Member </h3>
+@{
+    if (@Model.Member != null)
+    {
+        <h5> @Model.Member.Name </h5>
+        <h5> @Model.Member.Address </h5>
+        <h5> @Model.Member.Phone </h5>
+    }
+}
+
+<br>
+
+<h3> Booking: </h3>
+<form method="post" asp-page-handler="DeleteBooking" asp-route-id="@Model.Booking.Id">
+    <div class="form-group">
+        <label>Id</label><br>
+        <input type="text" name="Id" asp-for="@Model.Booking.Id" readonly>
+    </div>
+    <div class="form-group">
+        <label>Dato</label><br>
+        <input type="id" name="ChosenDate" asp-for="@Model.Booking.Date" readonly>
+    </div>
+    <div class="form-group">
+        <label>Bådtype</label><br>
+        <input type="text" name="ChosenBoat" asp-for="@Model.Booking.Boat.BoatType" readonly>
+    </div>   
+    <div class="form-group">
+        <label>Båd navn</label><br>
+        <input type="text" name="ChosenBoat" asp-for="@Model.Booking.Boat.Name" readonly>
+    </div>    
+    <div class="form-group">
+        <label>Starttidspunkt</label><br>
+        <input type="text" name="ChosenBoat" asp-for="@Model.Booking.StartTime" readonly>
+    </div>
+    <div class="form-group">
+        <label>Sluttidspunkt</label><br>
+        <input type="text" name="ChosenBoat" asp-for="@Model.Booking.EndTime" readonly>
+    </div>
+    <div class="form-group">
+        <label>Sted</label><br>
+        <input type="text" name="ChosenBoat" asp-for="@Model.Booking.Place" readonly>
+    </div>
+    <br><br>
+    <input type="submit" value="Anuller booking"/><br><br>
+</form>
