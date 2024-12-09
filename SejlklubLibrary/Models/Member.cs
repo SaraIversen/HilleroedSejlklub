@@ -32,7 +32,11 @@ namespace SejlklubLibrary.Models
         public MemberType MemberStatus { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public int Id { get { return _id; } }
+        public int Id 
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
         public string Address { get; set; }
         public string Name { get; set; }
     }
