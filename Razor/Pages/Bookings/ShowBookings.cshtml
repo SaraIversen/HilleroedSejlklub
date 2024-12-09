@@ -7,7 +7,9 @@
 <h1>Bookingside</h1>
 @* <p>Antal oprettede bookinger: @Model.Bookings.Count</p> *@
 
-<h1> Select Member </h1>
+<br>
+
+<h3> Select Member </h3>
 <form method="post" asp-page-handler="Member">
     <p>
         Mobile: <input type="text" asp-for="SearchMemberPhone" />
@@ -17,13 +19,15 @@
 @{
     if (@Model.Member != null)
     {
-        <h3> @Model.Member.Name </h3>
-        <h3> @Model.Member.Address </h3>
-        <h3> @Model.Member.Phone </h3>
+        <h5> @Model.Member.Name </h5>
+        <h5> @Model.Member.Address </h5>
+        <h5> @Model.Member.Phone </h5>
     }
 }
 
-<h1> Booking: </h1>
+<br>
+
+<h3> Booking: </h3>
 <form method="post" asp-page-handler="AcceptBooking">
     <label>Vælg dato:</label>
     <input type="date" name="ChosenDate" asp-for="ChosenDate"><br><br>
@@ -43,15 +47,18 @@
             asp-items="@Model.TimeSelectList">
     </select><br><br>
 
-    <input type="submit" value="AcceptBooking" /><br><br>
+    <input type="submit" value="Accepter booking" /><br><br>
 </form>
+
+<br>
 
 <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
             <td>ID</td>
             <td>Dato</td>
-            <td>Båd</td>
+            <td>Bådtype</td>
+            <td>Bådnavn</td>
             <td>Starttidspunkt</td>
             <td>Sluttidspunkt</td>
             <td>Sted</td>
@@ -60,18 +67,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Booking booking in Model.Bookings)
+        @if (Model.Bookings != null && Model.Bookings.Count > 0)
         {
-            <tr>
-                <td style="background-color:lightgray;text-align:center">@booking.Id</td>
-                <td>@booking.Date</td>
-                <td>@booking.Boat.Name</td>
-                <td>@booking.StartTime</td>
-                <td>@booking.EndTime</td>
-                <td>@booking.Place</td>
-                <td>@if(@booking.Member != null ) { @booking.Member.Name }</td>
-                <td><a asp-page="RemoveBooking" asp-route-No="@booking.Id">Fjern booking</a></td>
-            </tr>
+            foreach (Booking booking in Model.Bookings)
+            {
+                <tr>
+                    <td style="background-color:lightgray;text-align:center">@booking.Id</td>
+                    <td>@booking.Date</td>
+                    <td>@booking.Boat.BoatType</td>
+                    <td>@booking.Boat.Name</td>
+                    <td>@booking.StartTime</td>
+                    <td>@booking.EndTime</td>
+                    <td>@booking.Place</td>
+                    <td>@if(@booking.Member != null ) { @booking.Member.Name }</td>
+                    <td><a asp-page="RemoveBooking" asp-route-No="@booking.Id">Anuller booking</a></td>
+                </tr>
+            }
         }
     </tbody>
 </table>

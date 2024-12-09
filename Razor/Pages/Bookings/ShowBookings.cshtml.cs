@@ -16,6 +16,7 @@ namespace Razor.Pages.Bookings
         public IBoatRepository _boatRepository;
 
         public List<Booking> Bookings { get; set; }
+        public List<BookingTime> BookingTimes { get; set; }
 
         [BindProperty] public string SearchMemberPhone { get; set; }
         public Member Member { get; set; }
@@ -46,10 +47,10 @@ namespace Razor.Pages.Bookings
         private void CreateBoatSelectList()
         {
             BoatSelectList = new List<SelectListItem>();
-            BoatSelectList.Add(new SelectListItem("Select a boat", "-1"));
+            BoatSelectList.Add(new SelectListItem("Vælg bådtype", "-1"));
             foreach (Boat boat in _boatRepository.GetAll())
             {
-                SelectListItem selectListItem = new SelectListItem(boat.Name, boat.Id.ToString());
+                SelectListItem selectListItem = new SelectListItem(boat.BoatType.ToString(), boat.Id.ToString());
                 BoatSelectList.Add(selectListItem);
             }
         }
@@ -58,9 +59,10 @@ namespace Razor.Pages.Bookings
         {
             TimeSelectList = new List<SelectListItem>();
             TimeSelectList.Add(new SelectListItem("Select a time", "-1"));
-            for (int i = 0; i < _bookingRepository.BookingTimes.Count; i++)
+            BookingTimes = _bookingRepository.GetAllBookingTimes();
+            for (int i = 0; i < BookingTimes.Count; i++)
             {
-                SelectListItem selectListItem = new SelectListItem($"{_bookingRepository.BookingTimes[i].StartTime}-{_bookingRepository.BookingTimes[i].EndTime}", i.ToString());
+                SelectListItem selectListItem = new SelectListItem($"{BookingTimes[i].StartTime}-{BookingTimes[i].EndTime}", i.ToString());
                 TimeSelectList.Add(selectListItem);
             }
         }
@@ -68,22 +70,27 @@ namespace Razor.Pages.Bookings
         public void OnGet()
         {
             ChosenDate = DateTime.Now;
-            Bookings = _bookingRepository.GetAll();
+            Bookings = _bookingRepository.GetAllBookings();
+            BookingTimes = _bookingRepository.GetAllBookingTimes();
         }
 
         public IActionResult OnPostMember()
         {
             Member = _memberRepository.GetMemberByPhone(SearchMemberPhone);
+            _bookingRepository.CurrentMember = Member;
             if (Member == null)
             {
                 // Error message ?????
             }
+            ChosenDate = DateTime.Now;
+            Bookings = _bookingRepository.GetAllBookings();
+            BookingTimes = _bookingRepository.GetAllBookingTimes();
             return Page();
         }
 
         public IActionResult OnPostAcceptBooking()
         {
-            Member = _memberRepository.GetMemberByPhone(SearchMemberPhone);
+            Member = _bookingRepository.CurrentMember;
             if (Member == null)
             {
                 // Show some errors ????
@@ -107,13 +114,14 @@ namespace Razor.Pages.Bookings
                 // Show some errors ????
                 return Page();
             }
-            if (_bookingRepository.BookingTimes[ChosenTime] == null)
+            if (BookingTimes[ChosenTime] == null)
             {
                 // Show some errors ????
                 return Page();
             }
-            _bookingRepository.NewBooking(Date.ToString("d"), _bookingRepository.BookingTimes[ChosenTime].StartTime, _bookingRepository.BookingTimes[ChosenTime].EndTime, Place, chosenBoat, Member);
-            Bookings = _bookingRepository.GetAll();
+            _bookingRepository.NewBooking(Date.ToString("d"), BookingTimes[ChosenTime].StartTime, BookingTimes[ChosenTime].EndTime, Place, chosenBoat, Member);
+            Bookings = _bookingRepository.GetAllBookings();
+            BookingTimes = _bookingRepository.GetAllBookingTimes();
             return Page();
         }
     }

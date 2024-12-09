@@ -12,27 +12,39 @@ namespace SejlklubLibrary.Services
     public class BookingRepository : IBookingRepository
     {
         private List<Booking> _bookingsList;
+        private List<BookingTime> _bookingTimes;
 
-        public List<BookingTime> BookingTimes { get; set; }
+        public Member CurrentMember { get; set; } // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme det nuværende medlem der prøver at booke.  
 
-        public int Count { get { return _bookingsList.Count; } }
+        public int CountBookings { get { return _bookingsList.Count; } }
+        public int CountBookingTimes { get { return _bookingTimes.Count; } }
 
         public BookingRepository()
         {
-            _bookingsList = MockData.BookingData;
+            _bookingsList = new List<Booking>();//MockData.BookingData;
 
-            BookingTimes = new List<BookingTime>(); // SKAL NOK VÆRE ET ANDET STED?
-            BookingTimes.Add(new BookingTime("11:00", "11:55"));
-            BookingTimes.Add(new BookingTime("12:00", "12:55"));
-            BookingTimes.Add(new BookingTime("13:00", "13:55"));
-            BookingTimes.Add(new BookingTime("14:00", "14:55"));
-            BookingTimes.Add(new BookingTime("15:00", "15:55"));
-            BookingTimes.Add(new BookingTime("16:00", "16:55"));
+            InitializeBookingTimesList();
         }
 
-        public List<Booking> GetAll()
+        private void InitializeBookingTimesList()
+        {
+            _bookingTimes = new List<BookingTime>();
+            _bookingTimes.Add(new BookingTime("11:00", "11:55"));
+            _bookingTimes.Add(new BookingTime("12:00", "12:55"));
+            _bookingTimes.Add(new BookingTime("13:00", "13:55"));
+            _bookingTimes.Add(new BookingTime("14:00", "14:55"));
+            _bookingTimes.Add(new BookingTime("15:00", "15:55"));
+            _bookingTimes.Add(new BookingTime("16:00", "16:55"));
+        }
+
+        public List<Booking> GetAllBookings()
         {
             return _bookingsList;
+        }
+
+        public List<BookingTime> GetAllBookingTimes()
+        {
+            return _bookingTimes;
         }
 
         public Booking GetBookingById(int id)
@@ -47,10 +59,25 @@ namespace SejlklubLibrary.Services
             return null;
         }
 
-        public void NewBooking(string date, string startTime, string endTime, string place, Boat boat, Member member)
+        public bool NewBooking(string date, string startTime, string endTime, string place, Boat boat, Member member)
         {
+            if (!ValidateBooking(date, startTime)) return false;
+
             Booking newBooking = new Booking(date, startTime, endTime, place, boat, member);
             _bookingsList.Add(newBooking);
+            return true;
+        }
+
+        private bool ValidateBooking(string date, string startTime)
+        {
+            foreach (Booking booking in _bookingsList)
+            {
+                if (booking.Date == date && booking.StartTime == startTime)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void RemoveBooking(int id)
