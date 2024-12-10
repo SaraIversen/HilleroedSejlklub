@@ -24,7 +24,10 @@ Console.Write("_____________________________________________________________\n")
 EventRepository er = new EventRepository();
 List<Event> test = er.GetAll();
 
-Event ev1 = er.GetEventByID(1);
+Console.WriteLine(test[1].Id);
+
+
+Event ev1 = er.GetEventByID(2);
 Console.WriteLine(ev1.ToString());
 Console.Write("_____________________________________________________________\n");
 //_____Remove  objekt
@@ -34,3 +37,15 @@ foreach (Event item in test)
 
 Console.Write("_____________________________________________________________\n");
 
+
+ParticipantRepository pr = new ParticipantRepository();
+
+List<Member> _participants = pr.GetAllParticipants();
+Member m1 = new Member("xxxx", "xxxx", "xxxx", "xxxx", MemberType.Senior);
+
+_participants.Add(m1);
+
+foreach (Member member in _participants)
+{
+    Console.WriteLine(member.Name);
+}
