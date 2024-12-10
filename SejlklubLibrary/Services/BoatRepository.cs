@@ -73,9 +73,9 @@ namespace SejlklubLibrary.Services
             {
                 if (boats.Id == oldBoat.Id)
                 {
-                    boats.Name = oldBoat.Name;
-                    boats.Measurement = oldBoat.Measurement;
-                    boats.Engine = oldBoat.Engine;
+                    oldBoat.Name = boats.Name;
+                    oldBoat.Measurement = boats.Measurement;
+                    oldBoat.Engine = boats.Engine;
                 }
             }
         }
