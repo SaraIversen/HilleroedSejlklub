@@ -12,12 +12,13 @@ namespace SejlklubLibrary.Interfaces
 		int Count { get; }
 		List<Member> GetAll();
 		Member GetMemberByPhone(string phone);
-
 		Member GetMemberById(int id);
 		void AddMember(Member member);
 		void RemoveMember(string phone);
 		void PrintAllMembers();
 		void UpdateMember(Member member);
+		List<Member> FilterMembersByName(string name);
+		List<Member> FilterMembersByMemberType(MemberType memberType);
 		string ToString();
 
 	}
