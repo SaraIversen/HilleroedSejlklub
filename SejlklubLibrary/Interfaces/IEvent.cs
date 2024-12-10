@@ -14,7 +14,9 @@ namespace SejlklubLibrary.Interfaces
         DateTime Date { get; set; }
         string Description { get; set; }
         string Location { get; set; }
-        //Member Member { get; }
         string ToString();
+
+        List<Member> Participants { get; set; }
+
     }
 }

@@ -36,16 +36,3 @@ foreach (Event item in test)
 { Console.WriteLine(item.ToString()); }
 
 Console.Write("_____________________________________________________________\n");
-
-
-ParticipantRepository pr = new ParticipantRepository();
-
-List<Member> _participants = pr.GetAllParticipants();
-Member m1 = new Member("xxxx", "xxxx", "xxxx", "xxxx", MemberType.Senior);
-
-_participants.Add(m1);
-
-foreach (Member member in _participants)
-{
-    Console.WriteLine(member.Name);
-}
