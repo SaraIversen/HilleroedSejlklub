@@ -12,7 +12,7 @@ namespace Razor.Pages.Events
         [BindProperty]
         public Event Event { get; set; }
         [BindProperty]
-        public string Name {get;set;}
+        public string Name { get; set; }
         [BindProperty]
         public DateTime Date { get; set; }
         [BindProperty]
@@ -27,6 +27,7 @@ namespace Razor.Pages.Events
         }
         public void OnGet()
         {
+
         }
 
         public IActionResult OnPost() 
@@ -36,5 +37,4 @@ namespace Razor.Pages.Events
             return RedirectToPage("ShowEvents");
         }
     }
-   
 }
