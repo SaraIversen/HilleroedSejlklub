@@ -10,6 +10,10 @@
 <p>
 	<a asp-page="AddMembers">Opret Medlem</a>
 </p>
+<form>
+	søg navn: <input type="text" asp-for="@Model.FilterCriteriaName" />
+	<input type="submit" value="filtrer" />
+</form>
 
 <table class="table">
 	<thead>

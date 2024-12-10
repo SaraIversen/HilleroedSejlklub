@@ -9,6 +9,8 @@ namespace Razor.Pages.Members
     {
         private IMemberRepository _memberRepository;
 
+        [BindProperty(SupportsGet = true)]
+        public string FilterCriteriaName { get; set; }
         public List<Member> Members { get; private set; }
 
         public ShowMembersModel(IMemberRepository memberRepository)
@@ -17,7 +19,14 @@ namespace Razor.Pages.Members
         }
         public void OnGet()
         {
-            Members = _memberRepository.GetAll();
+            if (!string.IsNullOrEmpty(FilterCriteriaName))
+            {
+                Members = _memberRepository.FilterMembersByName(FilterCriteriaName);
+            }
+            else
+            {
+				Members = _memberRepository.GetAll();
+			}
         }
     }
 }

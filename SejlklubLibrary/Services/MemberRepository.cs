@@ -74,6 +74,32 @@ namespace SejlklubLibrary.Services
 			{
 				_members[member.Phone] = member;
 			}
-		}		
+		}
+		
+		public List<Member> FilterMembersByName(string name)
+		{
+			List<Member> filterList = new List<Member>();
+			foreach (Member member in _members.Values)
+			{
+				if (member.Name.Contains(name))
+				{
+					filterList.Add(member);
+				}
+			}
+			return filterList;
+		}
+
+		public List<Member> FilterMembersByMemberType(MemberType memberType)
+		{
+			List<Member> filterList = new List<Member>();
+			foreach (Member member in _members.Values)
+			{
+				if (member.MemberStatus == memberType)
+				{
+					filterList.Add(member);
+				}
+			}
+			return filterList;
+		}
 	}
 }
