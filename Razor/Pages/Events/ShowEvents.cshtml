@@ -31,7 +31,7 @@
                 <td>@events.Location</td>
                 <td>@events.Description</td>
                 <td>
-                    <br /><a style="padding:2px;" asp-page="Participate" asp-route-ParticipateName="@events.Id">Tilmeld</a></td>
+                    <br /><a style="padding:2px;" asp-page="Participate" asp-route-eventId="@events.Id">Tilmeld</a></td>
                 <td><a asp-page="UpdateEvents" asp-route-editId="@events.Id">Rediger</a></td>
                 <td><a asp-page="DeleteEvents" asp-route-deleteId="@events.Id">Slet</a></td>
             </tr>
