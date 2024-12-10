@@ -1,4 +1,5 @@
 ﻿using SejlklubLibrary.Interfaces;
+using SejlklubLibrary.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,8 +19,12 @@ namespace SejlklubLibrary.Models
             MemberImage = "default.jpeg";
 		}
 
-        public Member(string name, string email,string address, string phone, MemberType memberStatus) 
+        public Member(string name, string email, string address, string phone, MemberType memberStatus) 
         {
+            if (phone.Length != 8)
+            {
+                throw new InvalidPhoneNumberException("The phone number is not the legal length of 8");
+            }
 			MemberImage = "default.jpeg";
 			_counter++;
             _id = _counter;
