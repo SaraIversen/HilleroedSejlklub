@@ -30,7 +30,6 @@ namespace SejlklubLibrary.Services
             {
                 ev.Participants.Add(member);
             }
-
             //Member foundMember = member;
             //if (foundMember != null)
             //{
