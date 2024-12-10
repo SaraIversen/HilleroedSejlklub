@@ -1,4 +1,5 @@
 ﻿@page
+@using SejlklubLibrary.Models
 @model Razor.Pages.Bookings.AddBookingModel
 @{
     ViewData["Title"] = "AddBooking";
@@ -49,6 +50,11 @@
         <select id="ChosenTime" name="ChosenTime"
                 asp-for="@Model.ChosenTime"
                 asp-items="@Model.TimeSelectList">
+@*             @foreach (@BookingTime bookTime in @Model.Bookings)
+            {
+                bool isDisabled = Model.BookedTimes.Contains(time);
+                <option value="@time" @(isDisabled ? "disabled" : "")>@time @(isDisabled ? "(Booked)" : "")</option>
+            } *@
         </select>
     </div>
     <br><br>
