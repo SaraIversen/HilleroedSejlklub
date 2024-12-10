@@ -7,17 +7,18 @@ namespace Razor.Pages.Events
 {
     public class ShowEventsModel : PageModel
     {
-        public IEventRepository _eventRepository;
+        private IEventRepository _eventRepository;
         
         public List<Event> Events { get; set; }
 
         public ShowEventsModel(IEventRepository eventRepository)
         {
-            _eventRepository = eventRepository;   
+            _eventRepository = eventRepository;
         }
+        
         public void OnGet()
         {
-            Events = _eventRepository.GetAll();      
+            Events = _eventRepository.GetAll();
         }
 
     }

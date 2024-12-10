@@ -16,9 +16,9 @@ namespace Razor.Pages.Events
         {
             _eventRepository = eventRepository;
         }
-        public void OnGet(int id)
+        public void OnGet(int deleteId)
         {
-            Event = _eventRepository.GetEventByID(id);
+            Event = _eventRepository.GetEventByID(deleteId);
         }
 
         public IActionResult OnPost() 

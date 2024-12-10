@@ -1,0 +1,45 @@
+﻿@page
+@using SejlklubLibrary.Models
+@model Razor.Pages.Events.ParticipateModel
+@{
+    ViewData["Title"] = "Deltag";
+}
+
+<h1>Deltagerer og tilmelding</h1>
+<hr />
+
+<div style="display:grid;grid-template-columns:1fr 1fr;column-gap:20px;">
+    <div style="padding:15px;padding-left:110px">
+        <h2>Find dit medlemskab:</h2>
+        <p>Søg på dt telefonnummer der er tilknyttet medlemmet.</p>
+        <form method="post" asp-page-handler="Member">
+            <p>
+                <input type="text" asp-for="FindMemberByPhone" />
+                <input style="background-color:aquamarine;border:none;" type="submit" value="Find medlem" />
+            </p>
+        </form>
+        <div class="container" style="align-items:center;background-color:lightgray;width:100%;padding-left:15px">
+            <p style="font-size:17px"><em>Fundet Medlem:</em> </p>
+            <p style="font-size:13px">
+                @{
+                    if (Model.TheMember != null)
+                    {
+                        <h3 style="font-size:18px"> Name: @Model.TheMember.Name</h3>
+                        <h3 style="font-size:18px">Medlemskab: @Model.TheMember.MemberStatus</h3>
+                        <h3 style="font-size:18px">Telefon: @Model.TheMember.Phone</h3>
+                    }
+                }
+                <br />
+            </p>
+
+        </div>
+    </div>
+    <div style="padding:15px">
+        <h2>Har du gæster med?</h2>
+        <p style="font-size:18px">Angiv antallet her:</p>
+        <input style="width:265px" type="number" asp-for="@Model.Guests" />
+    </div>
+
+</div>
+
+

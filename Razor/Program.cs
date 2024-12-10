@@ -9,6 +9,7 @@ builder.Services.AddSingleton<IEventRepository,EventRepository>();
 builder.Services.AddSingleton<IBoatRepository, BoatRepository>();
 builder.Services.AddSingleton<IMemberRepository, MemberRepository>();
 builder.Services.AddSingleton<IBookingRepository, BookingRepository>();
+builder.Services.AddSingleton<IParticipantRepository, ParticipantRepository>();
 
 var app = builder.Build();
 

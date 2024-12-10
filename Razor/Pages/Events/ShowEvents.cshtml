@@ -16,7 +16,7 @@
             <td>Navn, Dato og tid</td>
             <td>Sted</td>
             <td>Beskrivelse</td>
-            <td>Antal deltagerer</td>
+            <td>Antal Deltagerer</td>
             <td></td>
             <td></td>
 
@@ -30,7 +30,8 @@
                 <td><b>@events.Name</b> <br />Dato: <em>@events.Date </em></td>
                 <td>@events.Location</td>
                 <td>@events.Description</td>
-                <td></td>
+                <td>
+                    <br /><a style="padding:2px;" asp-page="Participate" asp-route-ParticipateName="@events.Id">Tilmeld</a></td>
                 <td><a asp-page="UpdateEvents" asp-route-EditId="@events.Id">Rediger</a></td>
                 <td><a asp-page="DeleteEvents" asp-route-deleteId="@events.Id">Slet</a></td>
             </tr>

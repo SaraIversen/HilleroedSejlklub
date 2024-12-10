@@ -64,16 +64,16 @@ namespace SejlklubLibrary.Services
             }
         }
 
-        public void UpdateEvent(Event oldevent)
+        public void UpdateEvent(Event newEvent)
         {
             foreach (Event events in _eventList) 
             {
-                if (events.Id == oldevent.Id) 
+                if (events.Id == newEvent.Id) 
                 {
-                    events.Name = oldevent.Name;
-                    events.Date = oldevent.Date;
-                    events.Location = oldevent.Location;
-                    events.Description = oldevent.Description;
+                    events.Name = newEvent.Name;
+                    events.Date = newEvent.Date;
+                    events.Location = newEvent.Location;
+                    events.Description = newEvent.Description;
                 }
             }
         }
