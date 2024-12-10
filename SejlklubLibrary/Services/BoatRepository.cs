@@ -67,15 +67,15 @@ namespace SejlklubLibrary.Services
             }
         }
 
-        public void UpdateBoat(Boat oldBoat)
+        public void UpdateBoat(Boat newBoat)
         {
             foreach (Boat boats in _boatList)
             {
-                if (boats.Id == oldBoat.Id)
+                if (boats.Id == newBoat.Id)
                 {
-                    oldBoat.Name = boats.Name;
-                    oldBoat.Measurement = boats.Measurement;
-                    oldBoat.Engine = boats.Engine;
+                    boats.Name = newBoat.Name;
+                    boats.Measurement = newBoat.Measurement;
+                    boats.Engine = newBoat.Engine;
                 }
             }
         }

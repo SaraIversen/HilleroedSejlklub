@@ -13,7 +13,8 @@ namespace SejlklubLibrary.Models
         private static int _counter = 0;
         private int _id;
         public Boat() 
-        { 
+        {
+            _id = _counter;
         }
 
         public Boat(string measurement, string name, string engine, int buildyear, BoatType boatType) 
@@ -30,7 +31,7 @@ namespace SejlklubLibrary.Models
         public BoatType BoatType { get; set; }
         public string Measurement { get; set; }
         public bool IsBooked { get; set; }
-        public int Id { get { return _id; } }
+        public int Id { get { return _id; } set { _id = value; } }
         public string Name { get; set; }
         public string Engine { get; set; }
         public int BuildYear { get; set; }
