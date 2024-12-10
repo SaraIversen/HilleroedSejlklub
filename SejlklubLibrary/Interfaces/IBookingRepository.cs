@@ -9,14 +9,17 @@ namespace SejlklubLibrary.Interfaces
 {
     public interface IBookingRepository
     {
-        int Count { get; }
+        Member CurrentMember { get; set; } // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme det nuværende medlem der prøver at booke. 
+        int CountBookings { get; }
+        int CountBookingTimes { get; } 
 
-        List<Booking> GetAll();
+        List<Booking> GetAllBookings();
+        List<BookingTime> GetAllBookingTimes();
         Booking GetBookingById(int id);
-        void NewBooking(Booking booking);
+        bool NewBooking(string date, string startTime, string endTime, string place, Boat boat, Member member);
         void RemoveBooking(int id);
-        void UpdateBooking(Booking booking);
-        void BookBoat(Booking booking, Member member);
+        //void UpdateBooking(Booking booking);
+        //void BookBoat(Booking booking, Member member);
         void PrintAllBookings();
         string ToString();
     }

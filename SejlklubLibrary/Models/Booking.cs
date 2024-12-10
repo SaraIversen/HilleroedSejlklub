@@ -12,23 +12,24 @@ namespace SejlklubLibrary.Models
         private static int _counter = 0;
 
         public int Id { get; }
-        public DateTime StartTime { get; }
-        public DateTime EndTime { get;}
+        public string Date { get; }
+        public string StartTime { get; }
+        public string EndTime { get;}
         public string Place { get; }
         public Boat Boat { get; }
-        public bool IsAvailable { get; set; } // SKAL MULIGVIS FJERNES ???
-        public Member Member { get; set; }
+        public Member Member { get; }
 
-        public Booking(DateTime startTime, DateTime endTime, string place, Boat boat)
+        public Booking(string date, string startTime, string endTime, string place, Boat boat, Member member)
         {
             Id = _counter;
             _counter+=1;
 
+            Date = date;
             StartTime = startTime;
             EndTime = endTime;
             Place = place;
             Boat = boat;
-            IsAvailable = true;
+            Member = member;
         }
     }
 }

@@ -22,6 +22,14 @@ namespace SejlklubLibrary.Services
 
         public void AddBoat(Boat boat)
         {
+            foreach(Boat b in _boatList)
+            {
+                if(b == boat)
+                {
+                    return;
+                }
+            }
+            boat.Counting();
             _boatList.Add(boat);
         }
 
@@ -59,11 +67,17 @@ namespace SejlklubLibrary.Services
             }
         }
 
-        public void UpdateBoat(Boat newBoat, int oldBoatId)
+        public void UpdateBoat(Boat oldBoat)
         {
-            Boat oldBoat = GetBoatById(oldBoatId);
-            oldBoat.Engine = newBoat.Engine;
-            oldBoat.Name = newBoat.Name;
+            foreach (Boat boats in _boatList)
+            {
+                if (boats.Id == oldBoat.Id)
+                {
+                    oldBoat.Name = boats.Name;
+                    oldBoat.Measurement = boats.Measurement;
+                    oldBoat.Engine = boats.Engine;
+                }
+            }
         }
     }
 }

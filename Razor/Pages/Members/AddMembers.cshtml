@@ -27,7 +27,13 @@
 		<label asp-for="@Model.MemberStatus" class="control-label"></label>
 		<input asp-for="@Model.MemberStatus" class="control-label" />
 	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Photo" class="control-label"></label>
+		<div class="custom-file">
+			<input asp-for="@Model.Photo" class="custom-file-input form-control" />
+		</div>
+	</div>
 	<div class="formgroup">
-		<input type="submit" value="Tilføj Medlem" class="btn btn-primary" />
+		<input type="submit" value="Opret" class="btn btn-primary" />
 	</div>
 </form>
