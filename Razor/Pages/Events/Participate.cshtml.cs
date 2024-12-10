@@ -16,6 +16,8 @@ namespace Razor.Pages.Events
         [BindProperty]
         public Member TheMember { get; set; }
         [BindProperty]
+        public Event Event { get; set; }
+        [BindProperty]
         public int Guests { get; set; }
 
         public List<Event> Events { get; set; }
@@ -28,9 +30,9 @@ namespace Razor.Pages.Events
             _eventRepository = eventRepository;
             Participants = new List<Member>();
         }
-        public void OnGet()
+        public void OnGet(int eventId)
         {
-            Events = _eventRepository.GetAll();
+            Event = _eventRepository.GetEventByID(eventId);
         }
 
         public void OnPostMember() 
@@ -38,8 +40,12 @@ namespace Razor.Pages.Events
             TheMember = _memberRepository.GetMemberByPhone(FindMemberByPhone);
         }
 
-        public IActionResult OnPostAddTOEvent(Member TheMember) 
+        public IActionResult OnPostAddTOEvent() 
         {
+            if (TheMember != null)
+            {
+                _participantRepository.AddMemberToEvent(Event, TheMember);
+            }
 
             return Page();
         }
