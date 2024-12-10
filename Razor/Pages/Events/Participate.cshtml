@@ -40,6 +40,9 @@
         <input style="width:265px" type="number" asp-for="@Model.Guests" />
     </div>
 </div>
-<input style="width:50%;text-align:center;align-items:center" type="submit" value="Tilmeld" />
+<form method="post" asp-page-handler="AddTOEvent">
+    <input style="width:50%;text-align:center;align-items:center" type="submit" value="Tilmeld" />
+</form>
+
 
 
