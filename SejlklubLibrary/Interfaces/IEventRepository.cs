@@ -15,6 +15,6 @@ namespace SejlklubLibrary.Interfaces
         void PrintAllEvents();
         Event GetEventByID( int id);
         void RemoveEvent(int id);
-        void UpdateEvent(Event oldevent);
+        void UpdateEvent(Event newevent);
     }
 }

@@ -9,8 +9,8 @@ namespace SejlklubLibrary.Interfaces
 {
     public interface IParticipantRepository
     {
-        List<Member> GetAllParticipants();
-        void AddMemberToEvent(Member member);
-        void RemoveMemberFromEvent(Member member);
+        List<Member> GetAllParticipants(Event ev);
+        void AddMemberToEvent(Event ev,Member member);
+        void RemoveMemberFromEvent(Event ev, Member member);
     }
 }
