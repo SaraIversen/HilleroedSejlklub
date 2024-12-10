@@ -11,35 +11,40 @@ namespace SejlklubLibrary.Services
 {
     public class ParticipantRepository:IParticipantRepository
     {
-        public List<Member> _participants;
+        //public List<Member> _participants;
 
-        public ParticipantRepository()
+        //public ParticipantRepository()
+        //{
+        //    _participants = new List<Member>();
+        //    _participants = MockData.MemberData.Values.ToList();
+        //}
+
+        public List<Member> GetAllParticipants(Event ev)
         {
-            _participants = new List<Member>();
-            _participants = MockData.MemberData.Values.ToList();
+            return ev.Participants;
         }
 
-        public List<Member> GetAllParticipants()
+        public void AddMemberToEvent(Event ev, Member member)
         {
-            return _participants;
-        }
-
-        public void AddMemberToEvent(Member member)
-        {
-            Member foundMember = member;
-            if (foundMember != null)
+            if (!ev.Participants.Contains(member))
             {
-                _participants.Add(foundMember);
+                ev.Participants.Add(member);
             }
+
+            //Member foundMember = member;
+            //if (foundMember != null)
+            //{
+            //    _participants.Add(foundMember);
+            //}
         }
 
-        public void RemoveMemberFromEvent(Member member)
+        public void RemoveMemberFromEvent(Event ev, Member member)
         {
-            foreach (Member participant in _participants)
+            foreach (Member participant in ev.Participants)
             {
                 if (participant == member)
                 {
-                    _participants.Remove(member);
+                    ev.Participants.Remove(member);
                 }
             }
         }
