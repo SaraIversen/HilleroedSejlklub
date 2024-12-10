@@ -41,7 +41,7 @@ namespace Razor.Pages.Members
         public IActionResult OnPost()
         {
             Member member = new Member(Name, Email, Address, Phone, MemberStatus);
-            if (!ModelState.IsValid != null)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }

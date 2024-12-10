@@ -16,8 +16,6 @@ namespace SejlklubLibrary.Models
         public Member()
         {
             MemberImage = "default.jpeg";
-			_counter++;
-			_id = _counter;
 		}
 
         public Member(string name, string email,string address, string phone, MemberType memberStatus) 
