@@ -22,7 +22,7 @@ namespace SejlklubLibrary.Models
         public int Id { get { return _id; } set { _id = value; } }
 
         public Member Member { get; }
-        public List<Member> Participants { get; set; }
+        public List<Member> Participants { get; set; } = new List<Member>();
 
         public Event()
         {
@@ -38,8 +38,6 @@ namespace SejlklubLibrary.Models
             Date = date;
             Description = description;
             Location = location;
-
-            Participants = new List<Member>();
         }
         public override string ToString()
         {
