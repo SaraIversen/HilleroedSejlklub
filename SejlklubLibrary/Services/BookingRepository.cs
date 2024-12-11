@@ -59,22 +59,23 @@ namespace SejlklubLibrary.Services
             return null;
         }
 
-        public bool NewBooking(string date, string startTime, string endTime, string place, Boat boat, Member member)
+        public bool NewBooking(string date, BookingTime bookingTime, string place, Boat boat, Member member)
         {
-            if (!ValidateBooking(date, startTime, boat)) return false;
+            if (!ValidateBooking(date, bookingTime, boat.BoatType)) return false;
 
-            Booking newBooking = new Booking(date, startTime, endTime, place, boat, member);
+            Booking newBooking = new Booking(date, bookingTime, place, boat, member);
             _bookingsList.Add(newBooking);
+            StatisticsRepository.RegisterBooking(member, boat, bookingTime);
             return true;
         }
 
-        private bool ValidateBooking(string date, string startTime, Boat boat)
+        public bool ValidateBooking(string date, BookingTime bookingTime, BoatType boatType)
         {
             foreach (Booking booking in _bookingsList)
             {
-                if (booking.Boat.BoatType == boat.BoatType 
+                if (booking.Boat.BoatType == boatType
                     && booking.Date == date 
-                    && booking.StartTime == startTime)
+                    && booking.BookingTime.StartTime == bookingTime.StartTime)
                 {
                     return false;
                 }
@@ -87,20 +88,10 @@ namespace SejlklubLibrary.Services
             Booking foundBooking = GetBookingById(id);
             if (foundBooking != null)
             {
+                StatisticsRepository.UnRegisterBooking(foundBooking.Member, foundBooking.Boat, foundBooking.BookingTime);
                 _bookingsList.Remove(foundBooking);
             }
         }
-
-/*        public void UpdateBooking(Booking booking)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void BookBoat(Booking booking, Member member)
-        {
-            booking.Member = member;
-            booking.IsAvailable = false;
-        }*/
 
         public void PrintAllBookings()
         {

@@ -1,0 +1,56 @@
+﻿@page
+@model Razor.Pages.Statistics.ShowStatisticsModel
+@{
+    ViewData["Title"] = "ShowStatistics";
+}
+
+<h1>Statistikker</h1>
+
+<br />
+<br />
+
+<h5> <b> Medlem med flest bookinger: </b> </h5>
+@{
+    if (@Model.Member != null)
+    {
+        <p> <b>Navn:</b> @Model.Member.Name </p>
+        <p> <b>Adresse:</b> @Model.Member.Address </p>
+        <p> <b>Telefon:</b> @Model.Member.Phone </p>
+    }
+    else
+    {
+        <p> Ingen medlemmer har lavet en booking. </p>
+    }
+}
+
+<br />
+
+<h5> <b> Båd der er blevet booket flest gange: </b> </h5>
+@{
+    if (@Model.Boat != null)
+    {
+        <p> <b>Bådtype:</b> @Model.Boat.BoatType </p>
+        <p> <b>Navn:</b> @Model.Boat.Name </p>
+        <p> <b>Mål:</b> @Model.Boat.Measurement </p>
+        <p> <b>Motor:</b> @Model.Boat.Engine </p>
+        <p> <b>Byggeår:</b> @Model.Boat.BuildYear </p>
+    }
+    else
+    {
+        <p> Ingen både er blevet booket. </p>
+    }
+}
+
+<br />
+
+<h5> <b> Tid der er blevet booket flest gange: </b> </h5>
+@{
+    if (@Model.BookingTime != null)
+    {
+        <p> <b>Tidspunkt:</b> @Model.BookingTime.StartTime-@Model.BookingTime.EndTime </p>
+    }
+    else
+    {
+        <p> Ingen tider er blevet booket. </p>
+    }
+}
