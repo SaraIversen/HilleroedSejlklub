@@ -15,6 +15,7 @@ namespace SejlklubLibrary.Interfaces
         string Description { get; set; }
         string Location { get; set; }
         string ToString();
+        EventType EventType { get; }
 
         List<Member> Participants { get; set; }
 

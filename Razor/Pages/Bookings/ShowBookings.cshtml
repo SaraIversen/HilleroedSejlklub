@@ -34,8 +34,8 @@
                     <td>@booking.Date</td>
                     <td>@booking.Boat.BoatType</td>
                     <td>@booking.Boat.Name</td>
-                    <td>@booking.StartTime</td>
-                    <td>@booking.EndTime</td>
+                    <td>@booking.BookingTime.StartTime</td>
+                    <td>@booking.BookingTime.EndTime</td>
                     <td>@booking.Place</td>
                     <td>@if(@booking.Member != null ) { @booking.Member.Name }</td>
                     <td><a asp-page="DeleteBooking" asp-route-id="@booking.Id">Anuller booking</a></td>

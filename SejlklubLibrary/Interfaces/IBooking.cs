@@ -11,8 +11,9 @@ namespace SejlklubLibrary.Interfaces
     {
         int Id { get; }
         string Date { get; }
-        string StartTime { get; }
-        string EndTime { get; }
+/*        string StartTime { get; }
+        string EndTime { get; }*/
+        public BookingTime BookingTime { get; }
         string Place { get; }
         Boat Boat { get; }
         Member Member { get; }

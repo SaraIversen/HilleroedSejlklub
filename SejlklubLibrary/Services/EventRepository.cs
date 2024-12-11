@@ -74,6 +74,7 @@ namespace SejlklubLibrary.Services
                     events.Date = newEvent.Date;
                     events.Location = newEvent.Location;
                     events.Description = newEvent.Description;
+                    events.EventType = newEvent.EventType;
                 }
             }
         }
