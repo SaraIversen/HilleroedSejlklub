@@ -29,6 +29,10 @@ namespace SejlklubLibrary.Models
             {
                 throw new InvalidNameLengthException("The name has an invalid length");
             }
+            if (!(memberStatus == MemberType.Junior || memberStatus == MemberType.Senior || memberStatus == MemberType.Passiv))
+            {
+                throw new InvalidMemberTypeException("The member status is not a valid member type");
+            }
 			MemberImage = "default.jpeg";
 			_counter++;
             _id = _counter;
