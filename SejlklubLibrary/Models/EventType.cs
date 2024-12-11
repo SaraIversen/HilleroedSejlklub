@@ -8,6 +8,6 @@ namespace SejlklubLibrary.Models
 {
     public enum EventType
     {
-        Udflugt,Standerhejsning,Sejltur,Spisning
+        Udflugt,Standerhejsning,Sejltur,Spisning,StortForKlubben,Kursus
     }
 }

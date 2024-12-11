@@ -24,12 +24,14 @@ namespace SejlklubLibrary.Models
         public Member Member { get; }
         public List<Member> Participants { get; set; } = new List<Member>();
 
+        public EventType EventType { get; set; }
+
         public Event()
         {
             _id = _counter;
         }
 
-        public Event(string name, DateTime date, string description,string location)
+        public Event(string name, DateTime date, string description,string location,EventType eventType)
         {
             _counter++;
             _id = _counter;
@@ -38,6 +40,7 @@ namespace SejlklubLibrary.Models
             Date = date;
             Description = description;
             Location = location;
+            EventType = eventType;
         }
         public override string ToString()
         {

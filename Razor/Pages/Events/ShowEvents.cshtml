@@ -14,6 +14,7 @@
         <tr>
             <td>ID</td>
             <td>Navn, Dato og tid</td>
+            <td>sted og event type</td>
             <td>Sted</td>
             <td>Beskrivelse</td>
             <td>Antal Deltagerer</td>
@@ -28,7 +29,7 @@
             <tr>
                 <td style="background-color:lightgray;text-align:center">@events.Id</td>
                 <td><b>@events.Name</b> <br />Dato: <em>@events.Date </em></td>
-                <td>@events.Location</td>
+                <td><u>Sted:</u> @events.Location <br />@events.EventType</td>
                 <td>@events.Description</td>
                 <td>
                     <br /><a style="padding:2px;" asp-page="Participate" asp-route-eventId="@events.Id">Tilmeld</a></td>
