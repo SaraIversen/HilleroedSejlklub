@@ -78,3 +78,15 @@ foreach (Member m in members)
     Console.WriteLine();
 }
 Console.Write("_____________________________________________________________\n");
+//___Opdater et medlem fra repository
+Member m2 = new Member("Michael", "michael@mail.dk", "Gade 456", "84239212", MemberType.Senior);
+mRepo.UpdateMember(m2);
+members = mRepo.GetAll();
+
+foreach (Member m in members)
+{
+    Console.WriteLine(m);
+    Console.WriteLine();
+}
+Console.Write("_____________________________________________________________\n");
+
