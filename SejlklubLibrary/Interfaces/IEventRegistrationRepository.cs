@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SejlklubLibrary.Interfaces
 {
-    public interface IParticipantRepository
+    public interface IEventRegistrationRepository
     {
-        List<Member> GetAllParticipants(Event ev);
-        void AddMemberToEvent(Event ev,Member member);
+        List<EventRegistration> GetAllParticipants(Event ev);
+        void AddRegistrationToEvent(Event ev, string comment, DateTime timeOfReg, int guestsAmount, Member member);
         void RemoveMemberFromEvent(Event ev, Member member);
     }
 }

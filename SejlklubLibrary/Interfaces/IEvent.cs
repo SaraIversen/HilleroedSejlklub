@@ -17,7 +17,8 @@ namespace SejlklubLibrary.Interfaces
         string ToString();
         EventType EventType { get; }
 
-        List<Member> Participants { get; set; }
+        //List<Member> Participants { get; set; }
+        public List<EventRegistration> EventRegistrations { get; set; }
 
     }
 }

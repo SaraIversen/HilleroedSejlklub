@@ -22,7 +22,8 @@ namespace SejlklubLibrary.Models
         public int Id { get { return _id; } set { _id = value; } }
 
         public Member Member { get; }
-        public List<Member> Participants { get; set; } = new List<Member>();
+        //public List<Member> Participants { get; set; } = new List<Member>();
+        public List<EventRegistration> EventRegistrations { get; set; } = new List<EventRegistration>();
 
         public EventType EventType { get; set; }
 
