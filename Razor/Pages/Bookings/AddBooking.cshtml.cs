@@ -18,10 +18,11 @@ namespace Razor.Pages.Bookings
         [BindProperty] public string SearchMemberPhone { get; set; }
         public Member Member { get; set; }
 
-        [BindProperty] public DateTime ChosenDate { get; set; }
+        [BindProperty] public DateTime ChosenDate { get; set; } = DateTime.Now;
 
         [BindProperty] public int ChosenBoatType { get; set; }
         public List<SelectListItem> BoatTypeSelectList { get; set; }
+        //[BindProperty] public Boat Boat { get; set;  }
 
         [BindProperty] public string ChosenLocation { get; set; }
 
@@ -57,14 +58,28 @@ namespace Razor.Pages.Bookings
             BookingTimes = _bookingRepository.GetAllBookingTimes();
             for (int i = 0; i < BookingTimes.Count; i++)
             {
-                SelectListItem selectListItem = new SelectListItem($"{BookingTimes[i].StartTime}-{BookingTimes[i].EndTime}", i.ToString());
+                bool isDisabled = false;
+
+                Boat chosenBoat = _boatRepository.GetBoatById(ChosenBoatType);
+                if (chosenBoat != null)
+                {
+                    // Check if the StartTime of this BookingTime is already booked
+                    isDisabled = (!_bookingRepository.ValidateBooking(ChosenDate.ToString("d"), BookingTimes[i], chosenBoat.BoatType)); //GetAllBookings().Any(b => b.StartTime == BookingTimes[i].StartTime);
+                }
+
+                SelectListItem selectListItem = new SelectListItem
+                {
+                    Text = $"{BookingTimes[i].StartTime}-{BookingTimes[i].EndTime}" + (isDisabled ? " (Booked)" : ""),
+                    Value = i.ToString(),
+                    Disabled = isDisabled
+                };
                 TimeSelectList.Add(selectListItem);
             }
         }
 
         public void OnGet()
         {
-            ChosenDate = DateTime.Now;
+            //ChosenDate = DateTime.Now;
             BookingTimes = _bookingRepository.GetAllBookingTimes();
 
             if (_bookingRepository.CurrentMember != null)
@@ -72,6 +87,31 @@ namespace Razor.Pages.Bookings
                 Member = _bookingRepository.CurrentMember;
             }
         }
+
+/*        public IActionResult OnPostNewBoatChosen()
+        {
+            Member = _bookingRepository.CurrentMember;
+            if (Member == null)
+            {
+                // Show some errors ????
+                return Page();
+            }
+            //ChosenDate = DateTime.Now;
+            if (ChosenBoatType == -1)
+            {
+                // Show some errors ????
+                return Page();
+            }
+            Boat = _boatRepository.GetBoatById(ChosenBoatType);
+            if (Boat == null)
+            {
+                // Show some errors ????
+                return Page();
+            }
+            BookingTimes = _bookingRepository.GetAllBookingTimes();
+            CreateTimeSelectList();
+            return Page();
+        }*/
 
         public IActionResult OnPostMember()
         {
@@ -85,7 +125,7 @@ namespace Razor.Pages.Bookings
             {
                 // Error message ?????
             }
-            ChosenDate = DateTime.Now;
+            //ChosenDate = DateTime.Now;
             BookingTimes = _bookingRepository.GetAllBookingTimes();
             return Page();
         }
@@ -119,7 +159,7 @@ namespace Razor.Pages.Bookings
                 // Show some errors ????
                 return Page();
             }
-            if (!_bookingRepository.NewBooking(ChosenDate.ToString("d"), BookingTimes[ChosenTime].StartTime, BookingTimes[ChosenTime].EndTime, ChosenLocation, chosenBoat, Member))
+            if (!_bookingRepository.NewBooking(ChosenDate.ToString("d"), BookingTimes[ChosenTime], ChosenLocation, chosenBoat, Member))
             {
                 // The date and time for the boat was probably already booked.
                 // Show some errors ????

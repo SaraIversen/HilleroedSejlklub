@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using SejlklubLibrary.Models;
 using SejlklubLibrary.Services;
+using System.Diagnostics.CodeAnalysis;
 
 //Test af boat class
 //_____Opretelse af objekt
@@ -47,4 +48,45 @@ Console.WriteLine("Efter opdatering:\n" +updateretEvent.Id+": "+ updateretEvent.
 
 foreach (Event item in test)
 { Console.WriteLine(item.ToString()); }
+
+
+//___Test af member class
+//___Oprettelse af member objekt
+Member m1 = new Member("Jens", "jens@mail.dk", "Vej 123", "84239212", MemberType.Senior);
+Console.WriteLine(m1);
+Console.Write("_____________________________________________________________\n");
+//___Oprettelse af member repository
+MemberRepository mRepo = new MemberRepository();
+//___Tilføjelse af member til repository
+mRepo.AddMember(m1);
+List<Member> members = mRepo.GetAll();
+
+foreach (Member m in members)
+{
+    Console.WriteLine(m);
+    Console.WriteLine();
+}
+
+Console.Write("_____________________________________________________________\n");
+//___Fjern et medlem fra repository
+mRepo.RemoveMember("12121212");
+members = mRepo.GetAll();
+
+foreach (Member m in members)
+{
+    Console.WriteLine(m);
+    Console.WriteLine();
+}
+Console.Write("_____________________________________________________________\n");
+//___Opdater et medlem fra repository
+Member m2 = new Member("Michael", "michael@mail.dk", "Gade 456", "84239212", MemberType.Senior);
+mRepo.UpdateMember(m2);
+members = mRepo.GetAll();
+
+foreach (Member m in members)
+{
+    Console.WriteLine(m);
+    Console.WriteLine();
+}
+Console.Write("_____________________________________________________________\n");
 
