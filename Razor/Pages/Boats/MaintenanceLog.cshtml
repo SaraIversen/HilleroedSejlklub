@@ -1,14 +1,13 @@
 ﻿@page
 @using SejlklubLibrary.Models
-@model Razor.Pages.Boats.ShowBoatsModel
+@model Razor.Pages.Boats.MaintenanceLogModel
 @{
-    ViewData["Title"] = "ShowBoats";
+    ViewData["Title"] = "Vedligholdelsesliste";
 }
-<h1>Både:</h1>
-<a asp-page="/Boats/AddBoat">Opret Båd</a>
+<h1>Både meldt til reparation:</h1>
 
 <hr />
-<p>Antal oprettede både: @Model.Boats.Count</p>
+<p>Antal meldte både: @Model.boatReparations.Count</p>
 <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
@@ -20,11 +19,10 @@
             <td>Bygningsår</td>
             <td></td>
             <td></td>
-            <td></td>
         </tr>
     </thead>
     <tbody>
-        @foreach (Boat boats in Model.Boats)
+        @foreach (Boat boats in Model.boatReparations)
         {
             <tr>
                 <td style="background-color:lightgray;text-align:center">@boats.Id</td>
@@ -33,9 +31,6 @@
                 <td>@boats.Measurement</td>
                 <td>@boats.Engine</td>
                 <td>@boats.BuildYear</td>
-                <td><a asp-page="EditBoat" asp-route-Id="@boats.Id">Rediger</a></td>
-                <td><a asp-page="BoatReparation" asp-route-Id="@boats.Id">Meld til Reparation</a></td>
-                <td><a asp-page="DeleteBoat" asp-route-deleteId="@boats.Id">Slet</a></td>
             </tr>
         }
     </tbody>

@@ -14,6 +14,9 @@ namespace Razor.Pages.Bookings
 
         public List<BookingTime> BookingTimes { get; set; }
 
+        public string MessageMember { get; set; }
+        public string MessageBooking { get; set; }
+
 
         [BindProperty] public string SearchMemberPhone { get; set; }
         public Member Member { get; set; }
@@ -115,17 +118,13 @@ namespace Razor.Pages.Bookings
 
         public IActionResult OnPostMember()
         {
-            if (SearchMemberPhone == null)
-            {
-                return Page();
-            }
-            Member = _memberRepository.GetMemberByPhone(SearchMemberPhone);
-            _bookingRepository.CurrentMember = Member;
+            Member = _memberRepository.GetMemberByPhone(SearchMemberPhone);  
             if (Member == null)
-            {
-                // Error message ?????
-            }
-            //ChosenDate = DateTime.Now;
+                MessageMember = "Member does not exist - create a new member";
+            else
+
+                _bookingRepository.CurrentMember = Member;
+
             BookingTimes = _bookingRepository.GetAllBookingTimes();
             return Page();
         }
@@ -135,28 +134,28 @@ namespace Razor.Pages.Bookings
             Member = _bookingRepository.CurrentMember;
             if (Member == null)
             {
-                // Show some errors ????
+                MessageMember = Member == null ? "Please select a member" : "";
                 return Page();
             }
-            /*            if (Date == null) // Tjek om datoen er før dags dato.
-                        {
-                            // Show some errors ????
-                            return Page();
-                        }*/
+            if (ChosenDate < DateTime.Now) // Tjek om datoen er før dags dato.
+            {
+                MessageMember = ChosenDate < DateTime.Now ? "Please select a valid date" : "";
+                return Page();
+            }
             Boat chosenBoat = _boatRepository.GetBoatById(ChosenBoatType);
             if (chosenBoat == null)
             {
-                // Show some errors ????
+                MessageBooking = chosenBoat == null ? "Please select a boat type" : "";
                 return Page();
             }
             if (ChosenLocation == null)
             {
-                // Show some errors ????
+                MessageBooking = ChosenLocation == null ? "Please select a location" : "";
                 return Page();
             }
             if (BookingTimes[ChosenTime] == null)
             {
-                // Show some errors ????
+                MessageBooking = BookingTimes[ChosenTime] == null ? "Please select a time period" : "";
                 return Page();
             }
             if (!_bookingRepository.NewBooking(ChosenDate.ToString("d"), BookingTimes[ChosenTime], ChosenLocation, chosenBoat, Member))

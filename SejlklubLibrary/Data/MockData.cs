@@ -49,7 +49,7 @@ namespace SejlklubLibrary.Data
         private static List<Booking> _bookingData =
             new List<Booking>()
             {
-                //new Booking(new DateTime(2024, 12, 5, 12, 00, 0), new DateTime(2024, 12, 5, 12, 00, 0), new DateTime(2024, 12, 5, 14, 00, 0), "Den gode sø", new Boat("1 meter", "Tøftøf", "v2", 1999, BoatType.Laserjolle)),
+                //new Booking(new DateTime(2024, 12, 5, 12, 00, 0), newBookin, "Den gode sø", new Boat("1 meter", "Tøftøf", "v2", 1999, BoatType.Laserjolle)),
                 //new Booking(new DateTime(2024, 12, 5, 12, 00, 0), new DateTime(2024, 12, 5, 12, 00, 0), new DateTime(2024, 12, 5, 14, 00, 0), "Den gode sø", new Boat("2 meter", "Båd", "v3", 2003, BoatType.lynæs)),
             };
 
@@ -57,6 +57,7 @@ namespace SejlklubLibrary.Data
             new List<EventRegistration>() 
             { 
                 new EventRegistration("", new DateTime (),0,new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior)),
+                new EventRegistration("Test om get random member virker", new DateTime (), 0, GetRandomMember()),
                 new EventRegistration("Jeg tager den elskede sommer-salat med", new DateTime(),1,new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv)),
                 new EventRegistration("Tager min kærste og mor med",new DateTime(),2,new Member("Carina", "carina@mail.dk", "High Street 234", "14141414", MemberType.Junior))
             };
@@ -84,9 +85,26 @@ namespace SejlklubLibrary.Data
             get { return _bookingData; }
         }
 
-        public static List<EventRegistration> EventRegistrationData 
+        public static List<EventRegistration> EventRegistrationData
         {
             get { return _eventRegistrationData; }
+        }
+
+        private static Member GetRandomMember()
+        {
+            Random random = new Random();
+            int randomIndex = random.Next(0, _memberData.Count);
+
+            int i = 0;
+            foreach (Member member in _memberData.Values)
+            {
+                if (randomIndex == i)
+                {
+                    return member;
+                }
+                i += 1;
+            }
+            return null;
         }
         #endregion
     }
