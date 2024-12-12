@@ -32,11 +32,12 @@ namespace Razor.Pages.Events
             _memberRepository = memberRepository;
             _eventRegistrationRepository = eventRegistrationRepository;
             _eventRepository = eventRepository;
-            Participants = new List<EventRegistration>();
+            //Participants = new List<EventRegistration>();
         }
         public void OnGet(int eventId)
         {
             Event = _eventRepository.GetEventByID(eventId);
+            Participants = _eventRegistrationRepository.GetAllParticipants(Event);
         }
 
         public void OnPostMember() 
@@ -44,9 +45,9 @@ namespace Razor.Pages.Events
             TheMember = _memberRepository.GetMemberByPhone(FindMemberByPhone);
         }
 
-        public IActionResult OnPostAddTOEvent() 
+        public IActionResult OnPostAddToEvent() 
         {
-            if (TheMember != null)
+            if (!(TheMember == null||Event==null||Comment==null ))
             {
                 _eventRegistrationRepository.AddRegistrationToEvent(Event, Comment, TimeOfRegistration, Guests, TheMember);
             }
