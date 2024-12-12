@@ -13,22 +13,18 @@ namespace SejlklubLibrary.Models
 
         public int Id { get; }
         public string Date { get; }
-        //public string StartTime { get; }
-        //public string EndTime { get;}
         public BookingTime BookingTime { get; }
         public string Place { get; }
         public Boat Boat { get; }
         public Member Member { get; }
 
-        public Booking(string date, BookingTime bookingTime /*string startTime, string endTime*/, string place, Boat boat, Member member)
+        public Booking(string date, BookingTime bookingTime, string place, Boat boat, Member member)
         {
             Id = _counter;
             _counter+=1;
 
             Date = date;
             BookingTime = bookingTime;
-            //StartTime = startTime;
-            //EndTime = endTime;
             Place = place;
             Boat = boat;
             Member = member;
