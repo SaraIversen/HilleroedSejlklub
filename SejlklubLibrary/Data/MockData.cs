@@ -75,6 +75,23 @@ namespace SejlklubLibrary.Data
         {
             get { return _bookingData; }
         }
+
+        private Member GetRandomMember()
+        {
+            Random random = new Random();
+            int randomIndex = random.Next(0, _memberData.Count);
+
+            int i = 0;
+            foreach (Member member in _memberData.Values) 
+            {
+                if (randomIndex == i)
+                {
+                    return member;
+                }
+                i+=1;
+            }
+            return null;
+        }
         #endregion
     }
 }
