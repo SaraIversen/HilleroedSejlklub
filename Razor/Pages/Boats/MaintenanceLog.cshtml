@@ -1,4 +1,37 @@
 ﻿@page
+@using SejlklubLibrary.Models
 @model Razor.Pages.Boats.MaintenanceLogModel
 @{
+    ViewData["Title"] = "Vedligholdelsesliste";
 }
+<h1>Både meldt til reparation:</h1>
+
+<hr />
+<p>Antal meldte både: @Model.boatReparations.Count</p>
+<table style="width:85%" class="table">
+    <thead style="background-color:lightskyblue;border-radius:60px">
+        <tr>
+            <td>ID</td>
+            <td>Navn</td>
+            <td>Båd Type</td>
+            <td>Mål</td>
+            <td>Motor</td>
+            <td>Bygningsår</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Boat boats in Model.boatReparations)
+        {
+            <tr>
+                <td style="background-color:lightgray;text-align:center">@boats.Id</td>
+                <td>@boats.Name</td>
+                <td>@boats.BoatType</td>
+                <td>@boats.Measurement</td>
+                <td>@boats.Engine</td>
+                <td>@boats.BuildYear</td>
+            </tr>
+        }
+    </tbody>
+</table>
