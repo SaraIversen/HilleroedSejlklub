@@ -38,11 +38,41 @@
         <h2>Har du gæster med?</h2>
         <p style="font-size:18px">Angiv antallet her:</p>
         <input style="width:265px" type="number" asp-for="@Model.Guests" />
+        <br />
+        <br />
+        <p style="font-size:18px">Comment:</p>
+        <textarea style="width:265px" asp-for="@Model.Comment" cols="120">
+        </textarea>
+        <br />
     </div>
 </div>
 <form method="post" asp-page-handler="AddTOEvent">
     <input style="width:50%;text-align:center;align-items:center" type="submit" value="Tilmeld" />
 </form>
+<br />
+<hr />
+<br />
+<table class="table">
+    <thead style="background-color:lightskyblue;border-radius:60px">
+        <tr>
+            <td>Medlem: Navn og medlemstatus</td>
+            <td>Antal gæster</td>
+            <td>Kormentar</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(EventRegistration eventRegistration in Model.Participants)
+            {
+                <tr>
+                    <td>Navn: @eventRegistration.Member.Name <br />       @eventRegistration.Member.MemberStatus</td>
+                    <td>@eventRegistration.GuestsAmount</td>
+                    <td>@eventRegistration.Comment</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
 
 
 
