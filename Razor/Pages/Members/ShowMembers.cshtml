@@ -5,7 +5,7 @@
 	ViewData["Title"] = "Show Members";
 }
 
-<h1>Medlemmer: @Model.Members.Count </h1>
+<h1>Filtrer Medlemmer</h1>
 
 <p>
 	<a asp-page="AddMembers">Opret Medlem</a>
@@ -24,6 +24,8 @@
 	</select>
 	<input type="submit" value="Filtrer" />
 </form>
+
+<h1>Medlemmer: @Model.Members.Count </h1>
 
 <table class="table">
 	<thead>
