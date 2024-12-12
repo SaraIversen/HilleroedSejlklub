@@ -5,6 +5,14 @@
     ViewData["Title"] = "Deltag";
 }
 
+@* <head>
+    <style>
+        input :hover {
+            background-color: sandybrown;
+            border: none;
+        }
+    </style>
+</head> *@
 <h1>Deltagerer og tilmelding</h1>
 <hr />
 
@@ -15,10 +23,10 @@
         <form method="post" asp-page-handler="Member">
             <p>
                 <input type="text" asp-for="FindMemberByPhone" />
-                <input style="background-color:aquamarine;border:none;" type="submit" value="Find medlem" />
+                <input type="submit" value="Find medlem" />
             </p>
         </form>
-        <div class="container" style="align-items:center;background-color:lightgray;width:100%;padding-left:15px">
+        <div class="container" style="align-items:center;background-color:lightblue;width:100%;padding-left:15px">
             <p style="font-size:17px"><em>Fundet Medlem:</em> </p>
             <p style="font-size:13px">
                 @{
@@ -34,21 +42,23 @@
 
         </div>
     </div>
-    <div style="padding:15px">
-        <h2>Har du gæster med?</h2>
-        <p style="font-size:18px">Angiv antallet her:</p>
-        <input style="width:265px" type="number" asp-for="@Model.Guests" />
-        <br />
-        <br />
-        <p style="font-size:18px">Comment:</p>
-        <textarea style="width:265px" asp-for="@Model.Comment" cols="120">
+    <form method="post" asp-page-handler="AddToEvent">
+        <div style="padding:15px">
+            <h2>Har du gæster med?</h2>
+            <p style="font-size:18px">Angiv antallet her:</p>
+            <input style="width:265px" type="number" asp-for="@Model.Guests" />
+            <br />
+            <br />
+            <p style="font-size:18px">Comment:</p>
+            <textarea style="width:265px" asp-for="@Model.Comment" cols="120">
         </textarea>
-        <br />
-    </div>
+            <br />
+        </div>
+        <input style="width:50%;text-align:center;align-items:center" type="submit" value="Tilmeld" />
+    </form>
 </div>
-<form method="post" asp-page-handler="AddTOEvent">
-    <input style="width:50%;text-align:center;align-items:center" type="submit" value="Tilmeld" />
-</form>
+
+
 <br />
 <hr />
 <br />
