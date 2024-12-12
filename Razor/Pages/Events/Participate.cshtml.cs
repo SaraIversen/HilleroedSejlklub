@@ -8,7 +8,7 @@ namespace Razor.Pages.Events
     public class ParticipateModel : PageModel
     {
         private IMemberRepository _memberRepository;
-        private IParticipantRepository _participantRepository;
+        private IEventRegistrationRepository _eventRegistrationRepository;
         private IEventRepository _eventRepository;
 
         [BindProperty]
@@ -18,17 +18,21 @@ namespace Razor.Pages.Events
         [BindProperty]
         public Event Event { get; set; }
         [BindProperty]
+        public DateTime TimeOfRegistration { get; set; }
+        [BindProperty]
+        public string Comment { get; set; }
+        [BindProperty]
         public int Guests { get; set; }
 
         public List<Event> Events { get; set; }
-        public List<Member> Participants {get;set;}
+        public List<EventRegistration> Participants {get;set;}
 
-        public ParticipateModel(IMemberRepository memberRepository, IParticipantRepository participantRepository,IEventRepository eventRepository)
+        public ParticipateModel(IMemberRepository memberRepository, IEventRegistrationRepository eventRegistrationRepository, IEventRepository eventRepository)
         {
             _memberRepository = memberRepository;
-            _participantRepository = participantRepository;
+            _eventRegistrationRepository = eventRegistrationRepository;
             _eventRepository = eventRepository;
-            Participants = new List<Member>();
+            Participants = new List<EventRegistration>();
         }
         public void OnGet(int eventId)
         {
@@ -44,7 +48,7 @@ namespace Razor.Pages.Events
         {
             if (TheMember != null)
             {
-                _participantRepository.AddMemberToEvent(Event, TheMember);
+                _eventRegistrationRepository.AddRegistrationToEvent(Event, Comment, TimeOfRegistration, Guests, TheMember);
             }
 
             return Page();

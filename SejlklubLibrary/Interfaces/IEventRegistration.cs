@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace SejlklubLibrary.Interfaces
 {
-    public interface IBooking
+    public interface IEventRegistration
     {
-        int Id { get; }
-        string Date { get; }
-        public BookingTime BookingTime { get; }
-        string Place { get; }
-        Boat Boat { get; }
-        Member Member { get; }
+        string Comment { get; set; }
+        DateTime TimeOfRegistration { get; set; }
+        int GuestsAmount { get; set; }
+        Member Member { get; set; }
 
         string ToString();
     }

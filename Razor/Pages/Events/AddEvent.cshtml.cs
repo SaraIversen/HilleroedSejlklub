@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SejlklubLibrary.Exceptions.Events;
 using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 
@@ -8,6 +9,7 @@ namespace Razor.Pages.Events
     public class AddEventModel : PageModel
     {
         public IEventRepository _eventRepository;
+        public string ErrorMessage { get; set; }
 
         [BindProperty]
         public Event Event { get; set; }
@@ -19,8 +21,8 @@ namespace Razor.Pages.Events
         public string Location { get; set; }
         [BindProperty]
         public string Description { get; set; }
-
-
+        [BindProperty]
+        public EventType EventType { get; set; }
         public AddEventModel(IEventRepository eventRepository)
         {
             _eventRepository = eventRepository;
@@ -32,9 +34,18 @@ namespace Razor.Pages.Events
 
         public IActionResult OnPost() 
         {
-            Event events = new Event(Name, Date, Description, Location);
-            _eventRepository.AddEvent(events);
-            return RedirectToPage("ShowEvents");
+            try 
+            {
+                Event events = new Event(Name, Date, Description, Location, EventType);
+                _eventRepository.AddEvent(events);
+                return RedirectToPage("ShowEvents");
+            }
+            catch (InvalidEventName ex)
+            {
+                ErrorMessage = ex.Message;
+                return Page();
+            }
+            
         }
     }
 }

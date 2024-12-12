@@ -16,10 +16,9 @@ namespace SejlklubLibrary.Interfaces
         List<Booking> GetAllBookings();
         List<BookingTime> GetAllBookingTimes();
         Booking GetBookingById(int id);
-        bool NewBooking(string date, string startTime, string endTime, string place, Boat boat, Member member);
+        bool NewBooking(string date, BookingTime bookingTime, string place, Boat boat, Member member);
+        bool ValidateBooking(string date, BookingTime bookingTime, BoatType boatType);
         void RemoveBooking(int id);
-        //void UpdateBooking(Booking booking);
-        //void BookBoat(Booking booking, Member member);
         void PrintAllBookings();
         string ToString();
     }
