@@ -17,11 +17,12 @@
             <td>Mål</td>
             <td>Motor</td>
             <td>Bygningsår</td>
+            <td>Kommentar</td>
             <td></td>
             <td></td>
         </tr>
     </thead>
-    @* <tbody>
+    <tbody>
         @foreach (Boat boats in Model.boatReparations)
         {
             <tr>
@@ -31,7 +32,8 @@
                 <td>@boats.Measurement</td>
                 <td>@boats.Engine</td>
                 <td>@boats.BuildYear</td>
+                <td>@boats.Comment</td>
             </tr>
         }
-    </tbody> *@
+    </tbody>
 </table>
