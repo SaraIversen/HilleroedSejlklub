@@ -64,9 +64,14 @@ namespace SejlklubLibrary.Services
             if (!ValidateBooking(date, bookingTime, boat.BoatType)) return false;
 
             Booking newBooking = new Booking(date, bookingTime, place, boat, member);
-            _bookingsList.Add(newBooking);
-            StatisticsRepository.RegisterBooking(member, boat, bookingTime);
+            AddBooking(newBooking);
             return true;
+        }
+
+        private void AddBooking(Booking booking)
+        {
+            _bookingsList.Add(booking);
+            StatisticsRepository.RegisterBooking(booking);
         }
 
         public bool ValidateBooking(string date, BookingTime bookingTime, BoatType boatType)
@@ -88,7 +93,7 @@ namespace SejlklubLibrary.Services
             Booking foundBooking = GetBookingById(id);
             if (foundBooking != null)
             {
-                StatisticsRepository.UnRegisterBooking(foundBooking.Member, foundBooking.Boat, foundBooking.BookingTime);
+                StatisticsRepository.UnRegisterBooking(foundBooking);
                 _bookingsList.Remove(foundBooking);
             }
         }

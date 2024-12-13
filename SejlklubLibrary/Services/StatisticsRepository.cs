@@ -14,20 +14,31 @@ namespace SejlklubLibrary.Services
         public static Dictionary<Boat, int> BoatBookingsCount = new Dictionary<Boat, int>();
         public static Dictionary<BookingTime, int> BookingTimesCount = new Dictionary<BookingTime, int>();
 
-        public static void RegisterBooking(Member member, Boat boat, BookingTime bookingTime)
+        public static void RegisterBooking(Booking booking)
+        {
+            RegisterMemberBooking(booking.Member);
+            RegisterBoatBooking(booking.Boat);
+            RegisterBookingTime(booking.BookingTime);
+        }
+
+        private static void RegisterMemberBooking(Member member)
         {
             if (!MemberBookingsCount.ContainsKey(member))
             {
                 MemberBookingsCount.Add(member, 0);
             }
             MemberBookingsCount[member] += 1;
-
+        }
+        private static void RegisterBoatBooking(Boat boat)
+        {
             if (!BoatBookingsCount.ContainsKey(boat))
             {
                 BoatBookingsCount.Add(boat, 0);
             }
             BoatBookingsCount[boat] += 1;
-
+        }
+        private static void RegisterBookingTime(BookingTime bookingTime)
+        {
             if (!BookingTimesCount.ContainsKey(bookingTime))
             {
                 BookingTimesCount.Add(bookingTime, 0);
@@ -35,18 +46,29 @@ namespace SejlklubLibrary.Services
             BookingTimesCount[bookingTime] += 1;
         }
 
-        public static void UnRegisterBooking(Member member, Boat boat, BookingTime bookingTime)
+        public static void UnRegisterBooking(Booking booking)
+        {
+            UnregisterMemberBooking(booking.Member);
+            UnregisterBoatBooking(booking.Boat);
+            UnregisterBookingTime(booking.BookingTime);
+        }
+
+        private static void UnregisterMemberBooking(Member member)
         {
             if (MemberBookingsCount.ContainsKey(member) && MemberBookingsCount[member] > 0)
             {
                 MemberBookingsCount[member] -= 1;
             }
-
+        }
+        private static void UnregisterBoatBooking(Boat boat)
+        {
             if (BoatBookingsCount.ContainsKey(boat) && BoatBookingsCount[boat] > 0)
             {
                 BoatBookingsCount[boat] -= 1;
             }
-
+        }
+        private static void UnregisterBookingTime(BookingTime bookingTime)
+        {
             if (BookingTimesCount.ContainsKey(bookingTime) && BookingTimesCount[bookingTime] > 0)
             {
                 BookingTimesCount[bookingTime] -= 1;

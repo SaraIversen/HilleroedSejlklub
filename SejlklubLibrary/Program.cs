@@ -90,3 +90,36 @@ foreach (Member m in members)
 }
 Console.Write("_____________________________________________________________\n");
 
+
+//Test af booking class
+//_____Opretelse af repo
+BookingRepository bookingRepo = new BookingRepository();
+
+//_____Opretelse af nye booking data
+string date = DateTime.Now.ToString("d");
+BookingTime bookingTime = bookingRepo.GetAllBookingTimes().First();
+string location = "Esrum Sø";
+Boat boat = b1;
+Member member = m1;
+
+//_____Opretelse af ny booking
+if (bookingRepo.NewBooking(date, bookingTime, location, boat, member))
+{
+    Console.WriteLine("Booking was successfull!");
+    Console.WriteLine($"New booking was made with the following data - " +
+        $"date: {date}, bookingTime: {bookingTime}, location: {location}, boat: {boat.BoatType}, member: {member.Name}");
+}
+else
+{
+    Console.WriteLine("Booking error, some of the booking data were invalid!");
+}
+
+//_____Fjernelse af en booking
+Booking bookingToRemove = bookingRepo.GetAllBookings().First();
+bookingRepo.RemoveBooking(bookingToRemove.Id);
+Console.WriteLine("A booking was removed from the bookings list.");
+
+//_____Print alle bookings
+bookingRepo.PrintAllBookings();
+
+Console.Write("_____________________________________________________________\n");
