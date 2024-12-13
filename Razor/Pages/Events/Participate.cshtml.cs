@@ -25,14 +25,14 @@ namespace Razor.Pages.Events
         public int Guests { get; set; }
 
         public List<Event> Events { get; set; }
-        public List<EventRegistration> Participants {get;set;}
+        public List<EventRegistration> Participants {get;set;}= new List<EventRegistration>();
 
         public ParticipateModel(IMemberRepository memberRepository, IEventRegistrationRepository eventRegistrationRepository, IEventRepository eventRepository)
         {
             _memberRepository = memberRepository;
             _eventRegistrationRepository = eventRegistrationRepository;
             _eventRepository = eventRepository;
-            //Participants = new List<EventRegistration>();
+            //Participants 
         }
         public void OnGet(int eventId)
         {
