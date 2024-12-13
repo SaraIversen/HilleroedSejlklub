@@ -5,11 +5,10 @@
 	ViewData["Title"] = "Show Members";
 }
 
-<h1>Filtrer Medlemmer</h1>
-
 <p>
 	<a asp-page="AddMembers">Opret Medlem</a>
 </p>
+<h2>Filtrer Medlemmer</h2>
 <form>
 	Søg Navn: <input type="text" asp-for="@Model.FilterCriteriaName" />
 	<input type="submit" value="Filtrer" />

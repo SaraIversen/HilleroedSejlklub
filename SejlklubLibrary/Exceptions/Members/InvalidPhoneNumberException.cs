@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SejlklubLibrary.Exceptions
+namespace SejlklubLibrary.Exceptions.Members
 {
-	internal class InvalidPhoneNumberException : Exception
-	{
+    internal class InvalidPhoneNumberException : Exception
+    {
         public InvalidPhoneNumberException() : base()
         {
-            
+
         }
 
         public InvalidPhoneNumberException(string message) : base(message)
         {
-            
+
         }
     }
 }

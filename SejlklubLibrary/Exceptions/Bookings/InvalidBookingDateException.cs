@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SejlklubLibrary.Exceptions.Bookings
 {
-    internal class InvalidBookingDate
+    internal class InvalidBookingDateException
     {
     }
 }

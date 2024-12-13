@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SejlklubLibrary.Exceptions
+namespace SejlklubLibrary.Exceptions.Members
 {
-	public class InvalidMemberTypeException : Exception
-	{
+    public class InvalidMemberTypeException : Exception
+    {
         public InvalidMemberTypeException() : base()
         {
-            
+
         }
 
         public InvalidMemberTypeException(string message) : base(message)
         {
-            
+
         }
     }
 }

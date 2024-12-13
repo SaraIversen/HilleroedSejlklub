@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SejlklubLibrary.Exceptions
+namespace SejlklubLibrary.Exceptions.Members
 {
-	public class InvalidNameLengthException : Exception
-	{
+    public class InvalidNameLengthException : Exception
+    {
         public InvalidNameLengthException() : base()
         {
-            
+
         }
 
         public InvalidNameLengthException(string message) : base(message)
         {
-            
+
         }
     }
 }
