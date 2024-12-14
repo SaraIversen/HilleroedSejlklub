@@ -26,6 +26,12 @@ namespace Razor.Pages.Members
         public MemberType MemberStatus { get; set; }
 
         [BindProperty]
+        public bool IsCoach { get; set; }
+
+        [BindProperty]
+        public bool IsAdmin { get; set; }
+
+        [BindProperty]
         public IFormFile Photo { get; set; }
 
         public AddMembersModel(IMemberRepository memberRepository, IWebHostEnvironment webHost)
@@ -40,7 +46,7 @@ namespace Razor.Pages.Members
 
         public IActionResult OnPost()
         {
-            Member member = new Member(Name, Email, Address, Phone, MemberStatus);
+            Member member = new Member(Name, Email, Address, Phone, MemberStatus, IsCoach, IsAdmin);
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -57,7 +63,7 @@ namespace Razor.Pages.Members
             _repo.AddMember(member);
             return RedirectToPage("ShowMembers");
         }
-
+        
         private string processUploadedFile()
         {
             string uniqueFileName = null;

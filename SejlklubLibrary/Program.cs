@@ -52,7 +52,7 @@ foreach (Event item in test)
 
 //___Test af member class
 //___Oprettelse af member objekt
-Member m1 = new Member("Jens", "jens@mail.dk", "Vej 123", "84239212", MemberType.Senior);
+Member m1 = new Member("Jens", "jens@mail.dk", "Vej 123", "84239212", MemberType.Senior, false, false);
 Console.WriteLine(m1);
 Console.Write("_____________________________________________________________\n");
 //___Oprettelse af member repository
@@ -79,7 +79,7 @@ foreach (Member m in members)
 }
 Console.Write("_____________________________________________________________\n");
 //___Opdater et medlem fra repository
-Member m2 = new Member("Michael", "michael@mail.dk", "Gade 456", "84239212", MemberType.Senior);
+Member m2 = new Member("Michael", "michael@mail.dk", "Gade 456", "84239212", MemberType.Senior, false, false);
 mRepo.UpdateMember(m2);
 members = mRepo.GetAll();
 
@@ -89,37 +89,14 @@ foreach (Member m in members)
     Console.WriteLine();
 }
 Console.Write("_____________________________________________________________\n");
+//___Tilføj en coach til member repository
+Coach c1 = new Coach("Jan", "jan@mail.dk", "Gade 789", "39231293", MemberType.Senior, 3000, true, true, false);
+mRepo.AddMember(c1);
+members = mRepo.GetAll();
 
-
-//Test af booking class
-//_____Opretelse af repo
-BookingRepository bookingRepo = new BookingRepository();
-
-//_____Opretelse af nye booking data
-string date = DateTime.Now.ToString("d");
-BookingTime bookingTime = bookingRepo.GetAllBookingTimes().First();
-string location = "Esrum Sø";
-Boat boat = b1;
-Member member = m1;
-
-//_____Opretelse af ny booking
-if (bookingRepo.NewBooking(date, bookingTime, location, boat, member))
+foreach (Member m in members)
 {
-    Console.WriteLine("Booking was successfull!");
-    Console.WriteLine($"New booking was made with the following data - " +
-        $"date: {date}, bookingTime: {bookingTime}, location: {location}, boat: {boat.BoatType}, member: {member.Name}");
+    Console.WriteLine(m);
+    Console.WriteLine();
 }
-else
-{
-    Console.WriteLine("Booking error, some of the booking data were invalid!");
-}
-
-//_____Fjernelse af en booking
-Booking bookingToRemove = bookingRepo.GetAllBookings().First();
-bookingRepo.RemoveBooking(bookingToRemove.Id);
-Console.WriteLine("A booking was removed from the bookings list.");
-
-//_____Print alle bookings
-bookingRepo.PrintAllBookings();
-
 Console.Write("_____________________________________________________________\n");

@@ -35,6 +35,7 @@ namespace SejlklubLibrary.Models
         public string Name { get; set; }
         public string Engine { get; set; }
         public int BuildYear { get; set; }
+        public string Comment { get; set; }
 
         public void Counting()
         {

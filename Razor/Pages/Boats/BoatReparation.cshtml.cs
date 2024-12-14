@@ -10,7 +10,6 @@ namespace Razor.Pages.Boats
         private IBoatRepository _bRepo;
 
         public Boat Boat { get; set; }
-        public string Comment { get; set; }
 
         public BoatReparationModel(IBoatRepository boatRepository)
         {
@@ -24,7 +23,7 @@ namespace Razor.Pages.Boats
         public IActionResult OnPost()
         {
             //_bRepo.(Boat);
-            return RedirectToPage("ShowBoats");
+            return RedirectToPage("MaintenanceLog");
         }
     }
 }

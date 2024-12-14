@@ -9,7 +9,12 @@ namespace Razor.Pages.Boats
     {
         public IBoatRepository _boatRepository;
 
-        public List<BoatReparationModel> boatReparations { get; set; } = new List<BoatReparationModel>();
+        public List<Boat> boatReparations { get; set; } = new List<Boat>();
+
+        public MaintenanceLogModel(IBoatRepository boatRepository) 
+        { 
+            _boatRepository = boatRepository;
+        }
         public void OnGet()
         {
         }

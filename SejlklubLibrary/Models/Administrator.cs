@@ -11,7 +11,7 @@ namespace SejlklubLibrary.Models
 		private double _salaryPerHour;
 		private string _title;
 
-        public Administrator(string name, string email, string address, string phone, MemberType memberStatus, double salaryPerHour, string title) : base(name, email, address, phone, memberStatus)
+        public Administrator(string name, string email, string address, string phone, MemberType memberStatus, double salaryPerHour, string title, bool isCoach, bool isAdmin) : base(name, email, address, phone, memberStatus, isCoach, isAdmin)
         {
             _salaryPerHour = salaryPerHour;
             _title = title;
