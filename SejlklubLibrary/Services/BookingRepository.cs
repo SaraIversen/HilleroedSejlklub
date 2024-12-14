@@ -14,7 +14,10 @@ namespace SejlklubLibrary.Services
         private List<Booking> _bookingsList;
         private List<BookingTime> _bookingTimes;
 
-        public Member CurrentMember { get; set; } // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme det nuværende medlem der prøver at booke.  
+        // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme de nuværende data fra dem der prøver at booke.  
+        public Member CurrentMember { get; set; } 
+        public Boat CurrentBoat { get; set; }
+        public DateTime CurrentDate { get; set; } = DateTime.Now;
 
         public int CountBookings { get { return _bookingsList.Count; } }
         public int CountBookingTimes { get { return _bookingTimes.Count; } }
