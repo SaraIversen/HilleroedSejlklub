@@ -10,6 +10,17 @@
 <h1> Ny booking </h1>
 
 <hr />
+
+@{
+    if (!string.IsNullOrEmpty(@Model.MessageBooking))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>
+            <strong>Warning!</strong> @Model.MessageBooking
+        </div>
+    }
+}
+
 <h3> Select Member </h3>
 <form method="post" asp-page-handler="Member">
     <p>
@@ -17,7 +28,7 @@
         <input type="submit" value="Search member" />
     </p>
 </form>
-<h3><span class="text-danger">@Model.MessageMember</span></h3>
+
 @{
     if (@Model.Member != null)
     {
@@ -30,7 +41,7 @@
 <br>
 
 <h3> Booking: </h3>
-<h3><span class="text-danger">@Model.MessageBooking</span></h3>
+
 <form method="post" asp-page-handler="NewBoatChosen">
     <div class="form-group">
         <label>Bådtype</label><br>

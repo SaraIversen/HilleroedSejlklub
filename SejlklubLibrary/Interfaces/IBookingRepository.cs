@@ -14,14 +14,13 @@ namespace SejlklubLibrary.Interfaces
         Boat CurrentBoat { get; set; }
         public DateTime CurrentDate { get; set; }
 
-        int CountBookings { get; }
-        int CountBookingTimes { get; } 
+        int Count { get; }
 
         List<Booking> GetAllBookings();
-        List<BookingTime> GetAllBookingTimes();
         Booking GetBookingById(int id);
-        bool NewBooking(string date, BookingTime bookingTime, string place, Boat boat, Member member);
-        bool ValidateBooking(string date, BookingTime bookingTime, BoatType boatType);
+        string NewBooking(DateTime date, BookingTime bookingTime, string place, Boat boat, Member member);
+        bool ValidateBooking(DateTime date, BookingTime bookingTime, string place, Boat boat, Member member);
+        bool ValidateBookingTime(DateTime date, BookingTime bookingTime, BoatType boatType);
         void RemoveBooking(int id);
         void PrintAllBookings();
         string ToString();

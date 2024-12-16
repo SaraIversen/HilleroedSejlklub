@@ -16,5 +16,10 @@ namespace SejlklubLibrary.Models
             StartTime = startTime;
             EndTime = endTime;
         }
+
+        public override string ToString()
+        {
+            return $"{StartTime}-{EndTime}";
+        }
     }
 }

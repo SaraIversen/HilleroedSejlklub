@@ -10,7 +10,7 @@ namespace SejlklubLibrary.Interfaces
     public interface IBooking
     {
         int Id { get; }
-        string Date { get; }
+        DateTime Date { get; }
         public BookingTime BookingTime { get; }
         string Place { get; }
         Boat Boat { get; }

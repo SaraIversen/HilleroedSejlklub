@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SejlklubLibrary.Exceptions.Bookings
 {
-    public class InvalidBookingTimeException : Exception
+    public class NullException : Exception
     {
-        public InvalidBookingTimeException()
+        public NullException()
         {
 
         }
 
-        public InvalidBookingTimeException(string message) : base(message)
+        public NullException(string message) : base(message)
         {
 
         }

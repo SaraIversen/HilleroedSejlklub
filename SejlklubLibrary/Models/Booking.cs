@@ -12,13 +12,13 @@ namespace SejlklubLibrary.Models
         private static int _counter = 0;
 
         public int Id { get; }
-        public string Date { get; }
+        public DateTime Date { get; }
         public BookingTime BookingTime { get; }
         public string Place { get; }
         public Boat Boat { get; }
         public Member Member { get; }
 
-        public Booking(string date, BookingTime bookingTime, string place, Boat boat, Member member)
+        public Booking(DateTime date, BookingTime bookingTime, string place, Boat boat, Member member)
         {
             Id = _counter;
             _counter+=1;
