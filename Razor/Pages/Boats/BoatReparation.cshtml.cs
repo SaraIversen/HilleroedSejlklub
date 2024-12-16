@@ -8,7 +8,10 @@ namespace Razor.Pages.Boats
     public class BoatReparationModel : PageModel
     {
         private IBoatRepository _bRepo;
-
+        private IRepairRepository _repairRepo;
+        [BindProperty]
+        public BoatReparation BoatReparation { get; set; }
+        [BindProperty]
         public Boat Boat { get; set; }
 
         public BoatReparationModel(IBoatRepository boatRepository)
@@ -22,7 +25,7 @@ namespace Razor.Pages.Boats
         }
         public IActionResult OnPost()
         {
-            //_bRepo.(Boat);
+            _repairRepo.AddBoatReparation(BoatReparation);
             return RedirectToPage("MaintenanceLog");
         }
     }

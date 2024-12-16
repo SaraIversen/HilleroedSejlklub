@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SejlklubLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace SejlklubLibrary.Interfaces
 {
     public interface IRepairRepository
     {
-        void AddRepair();
+        void AddBoatReparation(BoatReparation boatReparation);
     }
 }

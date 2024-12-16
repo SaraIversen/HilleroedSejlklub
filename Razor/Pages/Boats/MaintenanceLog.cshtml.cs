@@ -8,9 +8,7 @@ namespace Razor.Pages.Boats
     public class MaintenanceLogModel : PageModel
     {
         public IBoatRepository _boatRepository;
-
-        public List<Boat> boatReparations { get; set; } = new List<Boat>();
-
+        public List<BoatReparation> _repairList;
         public MaintenanceLogModel(IBoatRepository boatRepository) 
         { 
             _boatRepository = boatRepository;
@@ -18,5 +16,6 @@ namespace Razor.Pages.Boats
         public void OnGet()
         {
         }
+        
     }
 }
