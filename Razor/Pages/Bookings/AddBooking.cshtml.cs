@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
+using SejlklubLibrary.Services;
 
 namespace Razor.Pages.Bookings
 {
@@ -22,10 +23,11 @@ namespace Razor.Pages.Bookings
         public Member Member { get; set; }
 
         [BindProperty] public DateTime ChosenDate { get; set; } = DateTime.Now;
+        public DateTime Date { get; set; }
 
         [BindProperty] public int ChosenBoatType { get; set; }
         public List<SelectListItem> BoatTypeSelectList { get; set; }
-        //[BindProperty] public Boat Boat { get; set;  }
+        [BindProperty] public Boat Boat { get; private set;  }
 
         [BindProperty] public string ChosenLocation { get; set; }
 
@@ -63,11 +65,12 @@ namespace Razor.Pages.Bookings
             {
                 bool isDisabled = false;
 
-                Boat chosenBoat = _boatRepository.GetBoatById(ChosenBoatType);
-                if (chosenBoat != null)
+                Boat = _bookingRepository.CurrentBoat;
+                if (Boat != null)
                 {
+                    Date = _bookingRepository.CurrentDate;
                     // Check if the StartTime of this BookingTime is already booked
-                    isDisabled = (!_bookingRepository.ValidateBooking(ChosenDate.ToString("d"), BookingTimes[i], chosenBoat.BoatType)); //GetAllBookings().Any(b => b.StartTime == BookingTimes[i].StartTime);
+                    isDisabled = (!_bookingRepository.ValidateBooking(Date.ToString("d"), BookingTimes[i], Boat.BoatType)); //GetAllBookings().Any(b => b.StartTime == BookingTimes[i].StartTime);
                 }
 
                 SelectListItem selectListItem = new SelectListItem
@@ -82,50 +85,57 @@ namespace Razor.Pages.Bookings
 
         public void OnGet()
         {
-            //ChosenDate = DateTime.Now;
             BookingTimes = _bookingRepository.GetAllBookingTimes();
 
             if (_bookingRepository.CurrentMember != null)
             {
                 Member = _bookingRepository.CurrentMember;
             }
+            if (_bookingRepository.CurrentBoat != null)
+            {
+                Boat = _bookingRepository.CurrentBoat;
+            }
         }
-
-/*        public IActionResult OnPostNewBoatChosen()
-        {
-            Member = _bookingRepository.CurrentMember;
-            if (Member == null)
-            {
-                // Show some errors ????
-                return Page();
-            }
-            //ChosenDate = DateTime.Now;
-            if (ChosenBoatType == -1)
-            {
-                // Show some errors ????
-                return Page();
-            }
-            Boat = _boatRepository.GetBoatById(ChosenBoatType);
-            if (Boat == null)
-            {
-                // Show some errors ????
-                return Page();
-            }
-            BookingTimes = _bookingRepository.GetAllBookingTimes();
-            CreateTimeSelectList();
-            return Page();
-        }*/
 
         public IActionResult OnPostMember()
         {
-            Member = _memberRepository.GetMemberByPhone(SearchMemberPhone);  
+            Member = _memberRepository.GetMemberByPhone(SearchMemberPhone);
             if (Member == null)
                 MessageMember = "Member does not exist - create a new member";
             else
-
                 _bookingRepository.CurrentMember = Member;
 
             BookingTimes = _bookingRepository.GetAllBookingTimes();
+            Date = _bookingRepository.CurrentDate;
+            return Page();
+        }
+
+        public IActionResult OnPostNewBoatChosen()
+        {
+            Boat = _boatRepository.GetBoatById(ChosenBoatType);
+            if (Boat == null)
+                MessageBooking = "Boat does not exist - choose another boat type";
+            else
+                _bookingRepository.CurrentBoat = Boat;
+
+            BookingTimes = _bookingRepository.GetAllBookingTimes();
+            Member = _bookingRepository.CurrentMember;
+            Date = _bookingRepository.CurrentDate;
+            CreateTimeSelectList();
+            return Page();
+        }
+
+        public IActionResult OnPostNewDateChosen()
+        {
+            Date = ChosenDate;
+            if (Date < DateTime.Today)
+                MessageBooking = "Please select a valid date - it is not possible to book in the present";
+            else
+                _bookingRepository.CurrentDate = Date;
+
+            BookingTimes = _bookingRepository.GetAllBookingTimes();
+            Member = _bookingRepository.CurrentMember;
+            CreateTimeSelectList();
             return Page();
         }
 
@@ -137,15 +147,16 @@ namespace Razor.Pages.Bookings
                 MessageMember = Member == null ? "Please select a member" : "";
                 return Page();
             }
-            if (ChosenDate < DateTime.Now) // Tjek om datoen er før dags dato.
+            Date = _bookingRepository.CurrentDate;
+            if (Date < DateTime.Today) // Tjek om datoen er før dags dato.
             {
-                MessageMember = ChosenDate < DateTime.Now ? "Please select a valid date" : "";
+                MessageMember = Date < DateTime.Today ? "Please select a valid date - it is not possible to book in the present" : "";
                 return Page();
             }
-            Boat chosenBoat = _boatRepository.GetBoatById(ChosenBoatType);
-            if (chosenBoat == null)
+            Boat = _bookingRepository.CurrentBoat;
+            if (Boat == null)
             {
-                MessageBooking = chosenBoat == null ? "Please select a boat type" : "";
+                MessageBooking = Boat == null ? "Please select a boat type" : "";
                 return Page();
             }
             if (ChosenLocation == null)
@@ -158,12 +169,15 @@ namespace Razor.Pages.Bookings
                 MessageBooking = BookingTimes[ChosenTime] == null ? "Please select a time period" : "";
                 return Page();
             }
-            if (!_bookingRepository.NewBooking(ChosenDate.ToString("d"), BookingTimes[ChosenTime], ChosenLocation, chosenBoat, Member))
+            if (!_bookingRepository.NewBooking(Date.ToString("d"), BookingTimes[ChosenTime], ChosenLocation, Boat, Member))
             {
                 // The date and time for the boat was probably already booked.
-                // Show some errors ????
+                MessageBooking = "Please select a valid date and time period for your booking";
                 return Page();
             }
+            // Reset the chosen boat and date when a booking was successfull. (member will still be there)
+            _bookingRepository.CurrentBoat = null;
+            _bookingRepository.CurrentDate = DateTime.Now;
             return RedirectToPage("ShowBookings");
         }
     }

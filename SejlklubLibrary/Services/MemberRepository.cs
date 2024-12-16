@@ -1,6 +1,7 @@
 ﻿using SejlklubLibrary.Data;
 using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
+using SejlklubLibrary.Exceptions.Members;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace SejlklubLibrary.Services
 			if (!_members.ContainsKey(member.Phone))
 			{
 				_members.Add(member.Phone, member);
+			}
+			else
+			{
+				throw new MemberExistsException("The member already exists in the repository");
 			}
 		}
 
@@ -66,6 +71,10 @@ namespace SejlklubLibrary.Services
 			{
 				_members.Remove(phone);
 			}
+			else
+			{
+				throw new MemberDoesNotExistException("The member does not exist in the repository");
+			}
 		}
 
 		public void UpdateMember(Member member)
@@ -73,6 +82,10 @@ namespace SejlklubLibrary.Services
 			if (_members.ContainsKey(member.Phone))
 			{
 				_members[member.Phone] = member;
+			}
+			else
+			{
+				throw new MemberDoesNotExistException("The member does not exist in the repository");
 			}
 		}
 		

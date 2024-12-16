@@ -9,7 +9,11 @@ namespace SejlklubLibrary.Interfaces
 {
     public interface IBookingRepository
     {
-        Member CurrentMember { get; set; } // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme det nuværende medlem der prøver at booke. 
+        // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme de nuværende data fra dem der prøver at booke.  
+        Member CurrentMember { get; set; }
+        Boat CurrentBoat { get; set; }
+        public DateTime CurrentDate { get; set; }
+
         int CountBookings { get; }
         int CountBookingTimes { get; } 
 

@@ -14,7 +14,10 @@ namespace SejlklubLibrary.Services
         private List<Booking> _bookingsList;
         private List<BookingTime> _bookingTimes;
 
-        public Member CurrentMember { get; set; } // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme det nuværende medlem der prøver at booke.  
+        // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme de nuværende data fra dem der prøver at booke.  
+        public Member CurrentMember { get; set; } 
+        public Boat CurrentBoat { get; set; }
+        public DateTime CurrentDate { get; set; } = DateTime.Now;
 
         public int CountBookings { get { return _bookingsList.Count; } }
         public int CountBookingTimes { get { return _bookingTimes.Count; } }
@@ -64,9 +67,14 @@ namespace SejlklubLibrary.Services
             if (!ValidateBooking(date, bookingTime, boat.BoatType)) return false;
 
             Booking newBooking = new Booking(date, bookingTime, place, boat, member);
-            _bookingsList.Add(newBooking);
-            StatisticsRepository.RegisterBooking(member, boat, bookingTime);
+            AddBooking(newBooking);
             return true;
+        }
+
+        private void AddBooking(Booking booking)
+        {
+            _bookingsList.Add(booking);
+            StatisticsRepository.RegisterBooking(booking);
         }
 
         public bool ValidateBooking(string date, BookingTime bookingTime, BoatType boatType)
@@ -88,7 +96,7 @@ namespace SejlklubLibrary.Services
             Booking foundBooking = GetBookingById(id);
             if (foundBooking != null)
             {
-                StatisticsRepository.UnRegisterBooking(foundBooking.Member, foundBooking.Boat, foundBooking.BookingTime);
+                StatisticsRepository.UnRegisterBooking(foundBooking);
                 _bookingsList.Remove(foundBooking);
             }
         }
