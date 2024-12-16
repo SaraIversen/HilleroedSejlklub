@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SejlklubLibrary.Exceptions.Members;
 
 namespace SejlklubLibrary.Models
 {
@@ -13,6 +14,10 @@ namespace SejlklubLibrary.Models
 
         public Administrator(string name, string email, string address, string phone, MemberType memberStatus, double salaryPerHour, string title, bool isCoach, bool isAdmin) : base(name, email, address, phone, memberStatus, isCoach, isAdmin)
         {
+            if (salaryPerHour < 0)
+            {
+                throw new InvalidSalaryException("The salary is below the valid salary limit");
+            }
             _salaryPerHour = salaryPerHour;
             _title = title;
         }
