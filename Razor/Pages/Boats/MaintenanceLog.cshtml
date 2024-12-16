@@ -7,7 +7,7 @@
 <h1>Både meldt til reparation:</h1>
 
 <hr />
-<p>Antal meldte både: @Model._repairList.Count</p>
+<p>Antal meldte både: @Model._repairRepository.RepairBoatCount();</p>
 <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
@@ -23,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (BoatReparation boats in Model._repairList)
+        @foreach (BoatReparation boats in Model.boatReparations)
         {
             <tr>
                 <td style="background-color:lightgray;text-align:center">@boats.Boat.Id</td>

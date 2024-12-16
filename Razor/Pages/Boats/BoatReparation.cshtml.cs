@@ -14,14 +14,17 @@ namespace Razor.Pages.Boats
         [BindProperty]
         public Boat Boat { get; set; }
 
-        public BoatReparationModel(IBoatRepository boatRepository)
+        public BoatReparationModel(IBoatRepository boatRepository, IRepairRepository repairRepository)
         {
             _bRepo = boatRepository;
+            _repairRepo = repairRepository;
         }
 
         public void OnGet(int id)
         {
             Boat = _bRepo.GetBoatById(id);
+            BoatReparation = new BoatReparation();
+            BoatReparation.Boat = Boat;
         }
         public IActionResult OnPost()
         {

@@ -13,25 +13,22 @@ namespace SejlklubLibrary.Services
         private List<BoatReparation> _repairList;
 
         public RepairRepository() 
-        { 
-        
+        {
+            _repairList = new List<BoatReparation>();
         }
 
-        //public BoatReparation GetRepairById()
-        //{
-        //    foreach (BoatReparation boatReparation in _boatList)
-        //    {
-        //        if (boat.Id == id)
-        //        {
-        //            return boat;
-        //        }
-        //    }
-        //    return null;
-        //}
-
+        public List<BoatReparation> GetAll()
+        {
+            return new List<BoatReparation>(_repairList);
+        }
         public void AddBoatReparation(BoatReparation boatReparation)
         {
             _repairList.Add(boatReparation);
+        }
+
+        public int RepairBoatCount() 
+        { 
+            return _repairList.Count;
         }
     }
 }

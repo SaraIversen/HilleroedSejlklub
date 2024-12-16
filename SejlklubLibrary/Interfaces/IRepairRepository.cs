@@ -9,6 +9,8 @@ namespace SejlklubLibrary.Interfaces
 {
     public interface IRepairRepository
     {
+        List<BoatReparation> GetAll();
         void AddBoatReparation(BoatReparation boatReparation);
+        int RepairBoatCount();
     }
 }
