@@ -8,7 +8,29 @@
 <h1>Bookingside</h1>
 <a asp-page="/Bookings/AddBooking">Ny booking</a>
 
+<br />
 <hr />
+
+<div class="btn-group">
+    <form method="post" asp-page-handler="FilterBookingsDate">
+        <input type="submit" value="Sorter efter dato" />
+    </form>
+    <form method="post" asp-page-handler="FilterBookingsBoat">
+        <input type="submit" value="Sorter efter bådnavn" />
+    </form>
+    <form method="post" asp-page-handler="FilterBookingsTime">
+        <input type="submit" value="Sorter efter tidspunkt" />
+    </form>
+    <form method="post" asp-page-handler="FilterBookingsDateAndTime">
+        <input type="submit" value="Sorter efter dato og tidspunkt" />
+    </form>
+    <form method="post" asp-page-handler="FilterBookingsMemberName">
+        <input type="submit" value="Sorter efter medlemsnavn" />
+    </form>
+</div>
+
+<hr />
+
 <p>Antal oprettede bookinger: @Model.Bookings.Count</p>
 <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
