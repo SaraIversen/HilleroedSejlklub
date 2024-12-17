@@ -14,9 +14,6 @@ namespace Razor.Pages.Bookings
         public IMemberRepository _memberRepository;
         public IBoatRepository _boatRepository;
 
-        //public List<BookingTime> BookingTimes { get; set; }
-
-        //public string MessageMember { get; set; }
         public string MessageBooking { get; set; }
 
 
@@ -61,7 +58,6 @@ namespace Razor.Pages.Bookings
         {
             TimeSelectList = new List<SelectListItem>();
             TimeSelectList.Add(new SelectListItem("Select a time", "-1"));
-            //BookingTimes = BookingTimesRepository.BookingTimes;
             for (int i = 0; i < BookingTimesRepository.BookingTimes.Count; i++)
             {
                 bool isDisabled = false;
@@ -86,8 +82,6 @@ namespace Razor.Pages.Bookings
 
         public void OnGet()
         {
-            //BookingTimes = BookingTimesRepository.BookingTimes;
-
             if (_bookingRepository.CurrentMember != null)
                 Member = _bookingRepository.CurrentMember;
 
@@ -103,7 +97,6 @@ namespace Razor.Pages.Bookings
             else
                 _bookingRepository.CurrentMember = Member;
 
-            //BookingTimes = BookingTimesRepository.BookingTimes;
             Date = _bookingRepository.CurrentDate;
             return Page();
         }
@@ -116,7 +109,6 @@ namespace Razor.Pages.Bookings
             else
                 _bookingRepository.CurrentBoat = Boat;
 
-            //BookingTimes = BookingTimesRepository.BookingTimes;
             Member = _bookingRepository.CurrentMember;
             Date = _bookingRepository.CurrentDate;
             CreateTimeSelectList();
