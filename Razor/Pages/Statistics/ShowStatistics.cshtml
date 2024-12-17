@@ -9,7 +9,7 @@
 <br />
 <br />
 
-<h5> <b> Medlem med flest bookinger: </b> </h5>
+<h5> <b> Medlem med flest bookinger: @if (@Model.Member != null) @Model.MemberCount </b> </h5>
 @{
     if (@Model.Member != null)
     {
@@ -25,7 +25,7 @@
 
 <br />
 
-<h5> <b> Båd der er blevet booket flest gange: </b> </h5>
+<h5> <b> Båd der er blevet booket flest gange: @if (@Model.Boat != null) @Model.BoatCount </b> </h5>
 @{
     if (@Model.Boat != null)
     {
@@ -43,7 +43,7 @@
 
 <br />
 
-<h5> <b> Tid der er blevet booket flest gange: </b> </h5>
+<h5> <b> Tid der er blevet booket flest gange: @if (@Model.BookingTime != null) @Model.BookingTimeCount </b> </h5>
 @{
     if (@Model.BookingTime != null)
     {

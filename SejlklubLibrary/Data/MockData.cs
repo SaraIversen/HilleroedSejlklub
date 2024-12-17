@@ -1,4 +1,5 @@
 ﻿using SejlklubLibrary.Models;
+using SejlklubLibrary.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,14 @@ namespace SejlklubLibrary.Data
         private static Dictionary<string, Member> _memberData =
             new Dictionary<string, Member>()
             {
-            { "12121212", new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior) },
-            { "13131313", new Member("Charlotte", "charlotte@mail.dk", "Avenue 321", "13131313", MemberType.Junior) },
-            { "14141414", new Member("Carina", "carina@mail.dk", "High Street 234", "14141414", MemberType.Junior) },
-            { "15151515", new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv) }
+            { "12121212", new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior, false, false) },
+            { "13131313", new Member("Charlotte", "charlotte@mail.dk", "Avenue 321", "13131313", MemberType.Junior, false, false) },
+            { "14141414", new Member("Carina", "carina@mail.dk", "High Street 234", "14141414", MemberType.Junior, false, false) },
+            { "15151515", new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv, false, false) },
+            { "16161616", new Coach("Jan", "jan@mail.dk", "Street 456", "16161616", MemberType.Senior, 250, true, true, false) },
+            { "17171717", new Coach("Jens", "jens@mail.dk", "Avenue 354", "17171717", MemberType.Senior, 225, false, true, false) },
+            { "18181818", new Administrator("Ole", "ole@mail.dk", "Lake Street 432", "18181818", MemberType.Senior, 300, "Hjemmeside Administrator", false, true) },
+            { "19191919", new Administrator("Mads", "mads@mail.dk", "Wood Street 789", "19191919", MemberType.Senior, 300, "Database Administrator", false, true) }
             };
 
         private static List<Boat> _boatData =
@@ -49,17 +54,17 @@ namespace SejlklubLibrary.Data
         private static List<Booking> _bookingData =
             new List<Booking>()
             {
-                //new Booking(new DateTime(2024, 12, 5, 12, 00, 0), newBookin, "Den gode sø", new Boat("1 meter", "Tøftøf", "v2", 1999, BoatType.Laserjolle)),
-                //new Booking(new DateTime(2024, 12, 5, 12, 00, 0), new DateTime(2024, 12, 5, 12, 00, 0), new DateTime(2024, 12, 5, 14, 00, 0), "Den gode sø", new Boat("2 meter", "Båd", "v3", 2003, BoatType.lynæs)),
+                new Booking(DateTime.Today, BookingTimesRepository.BookingTimes[0], "Den gode sø", GetRandomBoat(), GetRandomMember()),
+                new Booking(DateTime.Today, BookingTimesRepository.BookingTimes[4], "Esrum Sø", GetRandomBoat(), GetRandomMember()),
             };
 
         private static List<EventRegistration> _eventRegistrationData = 
             new List<EventRegistration>() 
             { 
-                new EventRegistration("", new DateTime (),0,new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior)),
+                new EventRegistration("", new DateTime (),0,new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior, false, false)),
                 new EventRegistration("Test om get random member virker", new DateTime (), 0, GetRandomMember()),
-                new EventRegistration("Jeg tager den elskede sommer-salat med", new DateTime(),1,new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv)),
-                new EventRegistration("Tager min kærste og mor med",new DateTime(),2,new Member("Carina", "carina@mail.dk", "High Street 234", "14141414", MemberType.Junior))
+                new EventRegistration("Jeg tager den elskede sommer-salat med", new DateTime(),1,new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv, false, false)),
+                new EventRegistration("Tager min kærste og mor med",new DateTime(),2,new Member("Carina", "carina@mail.dk", "High Street 234", "14141414", MemberType.Junior, false, false))
             };
         #endregion
 
@@ -105,6 +110,12 @@ namespace SejlklubLibrary.Data
                 i += 1;
             }
             return null;
+        }
+        private static Boat GetRandomBoat()
+        {
+            Random random = new Random();
+            int randomIndex = random.Next(0, _boatData.Count);
+            return _boatData[randomIndex];
         }
         #endregion
     }

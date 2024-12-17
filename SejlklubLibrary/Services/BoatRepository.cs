@@ -12,19 +12,19 @@ namespace SejlklubLibrary.Services
     public class BoatRepository : IBoatRepository
     {
         private List<Boat> _boatList;
-        
-        public BoatRepository() 
+
+        public BoatRepository()
         {
             _boatList = MockData.BoatData;
         }
 
-        public int Count { get{ return _boatList.Count; } }
+        public int Count { get { return _boatList.Count; } }
 
         public void AddBoat(Boat boat)
         {
-            foreach(Boat b in _boatList)
+            foreach (Boat b in _boatList)
             {
-                if(b == boat)
+                if (b == boat)
                 {
                     return;
                 }

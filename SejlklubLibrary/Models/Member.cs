@@ -1,11 +1,12 @@
 ﻿using SejlklubLibrary.Interfaces;
-using SejlklubLibrary.Exceptions;
+using SejlklubLibrary.Exceptions.Members;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SejlklubLibrary.Exceptions.Members;
 
 namespace SejlklubLibrary.Models
 {
@@ -19,7 +20,7 @@ namespace SejlklubLibrary.Models
             MemberImage = "default.jpeg";
 		}
 
-        public Member(string name, string email, string address, string phone, MemberType memberStatus) 
+        public Member(string name, string email, string address, string phone, MemberType memberStatus, bool isCoach, bool isAdmin) 
         {
             if (phone.Length != 8)
             {
@@ -41,6 +42,8 @@ namespace SejlklubLibrary.Models
             Address = address;
             Phone = phone;
             MemberStatus = memberStatus;
+            IsCoach = isCoach;
+            IsAdmin = isAdmin;
         }
         public string MemberImage { get; set; }
         public MemberType MemberStatus { get; set; }
@@ -53,6 +56,8 @@ namespace SejlklubLibrary.Models
         }
         public string Address { get; set; }
         public string Name { get; set; }
+        public bool IsCoach { get; set; }
+        public bool IsAdmin { get; set; }
 
 		public override string ToString()
 		{

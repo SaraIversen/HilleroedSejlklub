@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SejlklubLibrary.Exceptions.Events
 {
-    public class InvalidEventName:Exception
+    public class InvalidEventDescriptionException:Exception
     {
-        public InvalidEventName():base()
+        public InvalidEventDescriptionException():base()
         {
             
         }
-        public InvalidEventName(string message):base(message)
+        public InvalidEventDescriptionException(string message):base(message)
         {
             
         }

@@ -40,9 +40,14 @@ namespace Razor.Pages.Events
                 _eventRepository.AddEvent(events);
                 return RedirectToPage("ShowEvents");
             }
-            catch (InvalidEventName ex)
+            catch (InvalidEventNameException ex)
             {
                 ErrorMessage = ex.Message;
+                return Page();
+            }
+            catch (Exception exp)
+            {
+                ErrorMessage = "General Exception";
                 return Page();
             }
             

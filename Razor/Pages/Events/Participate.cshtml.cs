@@ -24,34 +24,45 @@ namespace Razor.Pages.Events
         [BindProperty]
         public int Guests { get; set; }
 
-        public List<Event> Events { get; set; }
         public List<EventRegistration> Participants {get;set;}= new List<EventRegistration>();
 
         public ParticipateModel(IMemberRepository memberRepository, IEventRegistrationRepository eventRegistrationRepository, IEventRepository eventRepository)
         {
             _memberRepository = memberRepository;
             _eventRegistrationRepository = eventRegistrationRepository;
-            _eventRepository = eventRepository;
-            //Participants 
+            _eventRepository = eventRepository; 
         }
         public void OnGet(int eventId)
         {
             Event = _eventRepository.GetEventByID(eventId);
+            if (Event != null) 
+                _eventRegistrationRepository.CurrentEvent = Event;
+
             Participants = _eventRegistrationRepository.GetAllParticipants(Event);
         }
 
         public void OnPostMember() 
         {
             TheMember = _memberRepository.GetMemberByPhone(FindMemberByPhone);
+            if (TheMember != null)
+                _eventRegistrationRepository.CurrentMember = TheMember;
+
+            Event = _eventRegistrationRepository.CurrentEvent;
+            if (Event != null)
+                Participants = _eventRegistrationRepository.GetAllParticipants(Event);
         }
 
         public IActionResult OnPostAddToEvent() 
         {
+            TheMember = _eventRegistrationRepository.CurrentMember;
+            Event = _eventRegistrationRepository.CurrentEvent;
+
             if (!(TheMember == null||Event==null||Comment==null ))
             {
                 _eventRegistrationRepository.AddRegistrationToEvent(Event, Comment, TimeOfRegistration, Guests, TheMember);
             }
 
+            Participants = _eventRegistrationRepository.GetAllParticipants(Event);
             return Page();
         }
     }

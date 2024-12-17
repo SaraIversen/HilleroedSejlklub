@@ -1,4 +1,5 @@
 ﻿using SejlklubLibrary.Data;
+using SejlklubLibrary.Exceptions.Bookings;
 using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using System;
@@ -6,35 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SejlklubLibrary.Services
 {
     public class BookingRepository : IBookingRepository
     {
         private List<Booking> _bookingsList;
-        private List<BookingTime> _bookingTimes;
 
-        public Member CurrentMember { get; set; } // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme det nuværende medlem der prøver at booke.  
+        // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme de nuværende data fra dem der prøver at booke.  
+        public Member CurrentMember { get; set; } 
+        public Boat CurrentBoat { get; set; }
+        public DateTime CurrentDate { get; set; } = DateTime.Now;
 
-        public int CountBookings { get { return _bookingsList.Count; } }
-        public int CountBookingTimes { get { return _bookingTimes.Count; } }
+        public int Count { get { return _bookingsList.Count; } }
 
         public BookingRepository()
         {
-            _bookingsList = new List<Booking>();//MockData.BookingData;
-
-            InitializeBookingTimesList();
-        }
-
-        private void InitializeBookingTimesList()
-        {
-            _bookingTimes = new List<BookingTime>();
-            _bookingTimes.Add(new BookingTime("11:00", "11:55"));
-            _bookingTimes.Add(new BookingTime("12:00", "12:55"));
-            _bookingTimes.Add(new BookingTime("13:00", "13:55"));
-            _bookingTimes.Add(new BookingTime("14:00", "14:55"));
-            _bookingTimes.Add(new BookingTime("15:00", "15:55"));
-            _bookingTimes.Add(new BookingTime("16:00", "16:55"));
+            _bookingsList = MockData.BookingData; //new List<Booking>();
         }
 
         public List<Booking> GetAllBookings()
@@ -42,10 +32,6 @@ namespace SejlklubLibrary.Services
             return _bookingsList;
         }
 
-        public List<BookingTime> GetAllBookingTimes()
-        {
-            return _bookingTimes;
-        }
 
         public Booking GetBookingById(int id)
         {
@@ -59,22 +45,74 @@ namespace SejlklubLibrary.Services
             return null;
         }
 
-        public bool NewBooking(string date, BookingTime bookingTime, string place, Boat boat, Member member)
+        public string NewBooking(DateTime date, BookingTime bookingTime, string location, Boat boat, Member member)
         {
-            if (!ValidateBooking(date, bookingTime, boat.BoatType)) return false;
+            try
+            {
+                if (ValidateBooking(date, bookingTime, location, boat, member))
+                {
+                    Booking newBooking = new Booking(date, bookingTime, location, boat, member);
+                    AddBooking(newBooking);
+                }
+            }
+            catch (NullException nullEx)
+            {
+                return ($"Please make sure all fields are filled out: " + nullEx.Message);
+            }
+            catch (InvalidBookingDateException invBookDateEx)
+            {
+                return ($"Please select a valid date - it is not possible to book in the present: " + invBookDateEx.Message);
+            }
+            catch (InvalidBookingTimeException invBookTimeEx)
+            {
+                return ($"Please select a free time period: " + invBookTimeEx.Message);
+            }
 
-            Booking newBooking = new Booking(date, bookingTime, place, boat, member);
-            _bookingsList.Add(newBooking);
-            StatisticsRepository.RegisterBooking(member, boat, bookingTime);
+            return "";
+        }
+
+        private void AddBooking(Booking booking)
+        {
+            _bookingsList.Add(booking);
+            StatisticsRepository.RegisterBooking(booking);
+        }
+
+        public bool ValidateBooking(DateTime date, BookingTime bookingTime, string location, Boat boat, Member member)
+        {
+            if (member == null)
+            {
+                throw new NullException($"Member could not be found.");
+            }
+            if (boat == null)
+            {
+                throw new NullException($"Boat could not be found.");
+            }
+            if (date < DateTime.Today) // Tjek om datoen er før dags dato.
+            {
+                throw new InvalidBookingDateException($"The chosen date was: {date.ToString("d")}.");
+            }
+            if (string.IsNullOrEmpty(location))
+            {
+                throw new NullException($"Location could not be found.");
+            }
+            if (bookingTime == null)
+            {
+                throw new NullException($"Time period could not be found.");
+            }
+            if (!ValidateBookingTime(date, bookingTime, boat.BoatType)) // Tjek om tidspunktet for båden og datoen er ledig.
+            {
+                throw new InvalidBookingTimeException($"The chosen date & time period was: {date.ToString("d")} {bookingTime.ToString()}.");
+            }
+
             return true;
         }
 
-        public bool ValidateBooking(string date, BookingTime bookingTime, BoatType boatType)
+        public bool ValidateBookingTime(DateTime date, BookingTime bookingTime, BoatType boatType)
         {
             foreach (Booking booking in _bookingsList)
             {
                 if (booking.Boat.BoatType == boatType
-                    && booking.Date == date 
+                    && booking.Date.ToString("d") == date.ToString("d")
                     && booking.BookingTime.StartTime == bookingTime.StartTime)
                 {
                     return false;
@@ -88,7 +126,7 @@ namespace SejlklubLibrary.Services
             Booking foundBooking = GetBookingById(id);
             if (foundBooking != null)
             {
-                StatisticsRepository.UnRegisterBooking(foundBooking.Member, foundBooking.Boat, foundBooking.BookingTime);
+                StatisticsRepository.UnRegisterBooking(foundBooking);
                 _bookingsList.Remove(foundBooking);
             }
         }

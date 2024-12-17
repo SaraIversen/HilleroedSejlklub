@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace SejlklubLibrary.Exceptions.Bookings
 {
-    internal class InvalidBookingTime
+    public class NullException : Exception
     {
+        public NullException()
+        {
+
+        }
+
+        public NullException(string message) : base(message)
+        {
+
+        }
     }
 }

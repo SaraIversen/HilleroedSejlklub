@@ -73,7 +73,7 @@ catch (InvalidEventDescription)
 
 //Test af member class
 //___Oprettelse af member objekt
-Member m1 = new Member("Jens", "jens@mail.dk", "Vej 123", "84239212", MemberType.Senior);
+Member m1 = new Member("Jens", "jens@mail.dk", "Vej 123", "84239212", MemberType.Senior, false, false);
 Console.WriteLine(m1);
 Console.Write("_____________________________________________________________\n");
 //___Oprettelse af member repository
@@ -100,7 +100,7 @@ foreach (Member m in members)
 }
 Console.Write("_____________________________________________________________\n");
 //___Opdater et medlem fra repository
-Member m2 = new Member("Michael", "michael@mail.dk", "Gade 456", "84239212", MemberType.Senior);
+Member m2 = new Member("Michael", "michael@mail.dk", "Gade 456", "84239212", MemberType.Senior, false, false);
 mRepo.UpdateMember(m2);
 members = mRepo.GetAll();
 
@@ -110,4 +110,14 @@ foreach (Member m in members)
     Console.WriteLine();
 }
 Console.Write("_____________________________________________________________\n");
+//___Tilføj en coach til member repository
+Coach c1 = new Coach("Jan", "jan@mail.dk", "Gade 789", "39231293", MemberType.Senior, 3000, true, true, false);
+mRepo.AddMember(c1);
+members = mRepo.GetAll();
 
+foreach (Member m in members)
+{
+    Console.WriteLine(m);
+    Console.WriteLine();
+}
+Console.Write("_____________________________________________________________\n");

@@ -11,6 +11,10 @@ namespace SejlklubLibrary.Services
 {
     public class EventRegistrationRepository : IEventRegistrationRepository
     {
+        public Member CurrentMember { get; set; }
+        public Event CurrentEvent { get; set; }
+
+
         public List<EventRegistration> GetAllParticipants(Event ev)
         {
             return ev.EventRegistrations;
