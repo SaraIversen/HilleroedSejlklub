@@ -9,6 +9,19 @@
 
 <hr />
 <p>Antal oprettede begivenheder: @Model.Events.Count</p>
+
+<h2>Filtrering og søgning af begivenheder:</h2>
+<form method="post" asp-page-handler="FiltherByEventType">
+    <label> vælg begivenheds type:</label>
+    <select id="ChosenEventType"
+            name="ChosenEventType"
+            asp-for="@Model.ChosenEventType"
+            asp-items="@Model.SelectListEventTypes">
+    </select>
+    <input type="submit" value="Filtrer" class="btn btn-primary" />
+</form>
+
+
 <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
         <tr>
