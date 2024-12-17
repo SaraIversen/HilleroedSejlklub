@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SejlklubLibrary.Exceptions.Boats;
 using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 
@@ -11,6 +12,7 @@ namespace Razor.Pages.Boats
         private IRepairRepository _repairRepo;
         [BindProperty]
         public BoatReparation BoatReparation { get; set; }
+        public string ErrorMessage { get; set; }
         [BindProperty]
         public Boat Boat { get; set; }
 
@@ -28,8 +30,16 @@ namespace Razor.Pages.Boats
         }
         public IActionResult OnPost()
         {
+            try
+            {
             _repairRepo.AddBoatReparation(BoatReparation);
             return RedirectToPage("MaintenanceLog");
+            }
+            catch (NullException nul)
+            {
+                ErrorMessage = nul.Message;
+                return Page();
+            }
         }
     }
 }

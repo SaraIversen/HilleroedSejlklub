@@ -1,4 +1,6 @@
-﻿using SejlklubLibrary.Interfaces;
+﻿using SejlklubLibrary.Exceptions.Boats;
+using SejlklubLibrary.Exceptions.Events;
+using SejlklubLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,7 @@ namespace SejlklubLibrary.Models
             BoatType = boatType;
         }
 
+        public IBoatRepository _boatRepo { get; set; }
         public BoatType BoatType { get; set; }
         public string Measurement { get; set; }
         public bool IsBooked { get; set; }
@@ -35,7 +38,7 @@ namespace SejlklubLibrary.Models
         public string Name { get; set; }
         public string Engine { get; set; }
         public int BuildYear { get; set; }
-        public string Comment { get; set; }
+        //public string Comment { get; set; }
 
         public void Counting()
         {
