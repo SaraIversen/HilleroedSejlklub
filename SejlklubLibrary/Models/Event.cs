@@ -36,21 +36,25 @@ namespace SejlklubLibrary.Models
 
         public Event(string name, DateTime date, string description,string location,EventType eventType)
         {
-            //if (name.Length>35) 
-            //{
-            //    throw new InvalidEventNameException("Navnet overskrider 35 tegn");
-            //}
-            //if (description.Length < 3 || description.Length > 250) 
-            //{
-            //    throw new InvalidEventDescriptionException("Beskrivelsen er enten under 3 tegn, eller overskrider 250 tegn");
-            //} 
-            //if (!(eventType== EventType.Udflugt || eventType== EventType.Standerhejsning || eventType== EventType.Sejltur ||eventType== EventType.Spisning ||eventType== EventType.StortForKlubben ||eventType== EventType.Kursus)) 
-            //{
-            //    throw new InvalidEventTypeException("Ugyldig event type");
-            //}
+            if (name.Length > 35||name==null||name.Length<2)
+            {
+                throw new InvalidEventNameException("Navnet er over 35 tegn, under 2 tegn eller mangler at blive udfyldt");
+            }
+            if (!(eventType == EventType.Udflugt || eventType == EventType.Standerhejsning || eventType == EventType.Sejltur || eventType == EventType.Spisning || eventType == EventType.StortForKlubben || eventType == EventType.Kursus) || eventType == null)
+            {
+                throw new InvalidEventTypeException("Ugyldig event type");
+            }
+            if (location == null || location.Length < 5)
+            {
+                throw new InvalidEventLocationException("Loalitet for eventet er under 5 tegn, eller mangler at udfyldes");
+            }
+            if (description.Length < 3 || description.Length > 250||description==null)
+            {
+                throw new InvalidEventDescriptionException("Beskrivelsen er enten under 3 tegn, overskrider 250 tegn eller mangler at blive udfyldt");
+            }
             _counter++;
             _id = _counter;
-
+             
             Name = name;
             Date = date;
             Description = description;

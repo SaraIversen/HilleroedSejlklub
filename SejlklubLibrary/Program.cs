@@ -1,7 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using SejlklubLibrary.Exceptions.Events;
+using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using SejlklubLibrary.Services;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Xml.Linq;
+using System.Diagnostics.Tracing;
 
 //Test af boat class
 //_____Opretelse af objekt
@@ -49,8 +55,31 @@ Console.WriteLine("Efter opdatering:\n" +updateretEvent.Id+": "+ updateretEvent.
 foreach (Event item in test)
 { Console.WriteLine(item.ToString()); }
 
+//_____Exeption
 
-//___Test af member class
+try
+{
+    Event exEv = new Event("Na", new DateTime(2025, 06, 12, 16, 00, 00), "De", "lo", EventType.Sejltur);
+    er.AddEvent(exEv);
+}
+catch (InvalidEventNameException ex)
+{
+    Console.WriteLine(ex.Message); ;
+}
+catch (InvalidEventDescriptionException ex) 
+{
+    Console.WriteLine(ex.Message);
+}
+catch (InvalidEventLocationException ex)
+{
+    Console.WriteLine(ex.Message); ;
+}
+catch (InvalidEventTypeException  ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+//Test af member class
 //___Oprettelse af member objekt
 Member m1 = new Member("Jens", "jens@mail.dk", "Vej 123", "84239212", MemberType.Senior, false, false);
 Console.WriteLine(m1);
