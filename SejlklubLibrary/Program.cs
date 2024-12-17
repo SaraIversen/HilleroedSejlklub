@@ -59,16 +59,24 @@ foreach (Event item in test)
 
 try
 {
-    Event exEv = new Event("Na", new DateTime(2025, 06, 12, 16, 00, 00), "De", "Location", EventType.Sejltur);
+    Event exEv = new Event("Na", new DateTime(2025, 06, 12, 16, 00, 00), "De", "lo", EventType.Sejltur);
     er.AddEvent(exEv);
 }
-catch (InvalidEventName ex)
+catch (InvalidEventNameException ex)
 {
-    throw new InvalidEventName("");
+    Console.WriteLine(ex.Message); ;
 }
-catch (InvalidEventDescription) 
+catch (InvalidEventDescriptionException ex) 
 {
-    throw new InvalidEventDescription("");
+    Console.WriteLine(ex.Message);
+}
+catch (InvalidEventLocationException ex)
+{
+    Console.WriteLine(ex.Message); ;
+}
+catch (InvalidEventTypeException  ex)
+{
+    Console.WriteLine(ex.Message);
 }
 
 //Test af member class
