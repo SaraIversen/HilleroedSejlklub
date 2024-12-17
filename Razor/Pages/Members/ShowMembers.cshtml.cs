@@ -17,6 +17,9 @@ namespace Razor.Pages.Members
 
         [BindProperty(SupportsGet = true)]
         public MemberType ChosenMemberType { get; set; }
+
+        [BindProperty(SupportsGet=true)]
+        public string SearchCriteriaPhone { get; set; }
         public List<Member> Members { get; private set; }
 
         public ShowMembersModel(IMemberRepository memberRepository)
@@ -53,6 +56,11 @@ namespace Razor.Pages.Members
         public void OnPostFilterByMemberType()
         {
             Members = _memberRepository.FilterMembersByMemberType(ChosenMemberType);
+        }
+
+        public void OnPostSearchMemberByPhone()
+        {
+            Members = _memberRepository.SearchMemberByPhone(SearchCriteriaPhone);
         }
     }
 }

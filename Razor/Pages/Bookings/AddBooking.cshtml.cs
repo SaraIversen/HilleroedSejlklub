@@ -48,10 +48,10 @@ namespace Razor.Pages.Bookings
         private void CreateBoatSelectList()
         {
             BoatTypeSelectList = new List<SelectListItem>();
-            BoatTypeSelectList.Add(new SelectListItem("Vælg bådtype", "-1"));
+            BoatTypeSelectList.Add(new SelectListItem("Vælg båd", "-1"));
             foreach (Boat boat in _boatRepository.GetAll())
             {
-                SelectListItem selectListItem = new SelectListItem(boat.BoatType.ToString(), boat.Id.ToString());
+                SelectListItem selectListItem = new SelectListItem($"{boat.Name} ({boat.BoatType})", boat.Id.ToString());
                 BoatTypeSelectList.Add(selectListItem);
             }
         }

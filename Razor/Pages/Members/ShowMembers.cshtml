@@ -16,7 +16,7 @@
 	<a asp-page="ShowAdministrators">Vis Administratorer</a>
 </p>
 <form>
-	Søg Navn: <input type="text" asp-for="@Model.FilterCriteriaName" />
+	Filtrer efter Navn: <input type="text" asp-for="@Model.FilterCriteriaName" />
 	<input type="submit" value="Filtrer" />
 </form>
 
@@ -30,10 +30,15 @@
 	<input type="submit" value="Filtrer" />
 </form>
 
+<form method="post" asp-page-handler="SearchMemberByPhone">
+	Søg efter Telefon: <input type="text" asp-for="@Model.SearchCriteriaPhone" />
+	<input type="submit" value="Søg" />
+</form>
+
 <p>Antal Medlemmer: @Model.Members.Count </p>
 
-<table class="table">
-	<thead>
+<table style="width:85%" class="table">
+	<thead style="background-color:lightskyblue;border-radius:60px">
 		<tr>
 			<th>ID</th>
 			<th>Navn</th>
@@ -42,13 +47,15 @@
 			<th>Telefon</th>
 			<th>Medlems Status</th>
 			<th>Billed</th>
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach (Member item in Model.Members)
 		{
 			<tr>
-				<td>@item.Id</td>
+				<td style="background-color:lightgray;text-align:center">@item.Id</td>
 				<td>@item.Name</td>
 				<td>@item.Address</td>
 				<td>@item.Email</td>

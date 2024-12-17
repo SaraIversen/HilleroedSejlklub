@@ -114,5 +114,18 @@ namespace SejlklubLibrary.Services
 			}
 			return filterList;
 		}
+
+		public List<Member> SearchMemberByPhone(string phone)
+		{
+			List<Member> members = new List<Member>();
+			foreach (Member member in _members.Values)
+			{
+				if (member.Phone == phone)
+				{
+					members.Add(member);
+				}
+			}
+			return members;
+		}
 	}
 }
