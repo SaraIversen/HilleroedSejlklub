@@ -131,6 +131,54 @@ namespace SejlklubLibrary.Services
             }
         }
 
+        public List<Booking> FilterBookingsByDate()
+        {
+            List<Booking> filterList = _bookingsList;
+            filterList.Sort((d1, d2) => d1.Date.CompareTo(d2.Date));
+
+            return filterList;
+        }
+
+        public List<Booking> FilterBookingsByBoatName()
+        {
+            List<Booking> filterList = _bookingsList;
+            filterList.Sort((b1, b2) => b1.Boat.Name.CompareTo(b2.Boat.Name));
+
+            return filterList;
+        }
+
+        public List<Booking> FilterBookingsByTime()
+        {
+            List<Booking> filterList = _bookingsList;
+            filterList.Sort((t1, t2) => t1.BookingTime.StartTime.CompareTo(t2.BookingTime.StartTime));
+
+            return filterList;
+        }
+
+        public List<Booking> FilterBookingsByDateAndTime()
+        {
+            List<Booking> filterList = _bookingsList;
+
+            filterList.Sort((b1, b2) =>
+            { 
+                // Sort by date first
+                int compareDateResult = b1.Date.CompareTo(b2.Date);
+                if (compareDateResult == 0) // If dates are the same, then compare by StartTime
+                    return b1.BookingTime.StartTime.CompareTo(b2.BookingTime.StartTime);
+                return compareDateResult;
+            });
+
+            return filterList;
+        }
+
+        public List<Booking> FilterBookingsByName()
+        {
+            List<Booking> filterList = _bookingsList;
+            filterList.Sort((n1, n2) => n1.Member.Name.CompareTo(n2.Member.Name));
+
+            return filterList;
+        }
+
         public void PrintAllBookings()
         {
             throw new NotImplementedException();

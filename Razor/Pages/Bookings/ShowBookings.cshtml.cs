@@ -25,5 +25,31 @@ namespace Razor.Pages.Bookings
         {
             Bookings = _bookingRepository.GetAllBookings();
         }
+
+        public IActionResult OnPostFilterBookingsDate()
+        {
+            Bookings = _bookingRepository.FilterBookingsByDate();
+            return Page();
+        }
+        public IActionResult OnPostFilterBookingsBoat()
+        {
+            Bookings = _bookingRepository.FilterBookingsByBoatName();
+            return Page();
+        }
+        public IActionResult OnPostFilterBookingsTime()
+        {
+            Bookings = _bookingRepository.FilterBookingsByTime();
+            return Page();
+        }
+        public IActionResult OnPostFilterBookingsDateAndTime()
+        {
+            Bookings = _bookingRepository.FilterBookingsByDateAndTime();
+            return Page();
+        }
+        public IActionResult OnPostFilterBookingsMemberName()
+        {
+            Bookings = _bookingRepository.FilterBookingsByName();
+            return Page();
+        }
     }
 }

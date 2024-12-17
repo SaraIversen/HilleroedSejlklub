@@ -22,7 +22,11 @@ namespace SejlklubLibrary.Interfaces
         bool ValidateBooking(DateTime date, BookingTime bookingTime, string place, Boat boat, Member member);
         bool ValidateBookingTime(DateTime date, BookingTime bookingTime, BoatType boatType);
         void RemoveBooking(int id);
+        List<Booking> FilterBookingsByDate();
+        List<Booking> FilterBookingsByBoatName();
+        List<Booking> FilterBookingsByTime();
+        List<Booking> FilterBookingsByDateAndTime();
+        List<Booking> FilterBookingsByName();
         void PrintAllBookings();
-        string ToString();
     }
 }

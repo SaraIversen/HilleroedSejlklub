@@ -19,6 +19,7 @@ namespace SejlklubLibrary.Interfaces
 		void UpdateMember(Member member);
 		List<Member> FilterMembersByName(string name);
 		List<Member> FilterMembersByMemberType(MemberType memberType);
+		List<Member> SearchMemberByPhone(string phone);
 		string ToString();
 
 	}

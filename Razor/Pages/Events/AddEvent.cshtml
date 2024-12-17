@@ -19,14 +19,25 @@
     <div class="col-md-4">
         <form method="post">
             <div class="form-group">
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <label asp-for="@Model.Name" class="Control-label"></label> <br />
                 <input asp-for="@Model.Name" class="form-contol" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="@Model.EventType" class="Control-label"></label> <br />
-                <input asp-for="@Model.EventType" class="form-contol" />
+                <label>Begivenheds type:</label>
+                <select id="ChosenEventType"
+                        name="ChosenEventType"
+                        asp-for="@Model.ChosenEventType"
+                        asp-items="@Model.SelectListEventTypes">
+                </select>
+"
+                @* <label asp-for="@Model.EventType" class="Control-label"></label> <br />
+                <input asp-for="@Model.EventType" class="form-contol" /> *@
             </div>
+
             <br />
             <div class="form-group">
                 <label asp-for="@Model.Date" class="Control-abel"></label> <br />

@@ -78,5 +78,18 @@ namespace SejlklubLibrary.Services
                 }
             }
         }
+
+        public List<Event> FilterEventByEventType(EventType eventType)
+        {
+            List<Event> filterdList = new List<Event>();
+            foreach(Event ev in _eventList) 
+            {
+                if (ev.EventType == eventType) 
+                {
+                    filterdList.Add(ev);
+                }
+            }
+            return filterdList;
+        }
     }
 }
