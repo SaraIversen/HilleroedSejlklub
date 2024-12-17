@@ -13,7 +13,7 @@ namespace SejlklubLibrary.Services
 {
     public class BookingRepository : IBookingRepository
     {
-        private List<Booking> _bookingsList;
+        private List<Booking> _bookingsList = new List<Booking>();
 
         // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme de nuværende data fra dem der prøver at booke.  
         public Member CurrentMember { get; set; } 
@@ -24,7 +24,7 @@ namespace SejlklubLibrary.Services
 
         public BookingRepository()
         {
-            _bookingsList = MockData.BookingData; //new List<Booking>();
+            MockData.InitializeBookingMockData(this);
         }
 
         public List<Booking> GetAllBookings()
