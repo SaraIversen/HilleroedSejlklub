@@ -1,4 +1,5 @@
 ﻿using SejlklubLibrary.Data;
+using SejlklubLibrary.Exceptions.Boats;
 using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using System;
@@ -29,6 +30,9 @@ namespace SejlklubLibrary.Services
                     return;
                 }
             }
+            this.FindBoatByName(boat.Name);
+            this.ValidateBoat(boat.Measurement, boat.Name, boat.Engine, boat.BuildYear);
+            this.ValidateBoatName(boat.Name);
             boat.Counting();
             _boatList.Add(boat);
         }
@@ -66,7 +70,43 @@ namespace SejlklubLibrary.Services
                 _boatList.Remove(foundBoat);
             }
         }
-
+        public void FindBoatByName(string name)
+        {
+            foreach (Boat b in _boatList)
+            {
+                if (b.Name == name)
+                {
+                    throw new InvalidBoatNameException("Navnet er allerede taget af en anden båd.");
+                }
+            }
+        }
+        public bool ValidateBoat(string measurement, string name, string engine, int buildyear)
+        {
+            if (measurement == null)
+            {
+                throw new NullException($"Mål kunne ikke findes.");
+            }
+            if (name == null)
+            {
+                throw new NullException($"Navn kunne ikke findes.");
+            }
+            if (engine == null)
+            {
+                throw new NullException($"Motor kunne ikke findes.");
+            }
+            if (buildyear == null || buildyear == 0)
+            {
+                throw new NullException($"Bygningsår kunne ikke findes.");
+            }
+            return true;
+        }
+        public void ValidateBoatName(string name)
+        {
+            if (name.Length > 35)
+            {
+                throw new InvalidBoatCharacterLengthException("Navnet skal være under 35 karakterer.");
+            }
+        }
         public void UpdateBoat(Boat newBoat)
         {
             foreach (Boat boats in _boatList)
@@ -78,6 +118,8 @@ namespace SejlklubLibrary.Services
                     boats.Engine = newBoat.Engine;
                 }
             }
+            this.ValidateBoat(newBoat.Measurement, newBoat.Name, newBoat.Engine, newBoat.BuildYear);
+            this.ValidateBoatName(newBoat.Name);
         }
     }
 }

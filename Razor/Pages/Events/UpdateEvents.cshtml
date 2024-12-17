@@ -21,8 +21,14 @@
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="@Model.Event.EventType" class="Control-label"></label> <br />
-                <input asp-for="@Model.Event.EventType" class="form-control" />
+                @* <label asp-for="@Model.Event.EventType" class="Control-label"></label> <br />
+                <input asp-for="@Model.Event.EventType" class="form-control" /> *@
+                <label>Begivenheds type:</label>
+                <select id="ChosenEventType"
+                        name="ChosenEventType"
+                        asp-for="@Model.ChosenEventType"
+                        asp-items="@Model.SelectListEventTypes">
+                </select>
             </div>
             <br />
             <div class="form-group">
