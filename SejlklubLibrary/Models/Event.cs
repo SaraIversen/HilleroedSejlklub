@@ -50,7 +50,7 @@ namespace SejlklubLibrary.Models
             //}
             _counter++;
             _id = _counter;
-
+             
             Name = name;
             Date = date;
             Description = description;
