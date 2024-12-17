@@ -22,14 +22,7 @@ try
     Booking newBooking1 = bookingRepo.NewBooking(date1, bookingTime1, location1, boat1, member1);
     Console.WriteLine("Booking was successfull!");
     Console.WriteLine();
-    Console.WriteLine($"New booking was made with the following data - " +
-        $"\nId: {newBooking1.Id}, " +
-        $"\nDate: {newBooking1.Date.ToString("d")}, " +
-        $"\nBookingTime: {newBooking1.BookingTime.ToString()}, " +
-        $"\nLocation: {newBooking1.Place}, " +
-        $"\nBoatType: {newBooking1.Boat.BoatType}, " +
-        $"\nBoatName: {newBooking1.Boat.Name} " +
-        $"\nMember: {newBooking1.Member.Name}");
+    Console.WriteLine($"New booking was made with the following data - {newBooking1.ToString()}");
 }
 catch (NullException nullEx)
 {
@@ -69,7 +62,7 @@ Console.Write("_____________________________________________________________\n")
 DateTime date2 = DateTime.Today;
 BookingTime bookingTime2 = BookingTimesRepository.BookingTimes.First();
 string location2 = "Esrum Sø";
-Boat boat2 = null; //new Boat("xxx meter", "BBB", "Stor", 2014, BoatType.lynæs);
+Boat boat2 = new Boat("xxx meter", "BBB", "Stor", 2014, BoatType.lynæs);
 Member member2 = new Member("Jens", "jens@mail.dk", "Vej 123", "84239212", MemberType.Senior, false, false);
 
 //_____Opretelse af ny booking
@@ -79,14 +72,7 @@ try
     Booking newBooking2 = bookingRepo.NewBooking(date2, bookingTime2, location2, boat2, member2);
     Console.WriteLine("Booking was successfull!");
     Console.WriteLine();
-    Console.WriteLine($"New booking was made with the following data - " +
-        $"\nId: {newBooking2.Id}, " +
-        $"\nDate: {newBooking2.Date.ToString("d")}, " +
-        $"\nBookingTime: {newBooking2.BookingTime.ToString()}, " +
-        $"\nLocation: {newBooking2.Place}, " +
-        $"\nBoatType: {newBooking2.Boat.BoatType}, " +
-        $"\nBoatName: {newBooking2.Boat.Name} " +
-        $"\nMember: {newBooking2.Member.Name}");
+    Console.WriteLine($"New booking was made with the following data - {newBooking2.ToString()}");
 }
 catch (NullException nullEx)
 {

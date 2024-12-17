@@ -171,15 +171,7 @@ namespace SejlklubLibrary.Services
         {
             foreach (Booking booking in _bookingsList)
             {
-                Console.WriteLine($"Booking data - " +
-                    $"\nId: {booking.Id}, " +
-                    $"\nDate: {booking.Date.ToString("d")}, " +
-                    $"\nBookingTime: {booking.BookingTime.ToString()}, " +
-                    $"\nLocation: {booking.Place}, " +
-                    $"\nBoatType: {booking.Boat.BoatType}, " +
-                    $"\nBoatName: {booking.Boat.Name}, " +
-                    $"\nMember: {booking.Member.Name}" +
-                    $"\n");
+                Console.WriteLine($"Booking data - {booking.ToString()}\n");
             }
         }
     }
