@@ -4,6 +4,15 @@
     ViewData["AddEvent"] = "TilføjEvent";
 }
 
+@{
+    if (!string.IsNullOrEmpty(@Model.ErrorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>
+            <strong>Warning!</strong> @Model.ErrorMessage
+        </div>
+    }
+}
 <h1>Opret Event</h1>
 <hr />
 <div class="row">

@@ -45,6 +45,11 @@ namespace Razor.Pages.Events
                 ErrorMessage = ex.Message;
                 return Page();
             }
+            catch (Exception exp)
+            {
+                ErrorMessage = "General Exception";
+                return Page();
+            }
             
         }
     }

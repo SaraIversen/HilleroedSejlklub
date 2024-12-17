@@ -36,18 +36,18 @@ namespace SejlklubLibrary.Models
 
         public Event(string name, DateTime date, string description,string location,EventType eventType)
         {
-            //if (name.Length>35) 
-            //{
-            //    throw new InvalidEventNameException("Navnet overskrider 35 tegn");
-            //}
-            //if (description.Length < 3 || description.Length > 250) 
-            //{
-            //    throw new InvalidEventDescriptionException("Beskrivelsen er enten under 3 tegn, eller overskrider 250 tegn");
-            //} 
-            //if (!(eventType== EventType.Udflugt || eventType== EventType.Standerhejsning || eventType== EventType.Sejltur ||eventType== EventType.Spisning ||eventType== EventType.StortForKlubben ||eventType== EventType.Kursus)) 
-            //{
-            //    throw new InvalidEventTypeException("Ugyldig event type");
-            //}
+            if (name.Length > 35)
+            {
+                throw new InvalidEventNameException("Navnet overskrider 35 tegn");
+            }
+            if (description.Length < 3 || description.Length > 250)
+            {
+                throw new InvalidEventDescriptionException("Beskrivelsen er enten under 3 tegn, eller overskrider 250 tegn");
+            }
+            if (!(eventType == EventType.Udflugt || eventType == EventType.Standerhejsning || eventType == EventType.Sejltur || eventType == EventType.Spisning || eventType == EventType.StortForKlubben || eventType == EventType.Kursus))
+            {
+                throw new InvalidEventTypeException("Ugyldig event type");
+            }
             _counter++;
             _id = _counter;
 
