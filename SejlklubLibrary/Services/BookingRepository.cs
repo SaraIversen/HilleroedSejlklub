@@ -4,6 +4,7 @@ using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,30 +46,15 @@ namespace SejlklubLibrary.Services
             return null;
         }
 
-        public string NewBooking(DateTime date, BookingTime bookingTime, string location, Boat boat, Member member)
+        public Booking NewBooking(DateTime date, BookingTime bookingTime, string location, Boat boat, Member member)
         {
-            try
+            if (ValidateBooking(date, bookingTime, location, boat, member))
             {
-                if (ValidateBooking(date, bookingTime, location, boat, member))
-                {
-                    Booking newBooking = new Booking(date, bookingTime, location, boat, member);
-                    AddBooking(newBooking);
-                }
+                Booking newBooking = new Booking(date, bookingTime, location, boat, member);
+                AddBooking(newBooking);
+                return newBooking;
             }
-            catch (NullException nullEx)
-            {
-                return ($"Please make sure all fields are filled out: " + nullEx.Message);
-            }
-            catch (InvalidBookingDateException invBookDateEx)
-            {
-                return ($"Please select a valid date - it is not possible to book in the present: " + invBookDateEx.Message);
-            }
-            catch (InvalidBookingTimeException invBookTimeEx)
-            {
-                return ($"Please select a free time period: " + invBookTimeEx.Message);
-            }
-
-            return "";
+            return null;
         }
 
         private void AddBooking(Booking booking)
@@ -131,6 +117,7 @@ namespace SejlklubLibrary.Services
             }
         }
 
+        #region Filtering Methods
         public List<Booking> FilterBookingsByDate()
         {
             List<Booking> filterList = _bookingsList;
@@ -178,10 +165,22 @@ namespace SejlklubLibrary.Services
 
             return filterList;
         }
+        #endregion
 
         public void PrintAllBookings()
         {
-            throw new NotImplementedException();
+            foreach (Booking booking in _bookingsList)
+            {
+                Console.WriteLine($"Booking data - " +
+                    $"\nId: {booking.Id}, " +
+                    $"\nDate: {booking.Date.ToString("d")}, " +
+                    $"\nBookingTime: {booking.BookingTime.ToString()}, " +
+                    $"\nLocation: {booking.Place}, " +
+                    $"\nBoatType: {booking.Boat.BoatType}, " +
+                    $"\nBoatName: {booking.Boat.Name}, " +
+                    $"\nMember: {booking.Member.Name}" +
+                    $"\n");
+            }
         }
     }
 }

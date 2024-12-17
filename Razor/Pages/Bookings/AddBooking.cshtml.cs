@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SejlklubLibrary.Exceptions.Bookings;
 using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using SejlklubLibrary.Services;
@@ -142,10 +143,23 @@ namespace Razor.Pages.Bookings
             Boat = _bookingRepository.CurrentBoat;
             Date = _bookingRepository.CurrentDate;
 
-            string validationMessage = _bookingRepository.NewBooking(Date, BookingTimesRepository.BookingTimes[ChosenTime], ChosenLocation, Boat, Member);
-            if (validationMessage != "")
+            try
             {
-                MessageBooking = validationMessage;
+                _bookingRepository.NewBooking(Date, BookingTimesRepository.BookingTimes[ChosenTime], ChosenLocation, Boat, Member);
+            }
+            catch (NullException nullEx)
+            {
+                MessageBooking = ($"Please make sure all fields are filled out: " + nullEx.Message);
+                return Page();
+            }
+            catch (InvalidBookingDateException invBookDateEx)
+            {
+                MessageBooking = ($"Please select a valid date - it is not possible to book in the present: " + invBookDateEx.Message);
+                return Page();
+            }
+            catch (InvalidBookingTimeException invBookTimeEx)
+            {
+                MessageBooking = ($"Please select a free time period: " + invBookTimeEx.Message);
                 return Page();
             }
 
