@@ -12,6 +12,8 @@ namespace Razor.Pages.Events
 
         [BindProperty]
         public EventType ChosenEventType { get; set; }
+        [BindProperty(SupportsGet =true)]
+        public string ChosenName { get; set; }
         public List<Event> Events { get; set; }
         public List<SelectListItem> SelectListEventTypes { get; set; }
         public ShowEventsModel(IEventRepository eventRepository)
@@ -22,8 +24,14 @@ namespace Razor.Pages.Events
         
         public void OnGet()
         {
-            Events = _eventRepository.GetAll();
-            
+            if (!string.IsNullOrEmpty(ChosenName) )
+            {
+                Events = _eventRepository.FilterEventByName(ChosenName);
+            }
+            else 
+            { 
+                Events = _eventRepository.GetAll();
+            }
         }
 
         public void createSelectListEventTypes()

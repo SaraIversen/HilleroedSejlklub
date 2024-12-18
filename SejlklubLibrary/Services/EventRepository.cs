@@ -22,7 +22,6 @@ namespace SejlklubLibrary.Services
 
         public EventRepository() 
         {
-            _eventList = new List<Event>();
             _eventList = MockData.EventData;
         }
 
@@ -78,7 +77,7 @@ namespace SejlklubLibrary.Services
                 }
             }
         }
-
+        
         public List<Event> FilterEventByEventType(EventType eventType)
         {
             List<Event> filterdList = new List<Event>();
@@ -90,6 +89,19 @@ namespace SejlklubLibrary.Services
                 }
             }
             return filterdList;
+        }
+
+        public List<Event> FilterEventByName(string name)
+        {
+            List<Event> filtterdList = new List<Event>();
+            foreach (Event ev in _eventList) 
+            {
+                if (ev.Name.Contains(name) )
+                {
+                    filtterdList.Add(ev);
+                }
+            }
+            return filtterdList;
         }
     }
 }

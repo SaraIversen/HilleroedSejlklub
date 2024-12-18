@@ -20,7 +20,12 @@
     </select>
     <input type="submit" value="Filtrer" class="btn btn-primary" />
 </form>
-
+<form>
+    Søg efter navn: <input type="text" asp-for="@Model.ChosenName" />
+    <input type="submit" value="Søg" />
+</form>
+<br />
+<hr />
 
 <table style="width:85%" class="table">
     <thead style="background-color:lightskyblue;border-radius:60px">
