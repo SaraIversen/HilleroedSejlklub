@@ -20,7 +20,5 @@ namespace SejlklubLibrary.Interfaces
 		List<Member> FilterMembersByName(string name);
 		List<Member> FilterMembersByMemberType(MemberType memberType);
 		List<Member> SearchMemberByPhone(string phone);
-		string ToString();
-
 	}
 }

@@ -4,6 +4,15 @@
     ViewData["Title"] = "Add Boat";
 }
 
+@{
+    if (!string.IsNullOrEmpty(@Model.ErrorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>
+            <strong>Warning!</strong> @Model.ErrorMessage
+        </div>
+    }
+}
 <form method="post">
     <div class="form-group">
         <label asp-for="@Model.Boat.Name" class="control-label"></label>
@@ -28,6 +37,6 @@
         <input asp-for="@Model.Boat.BuildYear" class="form-control" />
     </div>
     <div class="formgroup">
-        <input type="submit" value="Create Customer" class="btn btn-primary" />
+        <input type="submit" value="Tilføj båd" class="btn btn-primary" />
     </div>
 </form>

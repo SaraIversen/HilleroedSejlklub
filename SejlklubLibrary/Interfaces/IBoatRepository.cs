@@ -16,6 +16,8 @@ namespace SejlklubLibrary.Interfaces
         void AddBoat(Boat boat);
         void RemoveBoat(int id);
         void UpdateBoat(Boat newBoat);
+        void FindBoatByName(string name);
+        bool ValidateBoat(string measurement, string name, string engine, int buildyear);
         void PrintAllBoats();
         string ToString();
     }
