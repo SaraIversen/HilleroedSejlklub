@@ -30,7 +30,7 @@ namespace SejlklubLibrary.Data
             new List<Boat>()
             {
             new Boat("1 meter", "Tøftøf", "v2", 1999, BoatType.Laserjolle),
-            new Boat("2 meter", "Båd", "v3", 2003, BoatType.lynæs),
+            new Boat("2 meter", "Båd", "v3", 2003, BoatType.Lynæs),
             new Boat("3 meter", "Skiw", "v4", 1999, BoatType.Optimistjolle),
             new Boat("4 meter", "Mary", "v5", 1996, BoatType.Europajolle),
             new Boat("5 meter", "Pineapple", "v6", 2007, BoatType.TERA),

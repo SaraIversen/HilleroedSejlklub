@@ -121,5 +121,31 @@ namespace SejlklubLibrary.Services
             this.ValidateBoat(newBoat.Measurement, newBoat.Name, newBoat.Engine, newBoat.BuildYear);
             this.ValidateBoatName(newBoat.Name);
         }
-    }
+
+		public List<Boat> FilterByBoatType(BoatType boatType)
+        {
+            List<Boat> foundBoats = new List<Boat>();
+            foreach (Boat boat in _boatList)
+            {
+                if (boat.BoatType == boatType)
+                {
+                    foundBoats.Add(boat);
+                }
+            }
+            return foundBoats;
+        }
+
+		public List<Boat> SearchBoatByName(string name)
+		{
+            List<Boat> foundBoat = new List<Boat>();
+            foreach (Boat boat in _boatList)
+            {
+                if (boat.Name == name)
+                {
+                    foundBoat.Add(boat);
+                }
+            }
+            return foundBoat;
+		}
+	}
 }

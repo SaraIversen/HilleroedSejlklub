@@ -11,7 +11,7 @@ using System.Diagnostics.Tracing;
 
 //Test af boat class
 //_____Opretelse af objekt
-Boat b1 = new Boat("xxx meter", "BBB", "Stor", 2014, BoatType.lynæs);
+Boat b1 = new Boat("xxx meter", "BBB", "Stor", 2014, BoatType.Lynæs);
 
 //_____Udskrift af objekt
 Console.WriteLine(b1.ToString());

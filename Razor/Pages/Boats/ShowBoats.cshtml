@@ -7,6 +7,20 @@
 <h1>Både:</h1>
 <a asp-page="/Boats/AddBoat">Opret Båd</a>
 
+<form method="post" asp-page-handler="FilterByBoatType">
+    <label>Vælg Bådtype</label>
+    <select id="ChosenBoatType" name="ChosenBoatType"
+        asp-for="@Model.ChosenBoatType"
+        asp-items="@Model.BoatTypeSelectList">
+    </select>
+    <input type="submit" value="Filtrer" />
+</form>
+
+<form method="post" asp-page-handler="SearchBoatByName">
+    Søg efter Navn: <input type="text" asp-for="@Model.SearchCriteriaName" />
+    <input type="submit" value="Søg" />
+</form>
+
 <hr />
 <p>Antal oprettede både: @Model.Boats.Count</p>
 <table style="width:85%" class="table">
