@@ -29,5 +29,16 @@ namespace SejlklubLibrary.Models
             Boat = boat;
             Member = member;
         }
+
+        public override string ToString()
+        {
+            return ($"\nId: {Id}, " +
+                    $"\nDate: {Date.ToString("d")}, " +
+                    $"\nBookingTime: {BookingTime.ToString()}, " +
+                    $"\nLocation: {Place}, " +
+                    $"\nBoatType: {Boat.BoatType}, " +
+                    $"\nBoatName: {Boat.Name} " +
+                    $"\nMember: {Member.Name}");
+        }
     }
 }

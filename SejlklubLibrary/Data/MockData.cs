@@ -1,4 +1,5 @@
-﻿using SejlklubLibrary.Models;
+﻿using SejlklubLibrary.Interfaces;
+using SejlklubLibrary.Models;
 using SejlklubLibrary.Services;
 using System;
 using System.Collections.Generic;
@@ -51,16 +52,17 @@ namespace SejlklubLibrary.Data
                 new Event("Ny hjemmeside", new DateTime(2025,1,5), "Ny hjemmeside er snart oppe.","På nettet",EventType.StortForKlubben),
             };
 
-        private static List<Booking> _bookingData =
-            new List<Booking>()
-            {
-                new Booking(DateTime.Today, BookingTimesRepository.BookingTimes[0], "Den gode sø", GetRandomBoat(), GetRandomMember()),
-                new Booking(DateTime.Today, BookingTimesRepository.BookingTimes[4], "Esrum Sø", GetRandomBoat(), GetRandomMember()),
-            };
+        public static void InitializeBookingMockData(IBookingRepository bookingRepository)
+        {
+            bookingRepository.NewBooking(DateTime.Today, BookingTimesRepository.BookingTimes[0], "Den gode sø", GetRandomBoat(), GetRandomMember());
+            bookingRepository.NewBooking(DateTime.Today.AddDays(1), BookingTimesRepository.BookingTimes[1], "Esrum Sø", GetRandomBoat(), GetRandomMember());
+            bookingRepository.NewBooking(DateTime.Today, BookingTimesRepository.BookingTimes[4], "En anden sø", GetRandomBoat(), GetRandomMember());
+            bookingRepository.NewBooking(DateTime.Today.AddDays(2), BookingTimesRepository.BookingTimes[3], "Esrum Sø", GetRandomBoat(), GetRandomMember());
+        }
 
-        private static List<EventRegistration> _eventRegistrationData = 
-            new List<EventRegistration>() 
-            { 
+        private static List<EventRegistration> _eventRegistrationData =
+            new List<EventRegistration>()
+            {
                 new EventRegistration("", new DateTime (),0,new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior, false, false)),
                 new EventRegistration("Test om get random member virker", new DateTime (), 0, GetRandomMember()),
                 new EventRegistration("Jeg tager den elskede sommer-salat med", new DateTime(),1,new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv, false, false)),
@@ -74,7 +76,6 @@ namespace SejlklubLibrary.Data
             get { return _memberData; }
         }
 
-
         public static List<Boat> BoatData
         {
             get { return _boatData; }
@@ -83,11 +84,6 @@ namespace SejlklubLibrary.Data
         public static List<Event> EventData
         {
             get { return _eventData; }
-        }
-
-        public static List<Booking> BookingData
-        {
-            get { return _bookingData; }
         }
 
         public static List<EventRegistration> EventRegistrationData

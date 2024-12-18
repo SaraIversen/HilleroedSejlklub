@@ -18,7 +18,7 @@ namespace SejlklubLibrary.Interfaces
 
         List<Booking> GetAllBookings();
         Booking GetBookingById(int id);
-        string NewBooking(DateTime date, BookingTime bookingTime, string place, Boat boat, Member member);
+        Booking NewBooking(DateTime date, BookingTime bookingTime, string place, Boat boat, Member member);
         bool ValidateBooking(DateTime date, BookingTime bookingTime, string place, Boat boat, Member member);
         bool ValidateBookingTime(DateTime date, BookingTime bookingTime, BoatType boatType);
         void RemoveBooking(int id);
