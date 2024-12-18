@@ -11,8 +11,8 @@ namespace SejlklubLibrary.Services
 {
     public class EventRegistrationRepository : IEventRegistrationRepository
     {
-        public Member CurrentMember { get; set; }
-        public Event CurrentEvent { get; set; }
+        public Member CurrentMember { get; set; } // Bruges kun til RazorPages.
+        public Event CurrentEvent { get; set; } // Bruges kun til RazorPages.
 
 
         public List<EventRegistration> GetAllParticipants(Event ev)

@@ -17,9 +17,9 @@ namespace SejlklubLibrary.Services
         private List<Booking> _bookingsList = new List<Booking>();
 
         // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme de nuværende data fra dem der prøver at booke.  
-        public Member CurrentMember { get; set; } 
-        public Boat CurrentBoat { get; set; }
-        public DateTime CurrentDate { get; set; } = DateTime.Now;
+        public Member CurrentMember { get; set; } // Bruges kun til RazorPages.
+        public Boat CurrentBoat { get; set; } // Bruges kun til RazorPages.
+        public DateTime CurrentDate { get; set; } = DateTime.Now; // Bruges kun til RazorPages.
 
         public int Count { get { return _bookingsList.Count; } }
 
@@ -63,7 +63,7 @@ namespace SejlklubLibrary.Services
             StatisticsRepository.RegisterBooking(booking);
         }
 
-        public bool ValidateBooking(DateTime date, BookingTime bookingTime, string location, Boat boat, Member member)
+        private bool ValidateBooking(DateTime date, BookingTime bookingTime, string location, Boat boat, Member member)
         {
             if (member == null)
             {
@@ -112,7 +112,7 @@ namespace SejlklubLibrary.Services
             Booking foundBooking = GetBookingById(id);
             if (foundBooking != null)
             {
-                StatisticsRepository.UnRegisterBooking(foundBooking);
+                StatisticsRepository.UnregisterBooking(foundBooking);
                 _bookingsList.Remove(foundBooking);
             }
         }
