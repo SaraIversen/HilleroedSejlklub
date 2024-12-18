@@ -10,9 +10,9 @@ namespace Razor.Pages.Bookings
 {
     public class AddBookingModel : PageModel
     {
-        public IBookingRepository _bookingRepository;
-        public IMemberRepository _memberRepository;
-        public IBoatRepository _boatRepository;
+        private IBookingRepository _bookingRepository;
+        private IMemberRepository _memberRepository;
+        private IBoatRepository _boatRepository;
 
         public string MessageBooking { get; set; }
 
@@ -123,7 +123,6 @@ namespace Razor.Pages.Bookings
             else
                 _bookingRepository.CurrentDate = Date;
 
-            //BookingTimes = _bookingRepository.GetAllBookingTimes();
             Member = _bookingRepository.CurrentMember;
             CreateTimeSelectList();
             return Page();
