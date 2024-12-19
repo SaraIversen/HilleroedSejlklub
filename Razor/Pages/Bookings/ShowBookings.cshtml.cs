@@ -50,12 +50,10 @@ namespace Razor.Pages.Bookings
         {
             MemberSelectList = new List<SelectListItem>();
             MemberSelectList.Add(new SelectListItem("Vælg medlem", "-1"));
-            int i = 0;
             foreach (Member member in _memberRepository.GetAll())
             {
                 SelectListItem selectListItem = new SelectListItem($"{member.Name}", member.Id.ToString());
                 MemberSelectList.Add(selectListItem);
-                i += 1;
             }
         }
 
