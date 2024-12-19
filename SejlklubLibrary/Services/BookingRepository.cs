@@ -3,9 +3,11 @@ using SejlklubLibrary.Exceptions.Bookings;
 using SejlklubLibrary.Interfaces;
 using SejlklubLibrary.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -17,9 +19,9 @@ namespace SejlklubLibrary.Services
         private List<Booking> _bookingsList = new List<Booking>();
 
         // Ligesom da vi lavede ShoppingBasket, skal vi have et sted at gemme de nuværende data fra dem der prøver at booke.  
-        public Member CurrentMember { get; set; } 
-        public Boat CurrentBoat { get; set; }
-        public DateTime CurrentDate { get; set; } = DateTime.Now;
+        public Member CurrentMember { get; set; } // Bruges kun til RazorPages.
+        public Boat CurrentBoat { get; set; } // Bruges kun til RazorPages.
+        public DateTime CurrentDate { get; set; } = DateTime.Now; // Bruges kun til RazorPages.
 
         public int Count { get { return _bookingsList.Count; } }
 
@@ -63,7 +65,7 @@ namespace SejlklubLibrary.Services
             StatisticsRepository.RegisterBooking(booking);
         }
 
-        public bool ValidateBooking(DateTime date, BookingTime bookingTime, string location, Boat boat, Member member)
+        private bool ValidateBooking(DateTime date, BookingTime bookingTime, string location, Boat boat, Member member)
         {
             if (member == null)
             {
@@ -112,41 +114,41 @@ namespace SejlklubLibrary.Services
             Booking foundBooking = GetBookingById(id);
             if (foundBooking != null)
             {
-                StatisticsRepository.UnRegisterBooking(foundBooking);
+                StatisticsRepository.UnregisterBooking(foundBooking);
                 _bookingsList.Remove(foundBooking);
             }
         }
 
-        #region Filtering Methods
-        public List<Booking> FilterBookingsByDate()
+        #region Sort & Filtering Methods
+        public List<Booking> SortBookingsByDate()
         {
-            List<Booking> filterList = _bookingsList;
-            filterList.Sort((d1, d2) => d1.Date.CompareTo(d2.Date));
+            List<Booking> sortList = _bookingsList;
+            sortList.Sort((d1, d2) => d1.Date.CompareTo(d2.Date));
 
-            return filterList;
+            return sortList;
         }
 
-        public List<Booking> FilterBookingsByBoatName()
+        public List<Booking> SortBookingsByBoatName()
         {
-            List<Booking> filterList = _bookingsList;
-            filterList.Sort((b1, b2) => b1.Boat.Name.CompareTo(b2.Boat.Name));
+            List<Booking> sortList = _bookingsList;
+            sortList.Sort((b1, b2) => b1.Boat.Name.CompareTo(b2.Boat.Name));
 
-            return filterList;
+            return sortList;
         }
 
-        public List<Booking> FilterBookingsByTime()
+        public List<Booking> SortBookingsByTime()
         {
-            List<Booking> filterList = _bookingsList;
-            filterList.Sort((t1, t2) => t1.BookingTime.StartTime.CompareTo(t2.BookingTime.StartTime));
+            List<Booking> sortList = _bookingsList;
+            sortList.Sort((t1, t2) => t1.BookingTime.StartTime.CompareTo(t2.BookingTime.StartTime));
 
-            return filterList;
+            return sortList;
         }
 
-        public List<Booking> FilterBookingsByDateAndTime()
+        public List<Booking> SortBookingsByDateAndTime()
         {
-            List<Booking> filterList = _bookingsList;
+            List<Booking> sortList = _bookingsList;
 
-            filterList.Sort((b1, b2) =>
+            sortList.Sort((b1, b2) =>
             { 
                 // Sort by date first
                 int compareDateResult = b1.Date.CompareTo(b2.Date);
@@ -155,14 +157,40 @@ namespace SejlklubLibrary.Services
                 return compareDateResult;
             });
 
+            return sortList;
+        }
+
+        public List<Booking> SortBookingsByName()
+        {
+            List<Booking> sortList = _bookingsList;
+            sortList.Sort((n1, n2) => n1.Member.Name.CompareTo(n2.Member.Name));
+
+            return sortList;
+        }
+
+        public List<Booking> FilterByBoatType(BoatType boatType)
+        {
+            List<Booking> filterList = new List<Booking>();
+            foreach (Booking booking in _bookingsList)
+            {
+                if (booking.Boat.BoatType == boatType)
+                {
+                    filterList.Add(booking);
+                }
+            }
             return filterList;
         }
 
-        public List<Booking> FilterBookingsByName()
+        public List<Booking> FilterByMember(Member member)
         {
-            List<Booking> filterList = _bookingsList;
-            filterList.Sort((n1, n2) => n1.Member.Name.CompareTo(n2.Member.Name));
-
+            List<Booking> filterList = new List<Booking>();
+            foreach (Booking booking in _bookingsList)
+            {
+                if (booking.Member == member)
+                {
+                    filterList.Add(booking);
+                }
+            }
             return filterList;
         }
         #endregion

@@ -46,7 +46,7 @@ namespace SejlklubLibrary.Services
             BookingTimesCount[bookingTime] += 1;
         }
 
-        public static void UnRegisterBooking(Booking booking)
+        public static void UnregisterBooking(Booking booking)
         {
             UnregisterMemberBooking(booking.Member);
             UnregisterBoatBooking(booking.Boat);

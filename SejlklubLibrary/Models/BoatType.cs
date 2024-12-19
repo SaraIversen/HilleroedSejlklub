@@ -8,6 +8,6 @@ namespace SejlklubLibrary.Models
 {
     public enum BoatType
     {
-        Optimistjolle, TERA, FEVA, Laserjolle, Europajolle, Snipejolle, Wayfarer, lynæs
+        Optimistjolle, TERA, FEVA, Laserjolle, Europajolle, Snipejolle, Wayfarer, Lynæs
     }
 }

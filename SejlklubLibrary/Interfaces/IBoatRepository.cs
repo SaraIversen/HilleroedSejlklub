@@ -19,6 +19,9 @@ namespace SejlklubLibrary.Interfaces
         void FindBoatByName(string name);
         bool ValidateBoat(string measurement, string name, string engine, int buildyear);
         void PrintAllBoats();
+        List<Boat> FilterByBoatType(BoatType boatType);
+
+        List<Boat> SearchBoatByName(string name);
         string ToString();
     }
 }
