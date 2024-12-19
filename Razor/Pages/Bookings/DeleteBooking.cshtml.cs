@@ -7,7 +7,7 @@ namespace Razor.Pages.Bookings
 {
     public class DeleteBookingModel : PageModel
     {
-        public IBookingRepository _bookingRepository;
+        private IBookingRepository _bookingRepository;
 
         public Member Member { get; set; }
         public Booking Booking { get; set; }

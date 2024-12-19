@@ -12,22 +12,44 @@
 <hr />
 
 <div class="btn-group">
-    <form method="post" asp-page-handler="FilterBookingsDate">
+    <form method="post" asp-page-handler="SortBookingsDate">
         <input type="submit" value="Sorter efter dato" />
     </form>
-    <form method="post" asp-page-handler="FilterBookingsBoat">
+    <form method="post" asp-page-handler="SortBookingsBoat">
         <input type="submit" value="Sorter efter bådnavn" />
     </form>
-    <form method="post" asp-page-handler="FilterBookingsTime">
+    <form method="post" asp-page-handler="SortBookingsTime">
         <input type="submit" value="Sorter efter tidspunkt" />
     </form>
-    <form method="post" asp-page-handler="FilterBookingsDateAndTime">
+    <form method="post" asp-page-handler="SortBookingsDateAndTime">
         <input type="submit" value="Sorter efter dato og tidspunkt" />
     </form>
-    <form method="post" asp-page-handler="FilterBookingsMemberName">
+    <form method="post" asp-page-handler="SortBookingsMemberName">
         <input type="submit" value="Sorter efter medlemsnavn" />
     </form>
 </div>
+
+<form method="post" asp-page-handler="FilterByBoatType">
+    <label> Filtrer efter bådtype:</label>
+        <select id="ChosenBoatType" name="ChosenBoatType"
+                asp-for="@Model.ChosenBoatType"
+                asp-items="@Model.BoatTypeSelectList"
+                onchange="this.form.submit()">
+        </select>
+</form>
+
+<form method="post" asp-page-handler="FilterByMember">
+    <label> Filtrer efter medlem:</label>
+    <select id="ChosenMember" name="ChosenMember"
+            asp-for="@Model.ChosenMember"
+            asp-items="@Model.MemberSelectList"
+            onchange="this.form.submit()">
+    </select>
+</form>
+
+<form method="post" asp-page-handler="GetAllBookings">
+    <input type="submit" value="Vis alle bookinger" />
+</form>
 
 <hr />
 
