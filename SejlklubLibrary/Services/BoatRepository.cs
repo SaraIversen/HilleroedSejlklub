@@ -109,17 +109,17 @@ namespace SejlklubLibrary.Services
         }
         public void UpdateBoat(Boat newBoat)
         {
-            foreach (Boat boats in _boatList)
-            {
-                if (boats.Id == newBoat.Id)
-                {
-                    boats.Name = newBoat.Name;
-                    boats.Measurement = newBoat.Measurement;
-                    boats.Engine = newBoat.Engine;
-                }
-            }
             this.ValidateBoat(newBoat.Measurement, newBoat.Name, newBoat.Engine, newBoat.BuildYear);
             this.ValidateBoatName(newBoat.Name);
+            foreach (Boat boat in _boatList)
+            {
+                if (boat.Id == newBoat.Id)
+                {
+                    boat.Name = newBoat.Name;
+                    boat.Measurement = newBoat.Measurement;
+                    boat.Engine = newBoat.Engine;
+                }
+            }
         }
 
 		public List<Boat> FilterByBoatType(BoatType boatType)

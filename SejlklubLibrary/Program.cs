@@ -129,3 +129,6 @@ foreach (Member m in members)
     Console.WriteLine();
 }
 Console.Write("_____________________________________________________________\n");
+
+BoatRepository bRepo = new BoatRepository();
+bRepo.PrintAllBoats();
