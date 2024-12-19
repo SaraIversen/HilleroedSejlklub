@@ -14,6 +14,6 @@ namespace SejlklubLibrary.Interfaces
 
         List<EventRegistration> GetAllParticipants(Event ev);
         void AddRegistrationToEvent(Event ev, string comment, int guestsAmount, Member member);
-        void RemoveMemberFromEvent(Event ev, Member member);
+        void RemoveRegistrationFromEvent(Event ev, Member member);
     }
 }

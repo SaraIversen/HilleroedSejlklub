@@ -32,7 +32,7 @@ namespace SejlklubLibrary.Services
         }
 
         // Fjerner en registration fra listen under Event
-        public void RemoveMemberFromEvent(Event ev, Member member)
+        public void RemoveRegistrationFromEvent(Event ev, Member member)
         {
             foreach (EventRegistration registration in ev.EventRegistrations)
             {
