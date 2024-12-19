@@ -13,7 +13,7 @@ namespace SejlklubLibrary.Interfaces
         public Event CurrentEvent { get; set; }
 
         List<EventRegistration> GetAllParticipants(Event ev);
-        void AddRegistrationToEvent(Event ev, string comment, DateTime timeOfReg, int guestsAmount, Member member);
-        void RemoveMemberFromEvent(Event ev, Member member);
+        void AddRegistrationToEvent(Event ev, string comment, int guestsAmount, Member member);
+        void RemoveRegistrationFromEvent(Event ev, Member member);
     }
 }

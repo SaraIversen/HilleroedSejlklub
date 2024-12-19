@@ -18,8 +18,6 @@ namespace Razor.Pages.Events
         [BindProperty]
         public Event Event { get; set; }
         [BindProperty]
-        public DateTime TimeOfRegistration { get; set; }
-        [BindProperty]
         public string Comment { get; set; }
         [BindProperty]
         public int Guests { get; set; }
@@ -59,7 +57,7 @@ namespace Razor.Pages.Events
 
             if (!(TheMember == null||Event==null||Comment==null ))
             {
-                _eventRegistrationRepository.AddRegistrationToEvent(Event, Comment, TimeOfRegistration, Guests, TheMember);
+                _eventRegistrationRepository.AddRegistrationToEvent(Event, Comment, Guests, TheMember);
             }
 
             Participants = _eventRegistrationRepository.GetAllParticipants(Event);
