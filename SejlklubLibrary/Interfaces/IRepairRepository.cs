@@ -11,6 +11,7 @@ namespace SejlklubLibrary.Interfaces
     {
         List<BoatReparation> GetAll();
         void AddBoatReparation(BoatReparation boatReparation);
+        void ValidateComments(string comment);
         int RepairBoatCount();
     }
 }
