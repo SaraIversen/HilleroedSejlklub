@@ -10,7 +10,6 @@ namespace SejlklubLibrary.Interfaces
     public interface IEventRegistration
     {
         string Comment { get; set; }
-        DateTime TimeOfRegistration { get; set; }
         int GuestsAmount { get; set; }
         Member Member { get; set; }
 

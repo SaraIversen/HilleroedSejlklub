@@ -10,14 +10,12 @@ namespace SejlklubLibrary.Models
     public class EventRegistration : IEventRegistration
     {
         public string Comment { get; set; }
-        public DateTime TimeOfRegistration { get; set; }
         public int GuestsAmount { get; set; }
         public Member Member { get; set; }
 
-        public EventRegistration(string comment, DateTime timeOfReg, int guestsAmount, Member member)
+        public EventRegistration(string comment,int guestsAmount, Member member)
         {
             Comment = comment;
-            TimeOfRegistration = timeOfReg;
             GuestsAmount = guestsAmount;
             Member = member;
         }

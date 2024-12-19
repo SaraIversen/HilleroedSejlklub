@@ -21,9 +21,9 @@ namespace SejlklubLibrary.Services
         }
 
         // Skal kunne tilføje en EventRegistration til listen under Event
-        public void AddRegistrationToEvent(Event ev, string comment, DateTime timeOfReg, int guestsAmount, Member member)
+        public void AddRegistrationToEvent(Event ev, string comment, int guestsAmount, Member member)
         {
-            EventRegistration eventRegistration = new EventRegistration(comment, timeOfReg, guestsAmount, member);
+            EventRegistration eventRegistration = new EventRegistration(comment, guestsAmount, member);
 
             if (!ev.EventRegistrations.Contains(eventRegistration))
             {

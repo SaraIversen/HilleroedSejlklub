@@ -63,10 +63,10 @@ namespace SejlklubLibrary.Data
         private static List<EventRegistration> _eventRegistrationData =
             new List<EventRegistration>()
             {
-                new EventRegistration("", new DateTime (),0,new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior, false, false)),
-                new EventRegistration("Test om get random member virker", new DateTime (), 0, GetRandomMember()),
-                new EventRegistration("Jeg tager den elskede sommer-salat med", new DateTime(),1,new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv, false, false)),
-                new EventRegistration("Tager min kærste og mor med",new DateTime(),2,new Member("Carina", "carina@mail.dk", "High Street 234", "14141414", MemberType.Junior, false, false))
+                new EventRegistration("",0,new Member("Mikkel", "mikkel@mail.dk", "Street 123", "12121212", MemberType.Senior, false, false)),
+                new EventRegistration("Test om get random member virker", 0, GetRandomMember()),
+                new EventRegistration("Jeg tager den elskede sommer-salat med",1,new Member("Muhammed", "muhammed@mail.dk", "North Street 345", "15151515", MemberType.Passiv, false, false)),
+                new EventRegistration("Tager min kærste og mor med",2,new Member("Carina", "carina@mail.dk", "High Street 234", "14141414", MemberType.Junior, false, false))
             };
         #endregion
 
